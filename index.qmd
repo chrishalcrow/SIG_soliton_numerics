@@ -21,9 +21,9 @@ lot of time on setting up our development environment and thinking about our wor
 get to coding itself, we'll go through that quite quickly.
 
 These notes are designed to be self contained. You can start the course RIGHT NOW. You can 
-suggest edits and raise issues on the GitHub page: https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages
+suggest edits and raise issues on the [GitHub page](https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages).
 
-# Plan for the course in Krakow
+## Plan for the course in Krakow
 
 We have four sessions. In each one, I'll give a brief introduction to the topic, then you 
 will follow the notes and try and get some code working. If you'd like to spend this time 
@@ -31,15 +31,16 @@ simply working on your existing code: go for it!
 
 By the end of the course, we'll have made a small package to create a one-dimensional 
 soliton and apply a flow to it. This is not scientifically revolutionary, but the code we 
-make will have many good practices built into it: tests, documentation. It'll be readable, 
-reproducible and published openly on GitHub. With this structure, I hope you can use this 
-project as a base for future work.
+make will have many good practices built into it. It will have tests and documentation. 
+It'll be readable, reproducible and published openly on GitHub. With this structure, 
+I hope you can use this project as a base for future work.
 
 So that everyone has the same experience, we'll be using Python. If you'd prefer to use a 
-different language, go for it, but I won't be able to help to easily. C++, Julia and Matlab 
+different language, go for it! You'll have to translate the Python code/concepts here into
+your favorite language, but that shouldn't be too hard. C++, Julia and Matlab 
 are all reasonable choices. We will use Python because it's quite easy to get started with 
 and it's the most popular (and employable) language in the world. Python is traditionally 
-thought to be slow, and it can be, but if you know how it works it can be just as fast as 
+thought to be slow, and it can be. But if you know how it works it can be just as fast as 
 any other language. I also recommend writing the code in VSCode or PyCharm.
 
 # Detailed Plan
@@ -198,7 +199,7 @@ about the soliton and one called `__init__.py` which tells Python that this fold
 contained a "module". Don't worry about that right now. Also add a script file called 
 `investigate_soliton.ipynb` in the scripts folder. Overall, my project folder looks like this:
 
-```
+``` python
 solitons1D/
     pyproject.toml
     README.md
@@ -263,7 +264,7 @@ def create_profile(num_lattice_points: int) -> np.array:
 ```
 
 Ok. Let's use this function. We're going to use `investigate_soliton.ipynb`. This is a 
-Jupyter notebook. To use it, we need to add another package to our package. In the 
+Jupyter notebook. To use it, we need to add another package to our enviroment. In the 
 terminal, navigate to the project folder, type "uv add ipykernel" then press enter. 
 Ok, now open `investigate_soliton.ipynb` in VSCode.
 
@@ -292,8 +293,8 @@ class Soliton():
 
     def __init__(self, num_lattice_points, lattice_spacing):
          self.lp = num_lattice_points
-	 self.ls = lattice_spacing
-	 self.profile = create_profile(num_lattice_points)
+	     self.ls = lattice_spacing
+	     self.profile = create_profile(num_lattice_points)
 ```
 
 In English:
@@ -331,14 +332,14 @@ class Soliton():
 
     def __init__(self, num_lattice_points, lattice_spacing):
          self.lp = num_lattice_points
-	 self.ls = lattice_spacing
-	 self.profile = create_profile(num_lattice_points)
+	     self.ls = lattice_spacing
+	     self.profile = create_profile(num_lattice_points)
 
     def compute_energy(self)
 
          total_energy = np.sum(self.profile)
-	 total_energy *= self.ls
-	 self.energy = total_energy
+	     total_energy *= self.ls
+	     self.energy = total_energy
 ```
 
 Now we have a method that takes in the profile function, sums it up, multiplies this 

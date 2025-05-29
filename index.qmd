@@ -1,5 +1,5 @@
 ---
-title: Experiment summary
+title: Good Scientific Software Practices, through Solitons
 output: html_document
 theme: zephyr
 format:
@@ -10,104 +10,195 @@ format:
 
 # Introduction
 
-Software engineering is now an integral part of science. As mathematicians and physists, we're pretty good at understanding algorithms, and even implementing them. But to ensure our code is easy to use, sharbale, reproducible, tested and reliable we need to do a lot more than implement an algorithm. Modern software development involves continuous integration, linters, typers, LSPs, code coverage, automatically-generated docs, and more! 
+Software engineering is now an integral part of science. As mathematicians and physicists, 
+we're pretty good at understanding algorithms, and even implementing them. But to ensure 
+our code is easy to use, sharable, reproducible, tested and reliable we need to do a lot
+more than implement an algorithm. Modern software development involves continuous integration, 
+linters, typers, LSPs, code coverage, automatically-generated docs, and more! 
 
-This course will focus on these "soft skills" of software. As such, we'll be spending a lot of time on setting up our development enviroment and thinking about our workflow. Once we get to coding itself, we'll go through that quite quickly.
+This course will focus on these "soft skills" of software. As such, we'll be spending a 
+lot of time on setting up our development environment and thinking about our workflow. Once we 
+get to coding itself, we'll go through that quite quickly.
 
-These notes are designed to be self contained. You can start the course RIGHT NOW. You can suggest edits and raise issues on the GitHub page: .
+These notes are designed to be self contained. You can start the course RIGHT NOW. You can 
+suggest edits and raise issues on the GitHub page: https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages
 
 # Plan for the course in Krakow
 
-We have four sessions. In each one, I'll give a breif introduction to the topic, then you will follow the notes and try and get some code working. If you'd like to spend this time simply working on your existing code: go for it!
+We have four sessions. In each one, I'll give a brief introduction to the topic, then you 
+will follow the notes and try and get some code working. If you'd like to spend this time 
+simply working on your existing code: go for it!
 
-By the end of the course, we'll have made a small package to create a one-dimensional soliton and apply a flow to it. This is not scientifically revolutionary, but the code we make will have many good practices built into it: tests, documentation. It'll be readable, reproducible and published openly on GitHub. With this structure, I hope you can use this project as a base for future work.
+By the end of the course, we'll have made a small package to create a one-dimensional 
+soliton and apply a flow to it. This is not scientifically revolutionary, but the code we 
+make will have many good practices built into it: tests, documentation. It'll be readable, 
+reproducible and published openly on GitHub. With this structure, I hope you can use this 
+project as a base for future work.
 
-So that everyone has the same experience, we'll be using Python. If you'd prefer to use a different language, go for it, but I won't be able to help to easily. C++, Julia and Matlab are all reasonable choices. We will use Python because it's quite easy to get started with and it's the most popular (and employable) language in the world. Python is traditionally thought to be slow, and it can be, but if you know how it works it can be just as fast as any other language. I also recommend writing the code in VSCode or PyCharm.
+So that everyone has the same experience, we'll be using Python. If you'd prefer to use a 
+different language, go for it, but I won't be able to help to easily. C++, Julia and Matlab 
+are all reasonable choices. We will use Python because it's quite easy to get started with 
+and it's the most popular (and employable) language in the world. Python is traditionally 
+thought to be slow, and it can be, but if you know how it works it can be just as fast as 
+any other language. I also recommend writing the code in VSCode or PyCharm.
 
 # Detailed Plan
 
-Before the course:
-    1. Installation
-Session 1:
-    2. Make a Project
-    3. Git and GitHub
-Session 2:
-    4. Source and scripts
-    5. Functions, classes and methods <-- coding only begins here!!
-    6. Let's code!
-Session 3:
-    7. Compute derivatives and the energy 
-    8. Plot a soliton
-    9. Save/Load a soliton
-Session 4:
-    10. Gradient flow
-Bonus:
-    11. Tests
-    12. Documentation
-    13. Optimisation
-    14. Continuous Integration
-    15. Recommended Reading
+1. Before the course:
+  - Installation
+2. Monday
+  - Make a Project
+  - Git and GitHub
+3. Tuesday
+  - Source and scripts
+  - Functions, classes and methods <-- coding only begins here!!
+  - Lots of code!
+4. Thursday
+  - Compute derivatives and the energy 
+  - Plot a soliton
+  - Save/Load a soliton
+5. Friday
+  - Gradient flow
+6. Bonus
+  - Tests
+  - Documentation
+  - Optimization
+  - Continuous Integration
+  - Recommended Reading
 
-1. Install some stuff
+# Installation
 
-1.1 The terminal
+## The terminal
 
-The terminal is a nice way to interact with your computer. If you're using Mac or Linux you have a terminal installed already. It's called Terminal. If you have Windows, you have Powershell. So that everyone has a similar experience, I encourage you to install Windows Terminal (there are installation instructions on the GitHub page: https://docs.astral.sh/uv/#installation)
+The terminal is a nice way to interact with your computer. If you're using Mac or Linux you 
+have a terminal installed already. It's called Terminal. If you have Windows, you have 
+Powershell. So that everyone has a similar experience, I encourage you to install Windows 
+Terminal (there are installation instructions on the GitHub page: 
+https://docs.astral.sh/uv/#installation)
 
-Open your terminal and type "ls" (short for "list") then press enter. This will display all the files in your currently directory. If you want to change directories type "cd " followed by the name of the directroy you want to go to.
+Open your terminal and type "ls" (short for "list") then press enter. This will display 
+all the files in your currently directory. If you want to change directories type "cd " 
+followed by the name of the directroy you want to go to.
 
-1.2 uv (to install python)
+## uv (to install python + packages)
 
-Python's biggest asset (and liability) is that people write packages for it. There are over 600,000 packages available on PyPi (https://pypi.org). These packages usually depend on each other, and it can get overwhelming keeping track. As such, we'll use a installation/package manager called `uv`. This will install python and the packages for us, and help initialise our project. To install uv follow the instructions on its website: https://docs.astral.sh/uv/#installation. Check it works by opening a Terminal (on Mac or Linux) and typing `uv`.
+Python's biggest asset (and liability) is that people write packages for it. There are over 
+600,000 packages available on PyPi (https://pypi.org). These packages usually depend on
+ each other, and it can get overwhelming keeping track. As such, we'll use a 
+ installation/package manager called `uv`. This will install python and the packages for us, 
+ and help initialise our project. To install uv follow the instructions on its website: 
+ https://docs.astral.sh/uv/#installation. Check it works by opening a Terminal (on Mac or 
+ Linux) and typing `uv`.
 
-Once you have uv, you can run python in the terminal by typing `uv run python`. The first time you do this uv might install Python. So it might take a little minute.
+Once you have uv, you can run python in the terminal by typing `uv run python`. The first 
+time you do this uv might install Python. So it might take a little minute.
 
-1.3 An editor
+## An editor
 
-A good text editor _really_ helps coding. A good one allows you to search through codebases, auto-complete code, and more. I recommend VSCode (https://code.visualstudio.com/) because it's free and has really good Python support. Some people love PyCharm (https://www.jetbrains.com/pycharm/). Please install one.
+A good text editor _really_ helps coding. A good one allows you to search through 
+codebases, auto-complete code, and more. I recommend VSCode (https://code.visualstudio.com/) 
+because it's free and has really good Python support. Some people love PyCharm 
+(https://www.jetbrains.com/pycharm/). Please install one.
 
 Both VScode and PyCharm have lots of extensions. For VSCode, please install the Python extension.
 
-1.4 Git
+## Git
 
-Check that you have git installed by typing 'git' then pressing enter in your Terminal. It's hopefully already installed. If not, please install it https://git-scm.com/book/en/v2/Getting-Started-Installing-Git This is a good moment to make a GitHub account too.
+Check that you have git installed by typing 'git' then pressing enter in your Terminal. 
+It's hopefully already installed. If not, please install it 
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git This is a good moment to make 
+a GitHub account too.
 
-2. Make a project
+# Make a project
 
-We're going to make a Python Package. First choose a name. I'll be using `Solitons1D`. Make a folder and name it what you want to call the project. Navigate to this folder in Terminal. Initialise a new python project by typing `uv init` in Terminal and pressing enter. Go have a look in the folder (either using your File Explorer or typing `ls` into Terminal). There should be three files inside the folder. uv has made these:
+We're going to make a Python Package. First choose a name. I'll be using `Solitons1D`. 
+Make a folder and name it what you want to call the project. Navigate to this folder in Terminal. 
+Initialise a new python project by typing `uv init` in Terminal and pressing enter. 
+Go have a look in the folder (either using your File Explorer or typing `ls` into Terminal). 
+There should be three files inside the folder. uv has made these:
 
-- pyproject.toml This file contains all the information about your project. Its name, version, description etc. Add some of your own details if you'd like. This file will also keep track of which other packages your package depends on once we add some.
-- README.md This file is what a new user will first read when they encounter your project. It should contain a description of the project, installation instructions and anything else you'd like. It's written in markdown, which isn't too far from plain text (https://www.markdownguide.org/).
+- pyproject.toml This file contains all the information about your project. Its name, version, 
+description etc. Add some of your own details if you'd like. This file will also keep track 
+of which other packages your package depends on once we add some.
+- README.md This file is what a new user will first read when they encounter your project. 
+It should contain a description of the project, installation instructions and anything else 
+you'd like. It's written in markdown, which isn't too far from plain text 
+(https://www.markdownguide.org/).
 - main.py An example python script.
 
-Ok! Let's open the project in VSCode. The easiest way to do this is in terminal. We're going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing `uv run code .`. The dot at the end means "this folder here". `code` is the shortcut for VSCode and `uv run` means "When you open VSCode, make it aware of which python _enviroment_ is being used at the moment". More on enviroments soon!
+Ok! Let's open the project in VSCode. The easiest way to do this is in terminal. We're going
+to do something slightly fancy that will make sense later, and open it with uv. Do this by 
+navigating to the project folder in Terminal then typing `uv run code .`. The dot at the end
+means "this folder here". `code` is the shortcut for VSCode and `uv run` means "When you open
+VSCode, make it aware of which python _enviroment_ is being used at the moment". More on 
+enviroments soon!
 
-VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn't you can put it there using `View -> Terminal`. From the terminal we can run the `main.py` python script by typing `uv run main.py` and pressing enter. It should print out "Hello World from {project name}".
+VSCode should have opened, and you should see the project directory at the left hand side. 
+There should also be a Terminal at the bottom. If there isn't you can put it there using 
+`View -> Terminal`. From the terminal we can run the `main.py` python script by typing 
+`uv run main.py` and pressing enter. It should print out "Hello World from {project name}".
 
-If that's worked - amazing!! You've just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I've shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole). 
+If that's worked - amazing!! You've just set up your developer workflow. I think doing 
+this is actually one of the hardest parts of coding. I've shown you my workflow which is 
+fairly standard; but everyone has their own. You can read thousands of articles and YouTube 
+videos (just search neovim for python on YouTube to really start going down the rabbit hole). 
 
-2.2 Virtual Enviroments
+## Virtual Enviroments
 
-Ok, I've been sweeping the following topic under the rug but it's very important to understand: virtual enviroments. Because python has so many packages and their dependencies are complex, it's considered good behaviour to make a different enviroment for different projects. So you might have one enviroment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. `uv` takes this to the extreme: it makes a new virtual enviroment enviroment every time you run python. When we ran `uv run code .` it make a folder called `.venv` containing the information about the enviroment. And when we opened code uv told it that we're using this enviroment. This means VSCode is aware of which packages we've installed. This is gonna be _super_ helpful later.
+Ok, I've been sweeping the following topic under the rug but it's very important to 
+understand: virtual enviroments. Because python has so many packages and their 
+dependencies are complex, it's considered good behaviour to make a different 
+enviroment for different projects. So you might have one enviroment for when you do 
+statistics, one for when you do heavy numerical stuff and another for plotting. `uv` 
+takes this to the extreme: it makes a new virtual enviroment enviroment every time you run 
+python. When we ran `uv run code .` it make a folder called `.venv` containing the information 
+about the enviroment. And when we opened code uv told it that we're using this enviroment. 
+This means VSCode is aware of which packages we've installed. This is gonna be _super_ helpful 
+later.
 
-Let's add some package dependencies to our package. In the terminal, navigate to your project folder. We'll add the package numpy by running `uv add numpy`. This will add numpy to the project by adding it to the `pyproject.toml` file.
+Let's add some package dependencies to our package. In the terminal, navigate to your 
+project folder. We'll add the package numpy by running `uv add numpy`. This will add 
+numpy to the project by adding it to the `pyproject.toml` file.
 
-You might notice another new file in your project folder called `uv.lock`. This keeps all the intricate details about the packages. It's gross.
+You might notice another new file in your project folder called `uv.lock`. This keeps 
+all the intricate details about the packages. It's gross.
 
-3. Git and GitHub (Optional)
+# Git and GitHub (Optional)
 
-Git is version control software. It keeps track of changes you make in the code, so you can easily revert to previous versions. It's really helpful when you work on a big project with several contributors. When a bug gets introduced you can usually immediately figure out who caused it!
+Git is version control software. It keeps track of changes you make in the code, so you can 
+easily revert to previous versions. It's really helpful when you work on a big project with 
+several contributors. When a bug gets introduced you can usually immediately figure out who 
+caused it!
 
-GitHub is run by Microsoft. It's where you can publish your software. It uses Git to keep track of changes etc.
+GitHub is run by Microsoft. It's where you can publish your software. It uses Git to keep 
+track of changes etc.
 
-We need to tell git to track our project, then publish our project on GitHub. This will create a link between our local folder and GitHub page online. To do this, first navigate to project folder in terminal. Then type "git init" and press enter. You can do everything git in the terminal, but I find this quite difficult. Instead, VSCode has great GitHub integration.
+We need to tell git to track our project, then publish our project on GitHub. This will 
+create a link between our local folder and GitHub page online. To do this, first navigate 
+to project folder in terminal. Then type "git init" and press enter. You can do everything 
+git in the terminal, but I find this quite difficult. Instead, VSCode has great GitHub 
+integration.
 
-4. Sources and scripts
+# Sources and scripts
 
-As we build our package, we should keep a separation between the "source" and "scripts". The source is our package itself. This will contain the logic which can _do things_, functions like `compute_energy`, `make_soliton` and more. Anyone could use this! But when we use the package to do science, we'd write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.
+As we build our package, we should keep a separation between the "source" and "scripts". 
+The source is our package itself. This will contain the logic which can _do things_, 
+functions like `compute_energy`, `make_soliton` and more. Anyone could use this! But 
+when we use the package to do science, we'd write a script. The script will import 
+functions from the source and apply them to a specific case. A script might make a 
+soliton, apply a gradient flow, compute the energy, then plot the result and save the 
+figure as a pdf.
 
-To make this distiction obvious, we'll make two folders in the project folder. One called "src" (short for source - this shortening is convention) and one called "scripts". In the "src" folder make a another folder with the name of your package. We'll also delete the `main.py` file that uv created. Let's also create two files in the `source/{project_name}` folder. One called `soliton.py` which will contain the code about the soliton and one called `__init__.py` which tells Python that this folder contained a "module". Don't worry about that right now. Also add a script file called `investigate_soliton.ipynb` in the scripts folder. Overall, my project folder looks like this:
+To make this distiction obvious, we'll make two folders in the project folder. One 
+called "src" (short for source - this shortening is convention) and one called 
+"scripts". In the "src" folder make a another folder with the name of your package. 
+We'll also delete the `main.py` file that uv created. Let's also create two files in 
+the `source/{project_name}` folder. One called `soliton.py` which will contain the code 
+about the soliton and one called `__init__.py` which tells Python that this folder 
+contained a "module". Don't worry about that right now. Also add a script file called 
+`investigate_soliton.ipynb` in the scripts folder. Overall, my project folder looks like this:
 
+```
 solitons1D/
     pyproject.toml
     README.md
@@ -118,16 +209,19 @@ solitons1D/
 	    __init__.py
 	    soliton.py
     uv.lock
+```
 
-5. Functions, classes and methods
+# Functions, classes and methods
 
 Ok - let's start coding!!
 
-5.1 Functions
+## Functions
 
-Let's make a function. Functions take some input and return some output. Let's make a `create_profile` function which will generate a profile for a 1D soliton. For now, we'll just return an array of 0s:
+Let's make a function. Functions take some input and return some output. Let's make a 
+`create_profile` function which will generate a profile for a 1D soliton. For now, 
+we'll just return an array of 0s:
 
-```
+``` python
 import numpy as np
 
 def create_profile(num_lattice_points):
@@ -136,14 +230,16 @@ def create_profile(num_lattice_points):
 ```
 
 I'll write this out in English:
-"Import the package called numpy and call it np, which is how we'll be able to access it."
-"Define a function called `create_profile`, which will accept the argument `num_lattice_points`."
-"Use the funcion `zeros` from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable `profile`."
-"Return the variable `profile`. This return signals the end of the function
 
-There are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameter; add a docstring describing the function.
+- "Import the package called numpy and call it np, which is how we'll be able to access it."
+- "Define a function called `create_profile`, which will accept the argument `num_lattice_points`."
+- "Use the funcion `zeros` from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable `profile`."
+- "Return the variable `profile`. This return signals the end of the function
 
-```
+There are several improvements we can make to code immediately, we can: add type 
+information about the arguments and returned parameter; add a docstring describing the function.
+
+``` python
 import numpy as np
 
 def create_profile(num_lattice_points: int) -> np.array:
@@ -166,23 +262,32 @@ def create_profile(num_lattice_points: int) -> np.array:
     return profile
 ```
 
-Ok. Let's use this function. We're going to use `investigate_soliton.ipynb`. This is a Jupyter notebook. To use it, we need to add another package to our package. In the terminal, navigate to the project folder, type "uv add ipykernel" then press enter. Ok, now open `investigate_soliton.ipynb` in VSCode.
+Ok. Let's use this function. We're going to use `investigate_soliton.ipynb`. This is a 
+Jupyter notebook. To use it, we need to add another package to our package. In the 
+terminal, navigate to the project folder, type "uv add ipykernel" then press enter. 
+Ok, now open `investigate_soliton.ipynb` in VSCode.
 
-A Jupyter notebook allows you to run little snippets of code in a "cell". We need to import our function from our package, then run it. Put this code in your first cell
+A Jupyter notebook allows you to run little snippets of code in a "cell". We need to 
+import our function from our package, then run it. Put this code in your first cell
 
-```
+``` python
 from solitons1d.soliton import create_profile
 profile = create_profile(100)
 profile
 ```
 
-and execute this (either by pressing the "play" button next to the cell or pressing shift+enter). The final line of the cell gets displayed underneate it. So we should see a large array of 0s.
+and execute this (either by pressing the "play" button next to the cell or pressing 
+shift+enter). The final line of the cell gets displayed underneate it. So we should see 
+a large array of 0s.
 
-5.2 Classes and methods
+## Classes and methods
 
-Functions are fine. But classes are the heart of object-orientated programming. A class represents an object. In `src/soliton.py`, let's make a class which will represent a soliton. When you make an instance of a class (called an object), it is "initialised". Here, we can choose what information to store in the object. 
+Functions are fine. But classes are the heart of object-orientated programming. 
+A class represents an object. In `src/soliton.py`, let's make a class which will 
+represent a soliton. When you make an instance of a class (called an object), it 
+is "initialised". Here, we can choose what information to store in the object. 
 
-```
+``` python
 class Soliton():
 
     def __init__(self, num_lattice_points, lattice_spacing):
@@ -192,31 +297,36 @@ class Soliton():
 ```
 
 In English:
-"Define a class called Soliton"
-"Define the initialisation method, which will accept two integers, the number of lattice points and the lattice spacing."
-"store the number of lattice points"
-"store the lattice_spacing"
-"Make a profile using the `create_profile` function and store it in `profile`.
+
+- "Define a class called Soliton"
+- "Define the initialisation method, which will accept two integers, the number of lattice points and the lattice spacing."
+- "store the number of lattice points"
+- "store the lattice_spacing"
+- "Make a profile using the `create_profile` function and store it in `profile`.
 
 Now, back in your script, make a Soliton object:
 
-```
+``` python
 from solitons1d import Soliton
 my_soliton = Soliton(100,0.1)
 print(my_soliton.lp)
 ```
 
-"from the solitons1d package, import the class Soliton"
-"use the Soliton class to initialise a soliton with 100 lattice points and 0.1 lattice spacing called `my_soliton`"
-"take the soliton I just made, and get the number of lattice points. Print this."
+- "from the solitons1d package, import the class Soliton"
+- "use the Soliton class to initialise a soliton with 100 lattice points and 0.1 lattice spacing called `my_soliton`"
+- "take the soliton I just made, and get the number of lattice points. Print this."
 
 Great! Hopefully you can see that it's helpful to have an object that contains some information. 
 
-5.3 Methods
+## Methods
 
-Even more helpful: write class-specific functions that can change what's in the object. These are called "methods". They're similar to functions but are designed to only apply to the class. These are defined in the class definition itself. Let's create a method which will (eventually) compute the energy of the soliton. The Soliton class method get updated to the following:
+Even more helpful: write class-specific functions that can change what's in the object. 
+These are called "methods". They're similar to functions but are designed to only apply 
+to the class. These are defined in the class definition itself. Let's create a method which
+will (eventually) compute the energy of the soliton. The Soliton class method get updated 
+to the following:
 
-```
+``` python
 class Soliton():
 
     def __init__(self, num_lattice_points, lattice_spacing):
@@ -231,16 +341,19 @@ class Soliton():
 	 self.energy = total_energy
 ```
 
-Now we have a method that takes in the profile function, sums it up, multiplies this value by the lattice spacing, stores the value in `self.energy` then returns this value. We can use it in a script as follows:
+Now we have a method that takes in the profile function, sums it up, multiplies this 
+value by the lattice spacing, stores the value in `self.energy` then returns this value. 
+We can use it in a script as follows:
 
-```
+``` python
 my_soliton.compute_energy()
 print(my_soliton.energy)
 ```
 
-We've now got the basic building block that we'll use for the rest of the course. Let's now do a bunch of coding...
+We've now got the basic building block that we'll use for the rest of the course. Let's 
+now do a bunch of coding...
 
-6. Writing some code
+## Lots of code!
 
 6.1 Make a Lagrangian class
 

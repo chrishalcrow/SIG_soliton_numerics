@@ -116,8 +116,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
   <li><a href="#plan-for-the-course-in-krakow" id="toc-plan-for-the-course-in-krakow" class="nav-link" data-scroll-target="#plan-for-the-course-in-krakow">Plan for the course in Krakow</a></li>
+  </ul></li>
   <li><a href="#detailed-plan" id="toc-detailed-plan" class="nav-link" data-scroll-target="#detailed-plan">Detailed Plan</a></li>
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a>
   <ul class="collapse">
@@ -172,13 +174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Introduction</h1>
 <p>Software engineering is now an integral part of science. As mathematicians and physicists, we’re pretty good at understanding algorithms, and even implementing them. But to ensure our code is easy to use, sharable, reproducible, tested and reliable we need to do a lot more than implement an algorithm. Modern software development involves continuous integration, linters, typers, LSPs, code coverage, automatically-generated docs, and more!</p>
 <p>This course will focus on these “soft skills” of software. As such, we’ll be spending a lot of time on setting up our development environment and thinking about our workflow. Once we get to coding itself, we’ll go through that quite quickly.</p>
-<p>These notes are designed to be self contained. You can start the course RIGHT NOW. You can suggest edits and raise issues on the GitHub page: https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages</p>
-</section>
-<section id="plan-for-the-course-in-krakow" class="level1">
-<h1>Plan for the course in Krakow</h1>
+<p>These notes are designed to be self contained. You can start the course RIGHT NOW. You can suggest edits and raise issues on the <a href="https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages">GitHub page</a>.</p>
+<section id="plan-for-the-course-in-krakow" class="level2">
+<h2 class="anchored" data-anchor-id="plan-for-the-course-in-krakow">Plan for the course in Krakow</h2>
 <p>We have four sessions. In each one, I’ll give a brief introduction to the topic, then you will follow the notes and try and get some code working. If you’d like to spend this time simply working on your existing code: go for it!</p>
-<p>By the end of the course, we’ll have made a small package to create a one-dimensional soliton and apply a flow to it. This is not scientifically revolutionary, but the code we make will have many good practices built into it: tests, documentation. It’ll be readable, reproducible and published openly on GitHub. With this structure, I hope you can use this project as a base for future work.</p>
-<p>So that everyone has the same experience, we’ll be using Python. If you’d prefer to use a different language, go for it, but I won’t be able to help to easily. C++, Julia and Matlab are all reasonable choices. We will use Python because it’s quite easy to get started with and it’s the most popular (and employable) language in the world. Python is traditionally thought to be slow, and it can be, but if you know how it works it can be just as fast as any other language. I also recommend writing the code in VSCode or PyCharm.</p>
+<p>By the end of the course, we’ll have made a small package to create a one-dimensional soliton and apply a flow to it. This is not scientifically revolutionary, but the code we make will have many good practices built into it. It will have tests and documentation. It’ll be readable, reproducible and published openly on GitHub. With this structure, I hope you can use this project as a base for future work.</p>
+<p>So that everyone has the same experience, we’ll be using Python. If you’d prefer to use a different language, go for it! You’ll have to translate the Python code/concepts here into your favorite language, but that shouldn’t be too hard. C++, Julia and Matlab are all reasonable choices. We will use Python because it’s quite easy to get started with and it’s the most popular (and employable) language in the world. Python is traditionally thought to be slow, and it can be. But if you know how it works it can be just as fast as any other language. I also recommend writing the code in VSCode or PyCharm.</p>
+</section>
 </section>
 <section id="detailed-plan" class="level1">
 <h1>Detailed Plan</h1>
@@ -278,16 +280,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Sources and scripts</h1>
 <p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em>, functions like <code>compute_energy</code>, <code>make_soliton</code> and more. Anyone could use this! But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
 <p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” (short for source - this shortening is convention) and one called “scripts”. In the “src” folder make a another folder with the name of your package. We’ll also delete the <code>main.py</code> file that uv created. Let’s also create two files in the <code>source/{project_name}</code> folder. One called <code>soliton.py</code> which will contain the code about the soliton and one called <code>__init__.py</code> which tells Python that this folder contained a “module”. Don’t worry about that right now. Also add a script file called <code>investigate_soliton.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
-<pre><code>solitons1D/
-    pyproject.toml
-    README.md
-    scripts/
-        investigate_soliton.ipynb
-    src/
-        solitons1D/
-        __init__.py
-        soliton.py
-    uv.lock</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>solitons1D<span class="op">/</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    pyproject.toml</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    README.md</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    scripts<span class="op">/</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        investigate_soliton.ipynb</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    src<span class="op">/</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        solitons1D<span class="op">/</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">__init__</span>.py</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        soliton.py</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    uv.lock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="functions-classes-and-methods" class="level1">
 <h1>Functions, classes and methods</h1>
@@ -328,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_lattice_points)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ok. Let’s use this function. We’re going to use <code>investigate_soliton.ipynb</code>. This is a Jupyter notebook. To use it, we need to add another package to our package. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Ok, now open <code>investigate_soliton.ipynb</code> in VSCode.</p>
+<p>Ok. Let’s use this function. We’re going to use <code>investigate_soliton.ipynb</code>. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Ok, now open <code>investigate_soliton.ipynb</code> in VSCode.</p>
 <p>A Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> create_profile</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> create_profile(<span class="dv">100</span>)</span>
@@ -342,8 +344,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_lattice_points, lattice_spacing):</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.lp <span class="op">=</span> num_lattice_points</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="va">self</span>.ls <span class="op">=</span> lattice_spacing</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_lattice_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.ls <span class="op">=</span> lattice_spacing</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_lattice_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In English:</p>
 <ul>
 <li>“Define a class called Soliton”</li>
@@ -370,14 +372,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_lattice_points, lattice_spacing):</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.lp <span class="op">=</span> num_lattice_points</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     <span class="va">self</span>.ls <span class="op">=</span> lattice_spacing</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>     <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_lattice_points)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.ls <span class="op">=</span> lattice_spacing</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_lattice_points)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_energy(<span class="va">self</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>         total_energy <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.profile)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>     total_energy <span class="op">*=</span> <span class="va">self</span>.ls</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>     <span class="va">self</span>.energy <span class="op">=</span> total_energy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>         total_energy <span class="op">*=</span> <span class="va">self</span>.ls</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.energy <span class="op">=</span> total_energy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now we have a method that takes in the profile function, sums it up, multiplies this value by the lattice spacing, stores the value in <code>self.energy</code> then returns this value. We can use it in a script as follows:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

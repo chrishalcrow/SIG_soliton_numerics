@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -63,18 +29,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb111ea82d72e5bd18f836ed95d90a79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-21bec1194e878605ed49d94bfcede57a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="floating">
+<body class="floating quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
@@ -117,41 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#experimental-overview" id="toc-experimental-overview" class="nav-link" data-scroll-target="#experimental-overview">Experimental overview</a>
-  <ul class="collapse">
-  <li><a href="#session-types" id="toc-session-types" class="nav-link" data-scroll-target="#session-types">Session Types</a></li>
-  </ul></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
-  <ul class="collapse">
-  <li><a href="#data-and-pipeline-overview" id="toc-data-and-pipeline-overview" class="nav-link" data-scroll-target="#data-and-pipeline-overview">Data and pipeline overview</a></li>
-  <li><a href="#folder-structure" id="toc-folder-structure" class="nav-link" data-scroll-target="#folder-structure">Folder Structure</a>
-  <ul class="collapse">
-  <li><a href="#raw-data" id="toc-raw-data" class="nav-link" data-scroll-target="#raw-data">Raw data</a></li>
-  <li><a href="#derived-data" id="toc-derived-data" class="nav-link" data-scroll-target="#derived-data">Derived data</a></li>
-  </ul></li>
-  <li><a href="#accessing-raw-data" id="toc-accessing-raw-data" class="nav-link" data-scroll-target="#accessing-raw-data">Accessing raw data</a>
-  <ul class="collapse">
-  <li><a href="#raw-ephys-recordings" id="toc-raw-ephys-recordings" class="nav-link" data-scroll-target="#raw-ephys-recordings">Raw Ephys recordings</a></li>
-  <li><a href="#video-files" id="toc-video-files" class="nav-link" data-scroll-target="#video-files">Video files</a></li>
-  </ul></li>
-  <li><a href="#accessing-derived-data" id="toc-accessing-derived-data" class="nav-link" data-scroll-target="#accessing-derived-data">Accessing derived data</a>
-  <ul class="collapse">
-  <li><a href="#sortinganalyzer" id="toc-sortinganalyzer" class="nav-link" data-scroll-target="#sortinganalyzer">SortingAnalyzer</a></li>
-  <li><a href="#spike-trains" id="toc-spike-trains" class="nav-link" data-scroll-target="#spike-trains">Spike Trains</a></li>
-  <li><a href="#open-field-position-data-of1-of2" id="toc-open-field-position-data-of1-of2" class="nav-link" data-scroll-target="#open-field-position-data-of1-of2">Open Field Position Data (OF1 + OF2)</a></li>
-  <li><a href="#tongue-position" id="toc-tongue-position" class="nav-link" data-scroll-target="#tongue-position">Tongue position</a></li>
-  <li><a href="#channel-locations-in-ccf-coordinates" id="toc-channel-locations-in-ccf-coordinates" class="nav-link" data-scroll-target="#channel-locations-in-ccf-coordinates">Channel locations in CCF coordinates</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#technical-details" id="toc-technical-details" class="nav-link" data-scroll-target="#technical-details">Technical details</a>
-  <ul class="collapse">
-  <li><a href="#code-protocols" id="toc-code-protocols" class="nav-link" data-scroll-target="#code-protocols">Code Protocols</a></li>
-  <li><a href="#experimental-protocols" id="toc-experimental-protocols" class="nav-link" data-scroll-target="#experimental-protocols">Experimental Protocols</a></li>
-  <li><a href="#feature-extraction-from-video-data" id="toc-feature-extraction-from-video-data" class="nav-link" data-scroll-target="#feature-extraction-from-video-data">Feature Extraction from video data</a></li>
-  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq">FAQ</a></li>
-  </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#plan-for-the-course-in-krakow" id="toc-plan-for-the-course-in-krakow" class="nav-link" data-scroll-target="#plan-for-the-course-in-krakow">Plan for the course in Krakow</a></li>
+  <li><a href="#detailed-plan" id="toc-detailed-plan" class="nav-link" data-scroll-target="#detailed-plan">Detailed Plan</a></li>
   </ul>
 </nav>
 </nav>
@@ -181,530 +113,389 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
-<p>This experiment is designed to find out stuff about memory.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Software engineering is now an integral part of science. As mathematicians and physists, we’re pretty good at understanding algorithms, and even implementing them. But to ensure our code is easy to use, sharbale, reproducible, tested and reliable we need to do a lot more than implement an algorithm. Modern software development involves continuous integration, linters, typers, LSPs, code coverage, automatically-generated docs, and more!</p>
+<p>This course will focus on these “soft skills” of software. As such, we’ll be spending a lot of time on setting up our development enviroment and thinking about our workflow. Once we get to coding itself, we’ll go through that quite quickly.</p>
+<p>These notes are designed to be self contained. You can start the course RIGHT NOW. You can suggest edits and raise issues on the GitHub page: .</p>
 </section>
-<section id="experimental-overview" class="level1">
-<h1>Experimental overview</h1>
-<p>We stereotaxically targeted the medial entorhinal cortex of 7 males and 1 female C57BL/6J mice with Neuropixel 2.0 (NP2; 4 shank) probes. Prior to implantation of the NP2 probes, mice were trained in the VR linear track experiment to an expert level in both beaconed and non-beaconed trial variants (see Tennant et al., 2018; 10.1016/j.celrep.2018.01.005).</p>
-<p>Changes to the task from Tennant et al., 2018, Tennant et al., 2022 and Clark and Nolan, 2024 (T18, T22 and C24 respectively):</p>
+<section id="plan-for-the-course-in-krakow" class="level1">
+<h1>Plan for the course in Krakow</h1>
+<p>We have four sessions. In each one, I’ll give a breif introduction to the topic, then you will follow the notes and try and get some code working. If you’d like to spend this time simply working on your existing code: go for it!</p>
+<p>By the end of the course, we’ll have made a small package to create a one-dimensional soliton and apply a flow to it. This is not scientifically revolutionary, but the code we make will have many good practices built into it: tests, documentation. It’ll be readable, reproducible and published openly on GitHub. With this structure, I hope you can use this project as a base for future work.</p>
+<p>So that everyone has the same experience, we’ll be using Python. If you’d prefer to use a different language, go for it, but I won’t be able to help to easily. C++, Julia and Matlab are all reasonable choices. We will use Python because it’s quite easy to get started with and it’s the most popular (and employable) language in the world. Python is traditionally thought to be slow, and it can be, but if you know how it works it can be just as fast as any other language. I also recommend writing the code in VSCode or PyCharm.</p>
+</section>
+<section id="detailed-plan" class="level1">
+<h1>Detailed Plan</h1>
+<p>Before the course: 1. Installation Session 1: 2. Make a Project 3. Git and GitHub Session 2: 4. Source and scripts 5. Functions, classes and methods &lt;– coding only begins here!! 6. Let’s code! Session 3: 7. Compute derivatives and the energy 8. Plot a soliton 9. Save/Load a soliton Session 4: 10. Gradient flow Bonus: 11. Tests 12. Documentation 13. Optimisation 14. Continuous Integration 15. Recommended Reading</p>
+<ol type="1">
+<li>Install some stuff</li>
+</ol>
+<p>1.1 The terminal</p>
+<p>The terminal is a nice way to interact with your computer. If you’re using Mac or Linux you have a terminal installed already. It’s called Terminal. If you have Windows, you have Powershell. So that everyone has a similar experience, I encourage you to install Windows Terminal (there are installation instructions on the GitHub page: https://docs.astral.sh/uv/#installation)</p>
+<p>Open your terminal and type “ls” (short for “list”) then press enter. This will display all the files in your currently directory. If you want to change directories type “cd” followed by the name of the directroy you want to go to.</p>
+<p>1.2 uv (to install python)</p>
+<p>Python’s biggest asset (and liability) is that people write packages for it. There are over 600,000 packages available on PyPi (https://pypi.org). These packages usually depend on each other, and it can get overwhelming keeping track. As such, we’ll use a installation/package manager called <code>uv</code>. This will install python and the packages for us, and help initialise our project. To install uv follow the instructions on its website: https://docs.astral.sh/uv/#installation. Check it works by opening a Terminal (on Mac or Linux) and typing <code>uv</code>.</p>
+<p>Once you have uv, you can run python in the terminal by typing <code>uv run python</code>. The first time you do this uv might install Python. So it might take a little minute.</p>
+<p>1.3 An editor</p>
+<p>A good text editor <em>really</em> helps coding. A good one allows you to search through codebases, auto-complete code, and more. I recommend VSCode (https://code.visualstudio.com/) because it’s free and has really good Python support. Some people love PyCharm (https://www.jetbrains.com/pycharm/). Please install one.</p>
+<p>Both VScode and PyCharm have lots of extensions. For VSCode, please install the Python extension.</p>
+<p>1.4 Git</p>
+<p>Check that you have git installed by typing ‘git’ then pressing enter in your Terminal. It’s hopefully already installed. If not, please install it https://git-scm.com/book/en/v2/Getting-Started-Installing-Git This is a good moment to make a GitHub account too.</p>
+<ol start="2" type="1">
+<li>Make a project</li>
+</ol>
+<p>We’re going to make a Python Package. First choose a name. I’ll be using <code>Solitons1D</code>. Make a folder and name it what you want to call the project. Navigate to this folder in Terminal. Initialise a new python project by typing <code>uv init</code> in Terminal and pressing enter. Go have a look in the folder (either using your File Explorer or typing <code>ls</code> into Terminal). There should be three files inside the folder. uv has made these:</p>
 <ul>
-<li>Water deprivation was used instead of food deprivation therefore 10% sucrose solution was used as reward instead of soy milk. The volume of sucrose solution varied between 5-10 uL per reward dispensed.</li>
-<li>A speed of 3 cm/s was used as the stop threshold, compared to 0.7 cm/s and 4.7 cm/s used in T18 and T22.</li>
-<li>Probe trials (non-beaconed trials without reward) were not recorded in this experiment.</li>
-<li>Upon teleportation back to the start of the track, trial type was randomised with equal weighting to beaconed and non-beaconed trials, this produced an equal number of beaconed and non-beaconed trials compared to the repeated block structures used in T18 and T22.</li>
-<li>Mice were only implanted once they reached an expert level in the task.</li>
-<li>Electrophysiology was acquired using a National Instruments/IMEC acquisition system and recorded using Open Ephys software using the Neuropixel acquisition external plugin.</li>
-<li>Behavioural variables were stored and saved directly from Blender3D, and time synced retrospectively using aperiodic TTL pulses sent directly to both the Neuropixel acquisition system and Blender3D via a custom Arduino Due.</li>
+<li>pyproject.toml This file contains all the information about your project. Its name, version, description etc. Add some of your own details if you’d like. This file will also keep track of which other packages your package depends on once we add some.</li>
+<li>README.md This file is what a new user will first read when they encounter your project. It should contain a description of the project, installation instructions and anything else you’d like. It’s written in markdown, which isn’t too far from plain text (https://www.markdownguide.org/).</li>
+<li>main.py An example python script.</li>
 </ul>
-<section id="session-types" class="level2">
-<h2 class="anchored" data-anchor-id="session-types">Session Types</h2>
-<p>Several different experiment types were considered. Each experiment contains sessions. Each session has an abbreviated label such as OF1. Knowing which label you are looking for will help when accessing the data.</p>
-<p>Here, we summarise each experiment type and the sessions within each experiment.</p>
-<details>
-<summary>
-Open field -&gt; VR -&gt; Open field
-</summary>
-<p><strong>OF1</strong>. The mouse explores the open field arena for 20 minutes.</p>
-<p><strong>VR</strong>. The mouse is transferred to a head fixed VR enviroment doing a memory task. Description of memory task.</p>
-<strong>OF2</strong>. The mouse is returned to the open field arena for another 20 minutes of free exploration.
-</details>
-<details>
-<summary>
-Open field -&gt; VR multi context -&gt; Open field
-</summary>
-</details>
-<details>
-<summary>
-Visual Coding
-</summary>
-</details>
-<details>
-<summary>
-Visual Sequences
-</summary>
-</details>
-<details>
-<summary>
-Visual multi-sequences
-</summary>
-</details>
-</section>
-</section>
-<section id="data" class="level1">
-<h1>Data</h1>
-<section id="data-and-pipeline-overview" class="level2">
-<h2 class="anchored" data-anchor-id="data-and-pipeline-overview">Data and pipeline overview</h2>
-<p>Our basic pipeline overview can be found below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/pipelineoverview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Pipeline overview"><img src="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/pipelineoverview.png" class="img-fluid figure-img" alt="Pipeline overview"></a></p>
-<figcaption>Pipeline overview</figcaption>
-</figure>
-</div>
-<p>Every session contains an output from Bonsai or Blender and Video. These capture the animal behaviour data, as well as a light pulse signal used for synchronisation. Most sessions include ephys data, which capture neural behaviour. Metadata about the ephys recording is also saved, such as which recording configuration was used is also saved.</p>
-<p>We expect users will be most interested in <code>raw data</code> (in red) or the <code>outputs for analysis</code> (in teal). Find out how to access the <a href="#accessing-raw-data">Raw data</a> and <a href="#accessing-derived-data">Derived data</a> below. We explain how each script was implemented in the <a href="#code-protocols">Code Protocols</a> section.</p>
-</section>
-<section id="folder-structure" class="level2">
-<h2 class="anchored" data-anchor-id="folder-structure">Folder Structure</h2>
-<section id="raw-data" class="level3">
-<h3 class="anchored" data-anchor-id="raw-data">Raw data</h3>
-<p>The raw data is organised as follows:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data_folder<span class="op">/</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    session_folder<span class="op">/</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        M{mouse}_D{day}_datetime_{session_abbreviation}<span class="op">/</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>            params.yaml  <span class="co"># metadata about the experiment</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            {video_file}.avi  <span class="co"># video of behaviour</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            {behaviour_files}.csv  <span class="co"># behavioural output from Bonsai/Blender</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            Record Node <span class="dv">102</span><span class="op">/</span>  <span class="co"># Ephys data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                experiment1<span class="op">/</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                    recording1<span class="op">/</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                        continous<span class="op">/</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                        events<span class="op">/</span> (<span class="kw">not</span> used)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                        spikes<span class="op">/</span> (<span class="kw">not</span> used)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                        structure.oebin</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where datetime is the time the session began.</p>
-<p>For example, the VR data for mouse 25, day 20 in stored in</p>
-<pre><code>"data_folder/vr/M25_D20_2024-11-08_11-52-50_VR1"</code></pre>
-<p>Find out more about the data below.</p>
-</section>
-<section id="derived-data" class="level3">
-<h3 class="anchored" data-anchor-id="derived-data">Derived data</h3>
-<p>Each mouse day (usually) corresponds to one “experiment”, which might contain severl “sessions”. To reflect this, the derived data is organised as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>derivatives_folder<span class="op">/</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    M{mouse}<span class="op">/</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        D{day}<span class="op">/</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            full<span class="op">/</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            {session_type_1}<span class="op">/</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            {session_type_2}<span class="op">/</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The information in <code>full</code> is shared between all sessions in the experiment (e.g.&nbsp;if all the data is sorted together, the sorted data is stored here) while information unique to each session is stored in the <code>session_type_n</code> folder. This folder can contain <em>many</em> pieces of data. Each is described in the DataTypes section below.</p>
-<details>
-<summary>
-An example
-</summary>
-<p>On day 20, mouse 25 took part in the OF1-&gt;VR-&gt;OF2 experiment. Its derivatives folder looks like</p>
-<pre><code>M25/D20/
-    full/
-        kilosort4/
-            kilosort4_report/
-            kilosort4_sa/
-        rec_samples.json
-    of1/
-        dlc/
-        Figures/
-        kilosort4/
-            spikes.pkl
-        position_data.csv
-        theta_phase.pkl
-    vr/
-        Figures/
-        kilosort4/
-            spikes.pkl
-        licks/
-            lick_data.csv
-        pupil_dilation/
-            pupil_dilation.csv
-        position_data.csv
-        theta_phase.pkl
-    of2/ 
-        dlc/
-        Figures/
-        kilosort4/
-            spikes.pkl
-        position_data.csv
-        theta_phase.pkl</code></pre>
-<p>And more! Importantly, the data which depends on the sorting algorithm used are contained in a folder named for that algorithm. E.g. the spikes.pkl file contains the spike times generated by the kilosort4 algorithm so belong to this folder.</p>
-</details>
-</section>
-</section>
-<section id="accessing-raw-data" class="level2">
-<h2 class="anchored" data-anchor-id="accessing-raw-data">Accessing raw data</h2>
-<p>Here we summarise the most important data for collaborators to access.</p>
-<section id="raw-ephys-recordings" class="level3">
-<h3 class="anchored" data-anchor-id="raw-ephys-recordings">Raw Ephys recordings</h3>
-<p>Stored at</p>
-<pre><code>data_folder/Cohort_folder/session_folder/M1_D1_datetime_{session}/</code></pre>
-<p>Openphys files. Roughly a large binary file with some metadata.</p>
-<p>These can be read using <code>spikeinterface</code> e.g.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.full <span class="im">as</span> si</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>path_to_recording <span class="op">=</span> <span class="st">"data_folder/of/M25_D20_2024-11-08_11-25-37_OF1/"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>recording <span class="op">=</span> si.read_openephys(path_to_recording)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="video-files" class="level3">
-<h3 class="anchored" data-anchor-id="video-files">Video files</h3>
-<p>Stored at</p>
-<pre><code>data_folder/Cohort_folder/session_folder/M1_D1_datetime_{session}/{video_name}.avi</code></pre>
-<p>Avi files.</p>
-<p><strong>Open Field</strong>. Video <code>M{mouse}_D{day}_OF1.avi</code> gives a top-down view of the open field arena. Used to determine mouse position. Frame rate is 15 frames per second.</p>
-<p><strong>VR</strong>. Video <code>M{mouse}_D{day}_side_capture*.avi</code> gives side view of mouse while running. Used to determind Tongue position, pupil dilation and leg position. Frame rate is 60(??) frames per second.</p>
-</section>
-</section>
-<section id="accessing-derived-data" class="level2">
-<h2 class="anchored" data-anchor-id="accessing-derived-data">Accessing derived data</h2>
-<section id="sortinganalyzer" class="level3">
-<h3 class="anchored" data-anchor-id="sortinganalyzer">SortingAnalyzer</h3>
-<p>Stored at</p>
-<pre><code>derivatives_folder/M{mouse}/D{day}/full/{sorter_name}_{sorting_protocol}/{sorter_name}_{sorting_protocol}_sa/</code></pre>
-<p>A <code>spikeinterface</code> <code>SortingAnalyzer</code> object, containing spike times and dervied information such as unit templates, spike locations etc. The analyzer depends on the sorter used. We label each sorting protocol by a number. The details of the protocols can be found in the <a href="#protocols">Protocols</a> section.</p>
-<p>Can be read using <code>spikeinterface</code></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.full <span class="im">as</span> si</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sa_path <span class="op">=</span> <span class="st">"derivatives/M25/D20/full/kilosort4_3/kilosort4_3_sa"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sorting_analyzer <span class="op">=</span> si.read_sorting_analyzer(sa_path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Read more about <code>SortingAnalyzer</code>s <a href="https://spikeinterface.readthedocs.io/en/stable/modules/postprocessing.html">here</a>, <a href="https://spikeinterface.readthedocs.io/en/stable/tutorials/core/plot_4_sorting_analyzer.html#sphx-glr-tutorials-core-plot-4-sorting-analyzer-py">here</a> and <a href="https://youtu.be/pHze_8s4Qak?feature=shared&amp;t=3590">here (video)</a>.</p>
-</section>
-<section id="spike-trains" class="level3">
-<h3 class="anchored" data-anchor-id="spike-trains">Spike Trains</h3>
-<p>Stored at</p>
-<pre><code>derivatives_folder/M{mouse}/D{day}/session_folder/sorter_folder/spikes.pkl</code></pre>
-<p>A pickle file containing spike trains for each sorted unit, perhaps also with other information. When unpickled, the output is a pandas DataFrame. The unit ids of each unit are contained in the ‘cluster_id’ column and spike trains for each unit are contained in the <code>firing_times</code> column. The <code>cluster_id</code>s match those found in the <a href="#SortingAnalyzer">SortingAnalyzer</a>.</p>
-<p>Can be read using <code>pandas</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>spike_data <span class="op">=</span> pd.read_pickle(<span class="st">"derivatives/M25/D20/of1/kilosort/spikes.pkl"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>all_spike_trains <span class="op">=</span> spike_data[[<span class="st">'cluster_id'</span>, <span class="st">'firing_times]]</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="er">spike_train_for_unit_five = all_spike_trains</span>[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="open-field-position-data-of1-of2" class="level3">
-<h3 class="anchored" data-anchor-id="open-field-position-data-of1-of2">Open Field Position Data (OF1 + OF2)</h3>
-<p>Stored at</p>
-<pre><code>derivatives_folder/M{mouse}/D{day}/of{n}/position_data.csv</code></pre>
-<p>A csv file containing position and light pulse data (used for syncing). Position computed using deeplabcut. Important columns are: position_x, position_y and synced_time.</p>
-<p>Can be read using e.g.&nbsp;<code>pandas</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>position_data <span class="op">=</span> pd.read_csv(<span class="st">"derivatives/M25/D20/of1/position_data.csv"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>position_x <span class="op">=</span> position_data[<span class="st">'position_x'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="tongue-position" class="level3">
-<h3 class="anchored" data-anchor-id="tongue-position">Tongue position</h3>
-<p>Stored at</p>
-<pre><code>derivatives_folder/M{mouse}/D{day}/vr/licks/</code></pre>
-<p>A csv file containing the position of the “tongue”, extracted using deeplabcut. Our strategy was to teach deeplabcut to use the lip as the tip of the tongue when the mouth is closed. Then when the tongue comes out, use the tip of the tongue. Hence we expect the position data to be clustered into two rough clusters: near the lips when the mouth is closed and near the reward spout when the mouth is open. High velocity should correspond to licks.</p>
-<p>The rawest data from deeplabcut is stored in the file ending <code>200.csv</code> while a median filtered verison is stored in the file ending <code>200_filtered.csv</code>.</p>
-<p>Can be read using e.g.&nbsp;<code>pandas</code>. The dlc format has an abnormal header, meaning we need to pass some extra arguments to <code>read_csv</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tongue_data <span class="op">=</span> pd.read_csv(<span class="st">"derivatives/M25/D20/vr/M25_D20_si..._200.csv"</span>, header<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">2</span>], index_col<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>tongue_position_x <span class="op">=</span> position_data[<span class="st">'x'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="channel-locations-in-ccf-coordinates" class="level3">
-<h3 class="anchored" data-anchor-id="channel-locations-in-ccf-coordinates">Channel locations in CCF coordinates</h3>
-<p>Stored at</p>
-<pre><code>derivatives_folder/labels/all_ccf_coords_per_channel.csv</code></pre>
-<p>A <code>.csv</code> file containing the locations of each <code>contact_id</code> of each probe in CCF coordinates. This can be used in conjunction with the raw recording or sorting analyzer to do lots of stuff.</p>
-<p>When thinking about clusters, we usually think in terms of <code>channel_ids</code> but their labelling is actually related to how the raw binary file is stored and don’t give any information about the electrode location. That information is stored in the <code>contact_id</code> property of the probe. This makes the code a little messy, since we need a map from <code>channel_ids</code> to <code>contact_ids</code> and another from <code>contact_ids</code> to <code>CCF_coords</code>.</p>
-<p>Here’s how to access this stuff from the raw recording</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.full <span class="im">as</span> si</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>all_brain_locations <span class="op">=</span> pd.read_csv(<span class="st">".../all_ccf_coords_per_channel.csv"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>this_mouse_brain_locations <span class="op">=</span> all_brain_locations.query(<span class="st">'mouse == 25'</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># make a dict of contact_ids -&gt; CCF brain coordinates</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>contact_ids_to_CCF <span class="op">=</span> { </span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    contact[<span class="st">'contact_id'</span>]: np.array([contact[<span class="st">'z_CCF'</span>], contact[<span class="st">'y_CCF'</span>], contact[<span class="st">'x_CCF'</span>]]) </span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _, contact <span class="kw">in</span> this_mouse_brain_locations.iterrows()</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># now make a dict of channel ids -&gt; contact_ids</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>recording <span class="op">=</span> si.read_openephys(<span class="st">".../M25_D20_2024-11-08_11-25-37_OF1/"</span>)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>contact_ids <span class="op">=</span> recording.get_probe().contact_ids</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>channel_ids_to_contact_ids <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(recording.channel_ids, contact_ids[recording.ids_to_indices()]))</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co"># you can then use these dicts to get the brain coordinate for a given channel id</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>brain_coord_for_CH100 <span class="op">=</span> contact_ids_to_CCF[channel_ids_to_contact_ids[<span class="st">'CH100'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Or you might want to use the CCF coordinates alongside a SortingAnalyzer, e.g.&nbsp;to find out where units are</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sorting_analyzer <span class="op">=</span> si.load_sorting_analyzer(<span class="st">".../kilosort4_3_sa"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>contact_ids <span class="op">=</span> sorting_analyzer.get_probe().contact_ids</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># find the extremum channels, which is a dict from unit_id to channel_id</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>extremum_channels <span class="op">=</span> si.get_template_extremum_channel(sorting_analyzer)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>brain_coord_for_unit_10 <span class="op">=</span> contact_ids_to_CCF[channel_ids_to_contact_ids[extremum_channels[<span class="dv">10</span>]]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-</section>
-<section id="technical-details" class="level1">
-<h1>Technical details</h1>
-<section id="code-protocols" class="level2">
-<h2 class="anchored" data-anchor-id="code-protocols">Code Protocols</h2>
-<p>Hello!</p>
-</section>
-<section id="experimental-protocols" class="level2">
-<h2 class="anchored" data-anchor-id="experimental-protocols">Experimental Protocols</h2>
-<p>add links to nolanlab wiki for surgery protocol for neuropixel implantation add links to nolanlab wiki for experimental protocol including behaviour, water dep etc add links to nolanlab wiki for extracting coordniates from DiI tracks using Probe-TRACK and custom scripts add links to nolanlab wiki for extracting features from video including licks, pupil dilation, steps and pose anything else?</p>
-</section>
-<section id="feature-extraction-from-video-data" class="level2">
-<h2 class="anchored" data-anchor-id="feature-extraction-from-video-data">Feature Extraction from video data</h2>
-<p>How do we extract behavioural variables from video footage? Deeplabcut! We manually labelled the pixel location for features of interest from raw video data. We then trained bespoke deeplabcut models to infer pixel positions for each video in the dataset.</p>
-<p>Open field videos captured the mouse’s movement in the square arena with a birds eye view. We estimated the mouse’s pose using five features including head, shoulders, middle, tail start and tail end. Pixel coordinates coordinates were transformed and scaled to match the 1 m x 1 m dimensions of the open arena. To estimate head direction, we took the vector between the head and middle features and calculated an angle relative to north.</p>
-<p>Add image or gif?</p>
-<p>Virtual reality videos captured a side view of the mouse while head-restraint on a cylindrical treadmill. We estimated the mouse’s pupil diameter using eight features including eye north, eye north-east, eye-east etc. Pupil diamter was defined as the average pixel distance between opposite features such as north vs south, north-east vs south-west etc. Units for pupil diameter are arbitrarily defined as we were only concerned with relative changes.</p>
-<p>add image or gif of pupil models</p>
-<p>We estimated when the mouse’s was engaged in licking using a single feature marking the position of the tongue. When the tongue was out of sight (in the mouse’s mouth), we marked the tongue’s position as the bottom of the mouth. Plotting the tongues position across a session typically produced a point cloud with two clearly defined clusters. To label positions attributable to lick events, we manually drew around the lower positioned cluster. Finally we visually verified this method by creating gif snippets for each session and accessing whether licks were labelled accurately.</p>
-<p><a href="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/M20_D23_vr_dlc_tongue_points.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Tongue position feature extraction"><img src="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/M20_D23_vr_dlc_tongue_points.png" class="img-fluid" alt="Tongue position feature extraction"></a> <a href="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/M20_D23_vr_dlc_tongue_points_classified.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Drawing around lick point cloud"><img src="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/M20_D23_vr_dlc_tongue_points_classified.png" class="img-fluid" alt="Drawing around lick point cloud"></a> <a href="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/M20_D23_vr_2.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Lick frames"><img src="https://raw.githubusercontent.com/chrishalcrow/harry_data_readme/refs/heads/main/images/M20_D23_vr_2.gif" class="img-fluid" alt="Lick frames"></a></p>
-<p>add image or gif of lick models</p>
-</section>
-<section id="faq" class="level2">
-<h2 class="anchored" data-anchor-id="faq">FAQ</h2>
-<p><strong>How was the experiment conducted on a typical day?</strong></p>
-<p>Experimental days involved recording from mice in the open arena and then in the virtual location memory task and then once again in the open arena. Mice were collected from the holding room 30 - 60 minutes before recording, were handled for 5 - 10 minutes, weighed and placed for 10 - 20 minutes in a cage containing objects and a running wheel. Between recording sessions mice were placed back in the object-filled playground for 10 - 20 minutes. The open arena consisted of a metal box with a square floor area, removable metal walls, metal frame (Frame parts from Kanya UK, C01-1, C20-10, A33-12, B49-75, B48-75, A39-31, ALU3), and an A4-sized cue card in the middle of one of the metal walls. For the open field exploration session, mice were placed in the open arena while tethered via an ultrathin Neuropixel aquisition cable No Commutator was used. In a small number of sessions, tangling of the Neuropixel cable caused the cable to fall in front of the mouse. To stop mice from knawing on the cable, Mice were quickly untangled by the experimentor. For the location memory task water-restricted mice were trained to obtain rewards at a location on the virtual linear track. Mice were head-fixed using a RIVETS clamp (Ronal Tool Company, Inc) and ran on a cylindrical treadmill fitted with a rotary encoder (Pewatron). Virtual tracks, generated using Blender3D (blender.com) had length 200 cm, with a 60 cm track zone, a 20 cm reward zone, a second 60 cm track zone and a 60 cm black box to separate successive trials. The distance visible ahead of the mouse was 50 cm. The reward zone was either marked by distinct vertical green and black bars on beaconed trials, or was not marked by a visual cue at all on non-beaconed. A feeding tube placed in front of the animal dispensed 10 % sucrose water rewards (5 - 10 5l per reward) if the mouse stopped in the reward zone. A stop was registered in Blender3D if the speed of the mouse dropped below 3 cm/s. Speed was calculated on a rolling basis from the previous 100 ms at a rate of 60 Hz. Trials were delivered in a random fashion with a equal probability on any given trial of being beaconed or non-beaconed. Mice were trained to an expert level in the location memory task before being implanted with Neuropixel 2.0 probes and undergoing the three session (open arena/location memory task/open arena) For more details, see Clark and Nolan 2024, https://doi.org/10.7554/eLife.89356.2</p>
-<p><strong>How was data collected?</strong></p>
-<p>Electrophysiological signals were acquired using a Neuropixel 2.0 headstage connected via an Neuropixel aquisition cable attached to an IMEC-National Instruments aquisition system (recommended hardware as of July 2024). For the location memory task, positional and trial information was saved in Blender3D at 60 Hz and time sync with TTL pulses delivered concurrently to the Neuropixel aquisition system and the Blender3D computer via an arduino Due. In the open arena, motion and head-direction tracking used a camera (Logitech B525, 1280 x 720 pixels Webcam, RS components 795-0876) attached to the celing of the frame. A custom bonsai tracking script picked up the TTL pulses delivered to an LED in sight of the tracking camera and out of sight of the freely exploring mouse. Body and head direction tracking was completed post-recording using DeepLabCut.</p>
-<p><strong>What was the surgery schedule of the experiment?</strong></p>
-<p>Mice underwent two seperate surgeries under anaesthesia, the first being a headpost attachment surgery followed by a Neuropixel 2.0 implantation mounted on a Apollo drive resuable 3D printed body. All surgeries were performed by Harry Clark</p>
-<p><strong>What drugs were used in the experiment?</strong></p>
-<p>Isoflurane used during surgery. Vetergesic jelly given post surgery. Carprofen and Buprenorphine were given subcutaneously at the recommended dosage post surgery</p>
-<p><strong>How can I reproduce the stereotaxic surgery?</strong></p>
-<p>Add this</p>
-<p><strong>Where can I find files for 3D printing the reusable 3D printed components?</strong></p>
-<p>Add this Include rivets custom designs</p>
-<p><strong>Where can I find the used NP2 probes for use in future experiments?</strong></p>
-<p>There are currently 4 x NP2 4-shank probes ready to be used for implantation. These can be found within the 2nd floor wet lab room (add room number) in the drive building area. A box labelled with “Neuropixel 2.0 4 shank probes, Harry Clark” can be found on the shelf above the drive building bench in the drive staging area (marked by yellow tape). (This information was accurate as of 04/03/2025). These drives are super-glued to an Apollo drive shuttle and thus can only be used for further experimentation with Apollo drive compatible components.</p>
-<p><strong>Still missing a vital piece of information?</strong></p>
-<p>Email harrydclark91@gmail.com for further clarification so we can add the relevant information to this document.</p>
-</section>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p>Tennant et al., 2018; 10.1016/j.celrep.2018.01.005 Tennant et al., 2022; 10.1016/j.cub.2022.08.050 Clark and Nolan, 2024; 10.7554/eLife.89356.3</p>
+<p>Ok! Let’s open the project in VSCode. The easiest way to do this is in terminal. We’re going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing <code>uv run code .</code>. The dot at the end means “this folder here”. <code>code</code> is the shortcut for VSCode and <code>uv run</code> means “When you open VSCode, make it aware of which python <em>enviroment</em> is being used at the moment”. More on enviroments soon!</p>
+<p>VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn’t you can put it there using <code>View -&gt; Terminal</code>. From the terminal we can run the <code>main.py</code> python script by typing <code>uv run main.py</code> and pressing enter. It should print out “Hello World from {project name}”.</p>
+<p>If that’s worked - amazing!! You’ve just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I’ve shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole).</p>
+<p>2.2 Virtual Enviroments</p>
+<p>Ok, I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual enviroments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different enviroment for different projects. So you might have one enviroment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual enviroment enviroment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the enviroment. And when we opened code uv told it that we’re using this enviroment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
+<p>Let’s add some package dependencies to our package. In the terminal, navigate to your project folder. We’ll add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
+<p>You might notice another new file in your project folder called <code>uv.lock</code>. This keeps all the intricate details about the packages. It’s gross.</p>
+<ol start="3" type="1">
+<li>Git and GitHub (Optional)</li>
+</ol>
+<p>Git is version control software. It keeps track of changes you make in the code, so you can easily revert to previous versions. It’s really helpful when you work on a big project with several contributors. When a bug gets introduced you can usually immediately figure out who caused it!</p>
+<p>GitHub is run by Microsoft. It’s where you can publish your software. It uses Git to keep track of changes etc.</p>
+<p>We need to tell git to track our project, then publish our project on GitHub. This will create a link between our local folder and GitHub page online. To do this, first navigate to project folder in terminal. Then type “git init” and press enter. You can do everything git in the terminal, but I find this quite difficult. Instead, VSCode has great GitHub integration.</p>
+<ol start="4" type="1">
+<li>Sources and scripts</li>
+</ol>
+<p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em>, functions like <code>compute_energy</code>, <code>make_soliton</code> and more. Anyone could use this! But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
+<p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” (short for source - this shortening is convention) and one called “scripts”. In the “src” folder make a another folder with the name of your package. We’ll also delete the <code>main.py</code> file that uv created. Let’s also create two files in the <code>source/{project_name}</code> folder. One called <code>soliton.py</code> which will contain the code about the soliton and one called <code>__init__.py</code> which tells Python that this folder contained a “module”. Don’t worry about that right now. Also add a script file called <code>investigate_soliton.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
+<p>solitons1D/ pyproject.toml README.md scripts/ investigate_soliton.ipynb src/ solitons1D/ <strong>init</strong>.py soliton.py uv.lock</p>
+<ol start="5" type="1">
+<li>Functions, classes and methods</li>
+</ol>
+<p>Ok - let’s start coding!!</p>
+<p>5.1 Functions</p>
+<p>Let’s make a function. Functions take some input and return some output. Let’s make a <code>create_profile</code> function which will generate a profile for a 1D soliton. For now, we’ll just return an array of 0s:</p>
+<pre><code>import numpy as np
+
+def create_profile(num_lattice_points):
+    profile = np.zeros(num_lattice_points)
+    return profile</code></pre>
+<p>I’ll write this out in English: “Import the package called numpy and call it np, which is how we’ll be able to access it.” “Define a function called <code>create_profile</code>, which will accept the argument <code>num_lattice_points</code>.” “Use the funcion <code>zeros</code> from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable <code>profile</code>.” “Return the variable <code>profile</code>. This return signals the end of the function</p>
+<p>There are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameter; add a docstring describing the function.</p>
+<pre><code>import numpy as np
+
+def create_profile(num_lattice_points: int) -&gt; np.array:
+    """
+    Creates a profile function for a lattice with 
+    `num_lattice_points` points.
+
+    Parameters
+    ----------
+    num_lattice_points: int
+        Number of lattice points
+
+    Returns
+    -------
+    profile: np.array
+        Generated profile function 
+    """
+
+    profile = np.zeros(num_lattice_points)
+    return profile</code></pre>
+<p>Ok. Let’s use this function. We’re going to use <code>investigate_soliton.ipynb</code>. This is a Jupyter notebook. To use it, we need to add another package to our package. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Ok, now open <code>investigate_soliton.ipynb</code> in VSCode.</p>
+<p>A Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell</p>
+<pre><code>from solitons1d.soliton import create_profile
+profile = create_profile(100)
+profile</code></pre>
+<p>and execute this (either by pressing the “play” button next to the cell or pressing shift+enter). The final line of the cell gets displayed underneate it. So we should see a large array of 0s.</p>
+<p>5.2 Classes and methods</p>
+<p>Functions are fine. But classes are the heart of object-orientated programming. A class represents an object. In <code>src/soliton.py</code>, let’s make a class which will represent a soliton. When you make an instance of a class (called an object), it is “initialised”. Here, we can choose what information to store in the object.</p>
+<pre><code>class Soliton():
+
+    def __init__(self, num_lattice_points, lattice_spacing):
+         self.lp = num_lattice_points
+     self.ls = lattice_spacing
+     self.profile = create_profile(num_lattice_points)</code></pre>
+<p>In English: “Define a class called Soliton” “Define the initialisation method, which will accept two integers, the number of lattice points and the lattice spacing.” “store the number of lattice points” “store the lattice_spacing” “Make a profile using the <code>create_profile</code> function and store it in <code>profile</code>.</p>
+<p>Now, back in your script, make a Soliton object:</p>
+<pre><code>from solitons1d import Soliton
+my_soliton = Soliton(100,0.1)
+print(my_soliton.lp)</code></pre>
+<p>“from the solitons1d package, import the class Soliton” “use the Soliton class to initialise a soliton with 100 lattice points and 0.1 lattice spacing called <code>my_soliton</code>” “take the soliton I just made, and get the number of lattice points. Print this.”</p>
+<p>Great! Hopefully you can see that it’s helpful to have an object that contains some information.</p>
+<p>5.3 Methods</p>
+<p>Even more helpful: write class-specific functions that can change what’s in the object. These are called “methods”. They’re similar to functions but are designed to only apply to the class. These are defined in the class definition itself. Let’s create a method which will (eventually) compute the energy of the soliton. The Soliton class method get updated to the following:</p>
+<pre><code>class Soliton():
+
+    def __init__(self, num_lattice_points, lattice_spacing):
+         self.lp = num_lattice_points
+     self.ls = lattice_spacing
+     self.profile = create_profile(num_lattice_points)
+
+    def compute_energy(self)
+
+         total_energy = np.sum(self.profile)
+     total_energy *= self.ls
+     self.energy = total_energy</code></pre>
+<p>Now we have a method that takes in the profile function, sums it up, multiplies this value by the lattice spacing, stores the value in <code>self.energy</code> then returns this value. We can use it in a script as follows:</p>
+<pre><code>my_soliton.compute_energy()
+print(my_soliton.energy)</code></pre>
+<p>We’ve now got the basic building block that we’ll use for the rest of the course. Let’s now do a bunch of coding…</p>
+<ol start="6" type="1">
+<li>Writing some code</li>
+</ol>
+<p>6.1 Make a Lagrangian class</p>
+<p>6.2 Make a Grid class</p>
+<p>6.3 Update the Soliton class</p>
+<p>6.4 Make an initial profile function</p>
+<hr>
+<ol start="7" type="1">
+<li>Compute the energy</li>
+</ol>
+<p>Ok, let’s slow down to compute the energy</p>
 
 
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/chrishalcrow\.github\.io\/SIG_soliton_numerics\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/chrishalcrow\.github\.io\/SIG_soliton_numerics\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -712,218 +503,162 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-</div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
         }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
       }
-    });
-  
-  };
-  
-})();
-          </script>
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
 
 
 

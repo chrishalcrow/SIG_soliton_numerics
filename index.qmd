@@ -16,9 +16,7 @@ our code is easy to use, sharable, reproducible, tested and reliable we need to 
 more than implement an algorithm. Modern software development involves continuous integration, 
 linters, typers, LSPs, code coverage, automatically-generated docs, and more! 
 
-This course will focus on these "soft skills" of software. As such, we'll be spending a 
-lot of time on setting up our development environment and thinking about our workflow. Once we 
-get to coding itself, we'll go through that quite quickly.
+This course will focus on these "soft skills" of software. As such, we'll be spending a lot of time setting up our project and development environment and thinking about our workflow. Then once we get to coding itself, we'll go through that quite quickly.
 
 These notes are designed to be self contained. You can start the course RIGHT NOW. You can 
 suggest edits and raise issues on the [GitHub page](https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages).
@@ -112,20 +110,17 @@ a GitHub account too.
 
 # Make a project
 
-We're going to make a Python Package. First choose a name. I'll be using `Solitons1D`. 
-Make a folder and name it what you want to call the project. Navigate to this folder in Terminal. 
-Initialise a new python project by typing `uv init` in Terminal and pressing enter. 
-Go have a look in the folder (either using your File Explorer or typing `ls` into Terminal). 
-There should be three files inside the folder. uv has made these:
+We're going to make a Python Package. First choose a name. I'll be using `solitons1d`. Find a place you want to store your project. Initialise a new python package by typing e.g. `uv init --package solitons1d` in Terminal and pressing enter.  Go have a look in the folder (either using your File Explorer or typing `ls` into Terminal). There should be four files inside the folder. uv has made these:
 
-- pyproject.toml This file contains all the information about your project. Its name, version, 
-description etc. Add some of your own details if you'd like. This file will also keep track 
-of which other packages your package depends on once we add some.
 - README.md This file is what a new user will first read when they encounter your project. 
 It should contain a description of the project, installation instructions and anything else 
 you'd like. It's written in markdown, which isn't too far from plain text 
 (https://www.markdownguide.org/).
-- main.py An example python script.
+- pyproject.toml This file contains all the information about your project. Its name, version, 
+description etc. Add some of your own details if you'd like. This file will also keep track 
+of which other packages your package depends on once we add some.
+- uv.lock Keeps the _detailed_ information about package dependencies.
+- src/solitons1d. A folder which will contain your package.
 
 Ok! Let's open the project in VSCode. The easiest way to do this is in terminal. We're going
 to do something slightly fancy that will make sense later, and open it with uv. Do this by 
@@ -164,7 +159,7 @@ numpy to the project by adding it to the `pyproject.toml` file.
 You might notice another new file in your project folder called `uv.lock`. This keeps 
 all the intricate details about the packages. It's gross.
 
-# Git and GitHub (Optional)
+# Git and GitHub
 
 Git is version control software. It keeps track of changes you make in the code, so you can 
 easily revert to previous versions. It's really helpful when you work on a big project with 
@@ -174,21 +169,31 @@ caused it!
 GitHub is run by Microsoft. It's where you can publish your software. It uses Git to keep 
 track of changes etc.
 
-We need to tell git to track our project, then publish our project on GitHub. This will 
-create a link between our local folder and GitHub page online. To do this, first navigate 
-to project folder in terminal. Then type "git init" and press enter. You can do everything 
-git in the terminal, but I find this quite difficult. Instead, VSCode has great GitHub 
-integration.
+The idea here is to have one copy of your project on your local computer, and one copy of your project on GitHub. We'll then link the two copies together, so changes you make locally can get applied to the remote (GitHub) copy. Then GitHub takes care of a lot of nice things, which we'll get on to later.
+
+There are lots of ways to link your local and remote repos. For more info, try: https://github.com/git-guides/git-init . 
+
+It can get a bit messy at the start here, **so please follow these instructions carefully:**
+
+We'll make a GitHub repository (repo) and link it to this folder. Go to github.com, make an account then create a new repository. DON'T DO ANYTHING except add the repository name, then press "Create repository". Towards the bottom of the next page you should see the heading "...or push an existing repository from the command line", with some commands to run. Something like:
+
+```
+git remote add origin https://github.com/chrishalcrow/Solitons1D.git
+git branch -M main
+git push -u origin main
+```
+
+Run these three commands from your local repo folder in Terminal. They say:
+- "Link the git in this folder to this github repository"
+- "Create the primary 'branch' of the repo, called main"
+- "Push (put, or add) everything from the folder to the repo on github.com"
+
+If that worked: great! You're project is now _online_! If the last one error'd, that's ok. We'll get that sorted later.
 
 # Sources and scripts
 
 As we build our package, we should keep a separation between the "source" and "scripts". 
-The source is our package itself. This will contain the logic which can _do things_, 
-functions like `compute_energy`, `make_soliton` and more. Anyone could use this! But 
-when we use the package to do science, we'd write a script. The script will import 
-functions from the source and apply them to a specific case. A script might make a 
-soliton, apply a gradient flow, compute the energy, then plot the result and save the 
-figure as a pdf.
+The source is our package itself. This will contain the logic which can _do things_ and that you want to share with other people. Functions like `compute_energy`, `make_soliton` and more. But when we use the package to do science, we'd write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.
 
 To make this distiction obvious, we'll make two folders in the project folder. One 
 called "src" (short for source - this shortening is convention) and one called 
@@ -351,39 +356,248 @@ my_soliton.compute_energy()
 print(my_soliton.energy)
 ```
 
-We've now got the basic building block that we'll use for the rest of the course. Let's 
-now do a bunch of coding...
+We've now got the basic building block that we'll use for the rest of the course.
 
 ## Lots of code!
 
-6.1 Make a Lagrangian class
+Let's get starting coding! I'll explain the overall structure of the codebase, then we'll go through the actual code very quickly. In each subsection, I'll get an overview then present the code.
 
-6.2 Make a Grid class
+Our centerpiece is the `Soliton` class. The `Soliton` will contain a `Grid` object and a `Lagrangian` object, keeping the numerical grid maintained and the mathematical details of the theory respectively. By doing this, each `Soliton` will know what theory is belongs to - handy. A `Soliton` object will contain methods allowing one to create an initial profile function, compute the energy and gradient flow.
 
-6.3 Update the Soliton class
+Note: Another programmer might make this differently. Maybe having a `Grid` object is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you'd like in your `Soliton` object. Play around, debate, and figure out your style.
 
-6.4 Make an initial profile function
+### The `Grid` class
 
-------
+A user can create a grid by specifying the number of grid points and the grid spacing. The `Grid` will then compute a grid (saved as `numpy` array) and save the length of the grid.
 
-7. Compute the energy
+Add this to `soliton.py`:
 
-Ok, let's slow down to compute the energy
+``` python
+import numpy as np
+
+class Grid():
+    """
+    A 1D grid.
+
+    Parameters
+    ----------
+    num_grid_points : int
+        Number of grid points used in grid.
+    grid_spacing : float
+        Spacing between lattice points.
+
+    Attributes
+    ----------
+    grid_length : float
+        Total length of grid.
+    grid_points : np.array[float]
+        An array of grid points, of the grid.
+
+    """
+
+    def __init__(
+        self,
+        num_grid_points: int,
+        grid_spacing: float,
+    ):
+
+        self.num_grid_points = num_grid_points
+        self.grid_spacing = grid_spacing
+        self.grid_length = (num_grid_points)*grid_spacing
+
+        self.grid_points = np.arange(-self.grid_length/2,self.grid_length/2, grid_spacing)
+
+```
+
+Possible improvements:
+
+- Allow the user to specify the grid in other ways: by providing the start and end points, for example. Question: How do you make the code flexible to allow the user to do several different things. Hint: `If num_grid_points is None:`
+
+Question:
+
+- What's the difference between a Parameter and an Attribute?
+
+Use. Make a grid as follow in a script:
+
+``` python
+from solitons1d.soliton import Grid
+my_grid = Grid(200,0.1)
+```
+
+### Make a Lagrangian class
+
+The Lagrangian will keep track of the potential function. We won't set up automatic differentiation, so we'll also give the Lagrangian the derivative of the potential. We'll also optionally allow the user to input the vacua of the theory. If they do, we'll add a check that the derivative function of the vacua return 0. This class could also be where we define how many fields our theory has, any funny metric, and more. But let's keep it simple for now.
+
+``` python
+class Lagrangian():
+    """
+    Used to represent Lagrangians of the form:
+        L = - 1/2(dx_phi)^2 - V(phi)
+
+    Parameters
+    ----------
+    V : function
+        The potential energy function, must be a map from R -> R
+    dV : function
+        The derivative of the potential energy function, must be a map from R -> R
+    vacua : list-like or None
+        List of vacua of the potential energy.
+    """
+
+    def __init__(
+        self,
+        V: Callable[[float], float], # Yup, in python you can pass functions are arguments. It's wild!
+        dV:  Callable[[float], float],
+        vacua: list | np.ndarray | None = None, # np.ndarray is the type of a numpy array
+    ):
+
+        self.V = V
+        self.dV = dV
+        self.vacua = vacua
+
+        if vacua is not None:
+            for vacuum in vacua:
+                # np.isclose does what it sounds like: are the values close?
+                # That f"" is called an f-string, allowing you to add parameters to strings
+                assert np.isclose(dV(vacuum), 0), f"The given vacua do not satisfy dV({vacuum}) = 0"
+```
+
+Use:
+
+``` python
+from solitons1d.soliton import Lagrangian
+import numpy as np
+
+def phi4_V(x):
+    return 0.5*np.pow(1-np.pow(x,2),2)
+
+def phi4_dV(x):
+    return 2*np.pow(x,3) - 2*x
+
+phi4_lagrangian = Lagrangian(V=phi4_V, dV=phi4_dV, vacua=[-1,1])
+```
+
+Possible improvements:
+
+- Add an automatic differentiation package to compute `dV` from `V`.
+- Allow for multiple fields, different metric terms, time (harder - do you need to make a TimeGrid??).
+- Delete this and make it part of the `Soliton` class?? Is this an improvement, or not? Why?
+- Add library of common Lagrangians, so that the user doesn't have to specify the potential every time.
+
+Questions:
+
+- Why put an `assert` where we did? Better as a test?
+- Can you edit the example code so that the `assert` is triggered?
+
+### Update the `Soliton` class
+
+Time to update the `Soliton` class to use the `Grid` and `Lagrangian` classes. When initialising the soliton, we'll allow the user to specify an initial profile function: either by specifying a function or passing an array representing the initial profile. We'll add a `compute_energy` method, and do something a bit odd: create another function called `compute_energy_fast`. Roughly: the method in the class strips out what we need from the object and passes this to `compute_energy_fast`: this second function doesn't interact with the class at all and we can optimize the heck out of it later. This is THE KEY concept to get the benefits of: 1) Lovely user-friendly classes 2) FAST STUFF. For now, we won't implement the energy function, but we will set up the machinery to do it later.
+
+``` python
+class Soliton():
+    """
+    A class describing a Soliton.
+
+    Parameters
+    ----------
+    grid : Grid
+        The grid underpinning the soliton.
+    lagrangian : Lagrangian
+        The Lagrangian of the theory supporting the soliton.
+    initial_profile_function : None | function
+        The initial profile function, must be from R -> R. Optional.
+    initial_profile : None | array-like
+        The initial profile function as an array. Optional.
+    """
+
+    def __init__(
+        self,
+        grid : Grid, # That's right: we can use our own classes as types! 
+        lagrangian: Lagrangian,
+        initial_profile_function: Callable[[float], float] | None = None,
+        initial_profile: np.ndarray | None = None,
+    ):
+        self.grid = grid
+        self.lagrangian = lagrangian
+
+        self.profile = np.zeros(grid.num_grid_points)
+
+        assert (initial_profile_function is None) or (initial_profile is None), "Please only specify `initial_profile_function` or `profile_function`"
+
+        if initial_profile_function is not None:
+            self.profile = create_profile(self.grid.grid_points, initial_profile_function)
+        else:
+            self.profile = initial_profile
+
+        self.energy = self.compute_energy()
+
+    def compute_energy(self):
+        """Computes the energy of a soliton, and stores this in `Soliton.energy`."""
+
+        energy = compute_energy_fast(self.lagrangian.V, self.profile, self.grid.num_grid_points, self.grid.grid_spacing)
+        self.energy = energy
 
 
+def compute_energy_fast(V, profile, num_grid_points, grid_spacing):
+
+    total_energy = 0
+    return total_energy
 
 
+def create_profile(
+        grid_points: np.array,
+        initial_profile_function: Callable[[np.array], np.array] | None = None
+        ) -> np.array:
+    """
+    Creates a profile function on a grid, from profile function `initial_profile_function`.
+
+    Parameters
+    ----------
+    grid_points: np.ndarray
+        The x-values of a grid.
+    initial_profile_function: function
+        A function which accepts and returns a 1D numpy array
+
+    Returns
+    -------
+    profile: np.array
+        Generated profile function
+    """
+
+    profile = initial_profile_function(grid_points)
+    return profile
+```
+
+Example code:
+
+``` python
+from solitons1d.soliton import Lagrangian, Grid, Soliton
+import numpy as np
+
+def phi4_V(x):
+    return 0.5*np.pow(1-np.pow(x,2),2)
+
+def phi4_dV(x):
+    return 2*np.pow(x,3) - 2*x
+
+phi4_lagrangian = Lagrangian(V=phi4_V, dV=phi4_dV, vacua=[-1,1])
+my_grid = Grid(20,0.1)
+
+my_soliton = Soliton(my_grid, phi4_lagrangian, initial_profile_function=np.tanh)
+
+print(my_soliton.profile)
+```
+
+Improvements:
+
+- If a user passes an `initial_profile`, check it's the right length.
+
+Questions:
+
+- What are all these `self`s about??
+- Can you trigger the `assert` by playing with the example code?
+- Before going on to the next section: try to write the `compute_energy_fast` function, or part of it.
+- We've edited the `create_profile` function to fit in with our class. How has it changed? Why?
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+# More coming soon!

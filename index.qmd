@@ -375,7 +375,7 @@ Add this to `soliton.py`:
 ``` python
 import numpy as np
 
-class Grid():
+class Grid:
     """
     A 1D grid.
 
@@ -400,12 +400,13 @@ class Grid():
         num_grid_points: int,
         grid_spacing: float,
     ):
-
         self.num_grid_points = num_grid_points
         self.grid_spacing = grid_spacing
-        self.grid_length = (num_grid_points)*grid_spacing
+        self.grid_length = (num_grid_points) * grid_spacing
 
-        self.grid_points = np.arange(-self.grid_length/2,self.grid_length/2, grid_spacing)
+        self.grid_points = np.arange(
+            -self.grid_length / 2, self.grid_length / 2, grid_spacing
+        )
 
 ```
 
@@ -429,7 +430,7 @@ my_grid = Grid(200,0.1)
 The Lagrangian will keep track of the potential function. We won't set up automatic differentiation, so we'll also give the Lagrangian the derivative of the potential. We'll also optionally allow the user to input the vacua of the theory. If they do, we'll add a check that the derivative function of the vacua return 0. This class could also be where we define how many fields our theory has, any funny metric, and more. But let's keep it simple for now.
 
 ``` python
-class Lagrangian():
+class Lagrangian:
     """
     Used to represent Lagrangians of the form:
         L = - 1/2(dx_phi)^2 - V(phi)
@@ -446,11 +447,10 @@ class Lagrangian():
 
     def __init__(
         self,
-        V: Callable[[float], float], # Yup, in python you can pass functions are arguments. It's wild!
-        dV:  Callable[[float], float],
-        vacua: list | np.ndarray | None = None, # np.ndarray is the type of a numpy array
+        V: Callable[[float], float], # Yup - you can pass functions are argument in python!
+        dV: Callable[[float], float],
+        vacua: list | np.ndarray | None = None,  # np.ndarray is the type of a numpy array
     ):
-
         self.V = V
         self.dV = dV
         self.vacua = vacua
@@ -459,7 +459,9 @@ class Lagrangian():
             for vacuum in vacua:
                 # np.isclose does what it sounds like: are the values close?
                 # That f"" is called an f-string, allowing you to add parameters to strings
-                assert np.isclose(dV(vacuum), 0), f"The given vacua do not satisfy dV({vacuum}) = 0"
+                assert np.isclose(dV(vacuum), 0), (
+                    f"The given vacua do not satisfy dV({vacuum}) = 0"
+                )
 ```
 
 Use:
@@ -494,7 +496,8 @@ Questions:
 Time to update the `Soliton` class to use the `Grid` and `Lagrangian` classes. When initialising the soliton, we'll allow the user to specify an initial profile function: either by specifying a function or passing an array representing the initial profile. We'll add a `compute_energy` method, and do something a bit odd: create another function called `compute_energy_fast`. Roughly: the method in the class strips out what we need from the object and passes this to `compute_energy_fast`: this second function doesn't interact with the class at all and we can optimize the heck out of it later. This is THE KEY concept to get the benefits of: 1) Lovely user-friendly classes 2) FAST STUFF. For now, we won't implement the energy function, but we will set up the machinery to do it later.
 
 ``` python
-class Soliton():
+
+class Soliton:
     """
     A class describing a Soliton.
 
@@ -512,7 +515,7 @@ class Soliton():
 
     def __init__(
         self,
-        grid : Grid, # That's right: we can use our own classes as types! 
+        grid: Grid,
         lagrangian: Lagrangian,
         initial_profile_function: Callable[[float], float] | None = None,
         initial_profile: np.ndarray | None = None,
@@ -522,7 +525,9 @@ class Soliton():
 
         self.profile = np.zeros(grid.num_grid_points)
 
-        assert (initial_profile_function is None) or (initial_profile is None), "Please only specify `initial_profile_function` or `profile_function`"
+        assert (initial_profile_function is None) or (initial_profile is None), (
+            "Please only specify `initial_profile_function` or `profile_function`"
+        )
 
         if initial_profile_function is not None:
             self.profile = create_profile(self.grid.grid_points, initial_profile_function)
@@ -534,9 +539,13 @@ class Soliton():
     def compute_energy(self):
         """Computes the energy of a soliton, and stores this in `Soliton.energy`."""
 
-        energy = compute_energy_fast(self.lagrangian.V, self.profile, self.grid.num_grid_points, self.grid.grid_spacing)
+        energy = compute_energy_fast(
+            self.lagrangian.V,
+            self.profile,
+            self.grid.num_grid_points,
+            self.grid.grid_spacing,
+        )
         self.energy = energy
-
 
 def compute_energy_fast(V, profile, num_grid_points, grid_spacing):
 
@@ -545,15 +554,15 @@ def compute_energy_fast(V, profile, num_grid_points, grid_spacing):
 
 
 def create_profile(
-        grid_points: np.array,
-        initial_profile_function: Callable[[np.array], np.array] | None = None
-        ) -> np.array:
+    grid_points: np.array,
+    initial_profile_function: Callable[[np.array], np.array] | None = None,
+) -> np.array:
     """
     Creates a profile function on a grid, from profile function `initial_profile_function`.
 
     Parameters
     ----------
-    grid_points: np.ndarray
+    grid_points: Grid
         The x-values of a grid.
     initial_profile_function: function
         A function which accepts and returns a 1D numpy array

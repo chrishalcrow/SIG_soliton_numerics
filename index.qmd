@@ -62,6 +62,7 @@ any other language. I also recommend writing the code in VSCode or PyCharm.
   - Tests
   - Documentation
   - Optimization
+  - Linters, formatters and LSPs
   - Continuous Integration
   - Recommended Reading
 
@@ -358,7 +359,7 @@ print(my_soliton.energy)
 
 We've now got the basic building block that we'll use for the rest of the course.
 
-## Lots of code!
+# Lots of code!
 
 Let's get starting coding! I'll explain the overall structure of the codebase, then we'll go through the actual code very quickly. In each subsection, I'll get an overview then present the code.
 
@@ -366,7 +367,7 @@ Our centerpiece is the `Soliton` class. The `Soliton` will contain a `Grid` obje
 
 Note: Another programmer might make this differently. Maybe having a `Grid` object is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you'd like in your `Soliton` object. Play around, debate, and figure out your style.
 
-### The `Grid` class
+## The `Grid` class
 
 A user can create a grid by specifying the number of grid points and the grid spacing. The `Grid` will then compute a grid (saved as `numpy` array) and save the length of the grid.
 
@@ -425,7 +426,7 @@ from solitons1d.soliton import Grid
 my_grid = Grid(200,0.1)
 ```
 
-### Make a Lagrangian class
+## Make a `Lagrangian` class
 
 The Lagrangian will keep track of the potential function. We won't set up automatic differentiation, so we'll also give the Lagrangian the derivative of the potential. We'll also optionally allow the user to input the vacua of the theory. If they do, we'll add a check that the derivative function of the vacua return 0. This class could also be where we define how many fields our theory has, any funny metric, and more. But let's keep it simple for now.
 
@@ -491,7 +492,7 @@ Questions:
 - Why put an `assert` where we did? Better as a test?
 - Can you edit the example code so that the `assert` is triggered?
 
-### Update the `Soliton` class
+## Update the `Soliton` class
 
 Time to update the `Soliton` class to use the `Grid` and `Lagrangian` classes. When initialising the soliton, we'll allow the user to specify an initial profile function: either by specifying a function or passing an array representing the initial profile. We'll add a `compute_energy` method, and do something a bit odd: create another function called `compute_energy_fast`. Roughly: the method in the class strips out what we need from the object and passes this to `compute_energy_fast`: this second function doesn't interact with the class at all and we can optimize the heck out of it later. This is THE KEY concept to get the benefits of: 1) Lovely user-friendly classes 2) FAST STUFF. For now, we won't implement the energy function, but we will set up the machinery to do it later.
 
@@ -609,4 +610,200 @@ Questions:
 - We've edited the `create_profile` function to fit in with our class. How has it changed? Why?
 
 
+# Derivatives and Energy
+
+To compute the energy, and the gradient flow, we'll need to compute derivatives. There are many ways to do this. The most common in the soliton field is using a finite difference method. Here, we implement the approximation
+
+$$
+\phi'(x) = \lim_{\epsilon \to 0}\frac{\phi(x+\epsilon) - \phi(x-\epsilon)}{2\epsilon}
+$$
+
+on our rigid grid. This can be approximated in many ways. You get more accuracy if you use more points. But if your true function does change fast and your points are too widely spread you'll hit numerical blow-ups. For solitons, I usually use a fourth-accuracy method. If we use `i` to denote the lattice point, the fourth order derivative approximates the derivative on the grid as follows:
+
+$$
+(\partial \phi)_i = \frac{1}{12}\phi_{i-2} - \frac{2}{3}\phi_{i-1} + \frac{2}{3}\phi_{i+1} - \frac{1}{12}\phi_{i+2}
+$$
+
+You can find other accuracies on [Wikipedia](https://en.wikipedia.org/wiki/Finite_difference_coefficient).
+
+The big problem is the boundary. When we try to compute the derivative at the `0`th point, it tries to access the `-1`th point, which doesn't exist. Here are a few solutions:
+
+- Use Dirichlet boundary conditions. So keep the boundary fixed. Since you're keeping it fixed, you don't need to update it and hence you don't need to compute the derivative there. Easy!
+- Use forward/backwards finite difference to approximate the boundary points.
+- Use Neumann boundary conditions. Keep the derivative equal to zero. If you do this, then at the boundary you can set $phi_{-1} = \phi_{1}$ and $\phi_{-2} = \phi_2$, and you don't need to worry.
+- Use (possibly shifted) periodic boundary conditions, so that $\phi_{-1} = \phi_{N}$ and $\phi_{-2} = \phi_{N-1}$.
+
+We're going to do the simples: Dirichlet. A good exercise for you: implement something else.
+
+So, we'll write functions to compute the first and (while we're at it) second derivatives of a function. (This is going to be a FAST function, so we don't want it to interact with the class):
+
+``` python
+def get_first_derivative(
+    phi: np.ndarray, 
+    num_grid_points: int, 
+    grid_spacing: float,
+) -> np.ndarray:
+    """
+    For a given array, computes the first derivative of that array.
+
+    Parameters
+    ----------
+    phi: np.ndarray
+        Array to get the first derivative of
+    num_grid_points: int
+        Length of the array
+    grid_spacing: float
+        Grid spacing of underlying grid
+
+    Returns
+    -------
+    d_phi: np.ndarray
+        The first derivative of `phi`.
+
+    """
+    d_phi = np.zeros(num_grid_points)
+    for i in np.arange(num_grid_points)[2:-2]:
+        d_phi[i] = (phi[i - 2] - 8 * phi[i - 1] + 8 * phi[i + 1] - phi[i + 2]) / (
+            12.0 * grid_spacing
+        )
+
+    return d_phi
+
+
+def get_second_derivative(
+    phi: np.ndarray, 
+    num_grid_points: int, 
+    grid_spacing: float,
+) -> np.ndarray:
+    """
+    For a given array, computes the first derivative of that array.
+
+    Parameters
+    ----------
+    phi: np.ndarray
+        Array to get the first derivative of
+    num_grid_points: int
+        Length of the array
+    grid_spacing: float
+        Grid spacing of underlying grid
+
+    Returns
+    -------
+    d_phi: np.ndarray
+        The first derivative of `phi`.
+
+    """
+    ddV = np.zeros(num_grid_points)
+    for i in np.arange(num_grid_points)[2:-2]:
+        ddV[i] = (
+            -phi[i - 2] + 16 * phi[i - 1] - 30 * phi[i] + 16 * phi[i + 1] - phi[i + 2]
+        ) / (12.0 * np.pow(grid_spacing, 2))
+
+    return ddV
+
+```
+
+With these derivative functions, computing the energy is easy. We just estimate the integral as a sum,
+
+$$
+E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
+$$
+
+like so:
+
+``` python
+def compute_energy_fast(
+    V: Callable[[float], float],
+    profile: np.array, 
+    num_grid_points: int, 
+    grid_spacing: float,
+) -> float:
+    """
+    Computes the energy of a Lagrangian of the form
+        E = 1/2 (d_phi)^2 + V(phi)
+
+    Parameters
+    ----------
+    V: function
+        The potential energy function
+    profile: np.ndarray
+        The profile function of the soliton
+    num_grid_points: int
+        Length of `profile`
+    grid_spacing: float
+        Grid spacing of underlying grid
+    """
+    dx_profile = get_first_derivative(profile, num_grid_points, grid_spacing)
+
+    kin_eng = 0.5 * np.pow(dx_profile, 2)
+    pot_eng = V(profile)
+
+    tot_eng = np.sum(kin_eng + pot_eng) * grid_spacing
+
+    return tot_eng
+```
+
+Example code, following on from last time
+
+``` python
+my_soliton.compute_energy()
+print(my_soltion.energy)
+```
+
+Improvements:
+
+- Allow for any type of boundary conditions
+- Allow for any kind of kinetic energy
+
+Questions:
+- You could get `num_grid_points` by computing `len(profile)`. How would this improve your code? How would this make your code worse?
+
+# Plot a Soliton
+
+We're now making and computing solitons - let's take a look at what we're plotting. The most popular plotting package in Python is matplotlib. We need to install it by navigating to our Project folder in Terminal and running `uv add matplotlib`. In matplotlib, you've got a `Figure` which contains `Axes`. You can plot stuff on an `axis`, and adjust ticks and titles. Our code will look like:
+
+``` python
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.plot(x,y)
+ax.set_title("hello!")
+```
+
+And it makes sense and WE LOVE IT. When you Google matplotlib you'll find lots of code that looks like `plt.plot(x,y); plt.show()`. WE HATE THIS!!!! (ask me about it later)
+
+So, the plan is to make a plotting method of the `Soliton` class that will return a matplotlib figure. It's nice to play with plotting in a Jupyter notebook. Here's my attempt at a reasonable plotting method. This is a method of the class, so should be indented in the class:
+
+``` python
+    def plot_soliton(self):
+        """Makes a plot of the profile function of your soliton"""
+
+        fig, ax = plt.subplots()
+        ax.plot(self.grid.grid_points, self.profile)
+        ax.set_title(f"Profile function. Energy = {self.energy:.4f}")
+
+        return fig
+```
+
+Code example, following on from earlier:
+
+``` python
+# this should display in a Jupyter notebook, if you run it by itself
+fig = my_soliton.plot_soliton()
+fig.savefig("my_lovely_soliton.pdf")
+```
+
 # More coming soon!
+
+
+
+
+
+
+
+
+
+
+
+
+
+

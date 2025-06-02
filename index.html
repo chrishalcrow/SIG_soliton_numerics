@@ -102,6 +102,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -139,13 +168,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   <li><a href="#classes-and-methods" id="toc-classes-and-methods" class="nav-link" data-scroll-target="#classes-and-methods">Classes and methods</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  </ul></li>
   <li><a href="#lots-of-code" id="toc-lots-of-code" class="nav-link" data-scroll-target="#lots-of-code">Lots of code!</a>
   <ul class="collapse">
   <li><a href="#the-grid-class" id="toc-the-grid-class" class="nav-link" data-scroll-target="#the-grid-class">The <code>Grid</code> class</a></li>
-  <li><a href="#make-a-lagrangian-class" id="toc-make-a-lagrangian-class" class="nav-link" data-scroll-target="#make-a-lagrangian-class">Make a Lagrangian class</a></li>
+  <li><a href="#make-a-lagrangian-class" id="toc-make-a-lagrangian-class" class="nav-link" data-scroll-target="#make-a-lagrangian-class">Make a <code>Lagrangian</code> class</a></li>
   <li><a href="#update-the-soliton-class" id="toc-update-the-soliton-class" class="nav-link" data-scroll-target="#update-the-soliton-class">Update the <code>Soliton</code> class</a></li>
   </ul></li>
-  </ul></li>
+  <li><a href="#derivatives-and-energy" id="toc-derivatives-and-energy" class="nav-link" data-scroll-target="#derivatives-and-energy">Derivatives and Energy</a></li>
+  <li><a href="#plot-a-soliton" id="toc-plot-a-soliton" class="nav-link" data-scroll-target="#plot-a-soliton">Plot a Soliton</a></li>
   <li><a href="#more-coming-soon" id="toc-more-coming-soon" class="nav-link" data-scroll-target="#more-coming-soon">More coming soon!</a></li>
   </ul>
 </nav>
@@ -232,6 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Tests</li>
 <li>Documentation</li>
 <li>Optimization</li>
+<li>Linters, formatters and LSPs</li>
 <li>Continuous Integration</li>
 <li>Recommended Reading</li>
 </ul>
@@ -400,13 +432,14 @@ git push -u origin main</code></pre>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’ve now got the basic building block that we’ll use for the rest of the course.</p>
 </section>
-<section id="lots-of-code" class="level2">
-<h2 class="anchored" data-anchor-id="lots-of-code">Lots of code!</h2>
+</section>
+<section id="lots-of-code" class="level1">
+<h1>Lots of code!</h1>
 <p>Let’s get starting coding! I’ll explain the overall structure of the codebase, then we’ll go through the actual code very quickly. In each subsection, I’ll get an overview then present the code.</p>
 <p>Our centerpiece is the <code>Soliton</code> class. The <code>Soliton</code> will contain a <code>Grid</code> object and a <code>Lagrangian</code> object, keeping the numerical grid maintained and the mathematical details of the theory respectively. By doing this, each <code>Soliton</code> will know what theory is belongs to - handy. A <code>Soliton</code> object will contain methods allowing one to create an initial profile function, compute the energy and gradient flow.</p>
 <p>Note: Another programmer might make this differently. Maybe having a <code>Grid</code> object is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you’d like in your <code>Soliton</code> object. Play around, debate, and figure out your style.</p>
-<section id="the-grid-class" class="level3">
-<h3 class="anchored" data-anchor-id="the-grid-class">The <code>Grid</code> class</h3>
+<section id="the-grid-class" class="level2">
+<h2 class="anchored" data-anchor-id="the-grid-class">The <code>Grid</code> class</h2>
 <p>A user can create a grid by specifying the number of grid points and the grid spacing. The <code>Grid</code> will then compute a grid (saved as <code>numpy</code> array) and save the length of the grid.</p>
 <p>Add this to <code>soliton.py</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -455,8 +488,8 @@ git push -u origin main</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> Grid</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>my_grid <span class="op">=</span> Grid(<span class="dv">200</span>,<span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="make-a-lagrangian-class" class="level3">
-<h3 class="anchored" data-anchor-id="make-a-lagrangian-class">Make a Lagrangian class</h3>
+<section id="make-a-lagrangian-class" class="level2">
+<h2 class="anchored" data-anchor-id="make-a-lagrangian-class">Make a <code>Lagrangian</code> class</h2>
 <p>The Lagrangian will keep track of the potential function. We won’t set up automatic differentiation, so we’ll also give the Lagrangian the derivative of the potential. We’ll also optionally allow the user to input the vacua of the theory. If they do, we’ll add a check that the derivative function of the vacua return 0. This class could also be where we define how many fields our theory has, any funny metric, and more. But let’s keep it simple for now.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lagrangian:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -514,8 +547,8 @@ git push -u origin main</code></pre>
 <li>Can you edit the example code so that the <code>assert</code> is triggered?</li>
 </ul>
 </section>
-<section id="update-the-soliton-class" class="level3">
-<h3 class="anchored" data-anchor-id="update-the-soliton-class">Update the <code>Soliton</code> class</h3>
+<section id="update-the-soliton-class" class="level2">
+<h2 class="anchored" data-anchor-id="update-the-soliton-class">Update the <code>Soliton</code> class</h2>
 <p>Time to update the <code>Soliton</code> class to use the <code>Grid</code> and <code>Lagrangian</code> classes. When initialising the soliton, we’ll allow the user to specify an initial profile function: either by specifying a function or passing an array representing the initial profile. We’ll add a <code>compute_energy</code> method, and do something a bit odd: create another function called <code>compute_energy_fast</code>. Roughly: the method in the class strips out what we need from the object and passes this to <code>compute_energy_fast</code>: this second function doesn’t interact with the class at all and we can optimize the heck out of it later. This is THE KEY concept to get the benefits of: 1) Lovely user-friendly classes 2) FAST STUFF. For now, we won’t implement the energy function, but we will set up the machinery to do it later.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Soliton:</span>
@@ -625,6 +658,153 @@ git push -u origin main</code></pre>
 </ul>
 </section>
 </section>
+<section id="derivatives-and-energy" class="level1">
+<h1>Derivatives and Energy</h1>
+<p>To compute the energy, and the gradient flow, we’ll need to compute derivatives. There are many ways to do this. The most common in the soliton field is using a finite difference method. Here, we implement the approximation</p>
+<p><span class="math display">\[
+\phi'(x) = \lim_{\epsilon \to 0}\frac{\phi(x+\epsilon) - \phi(x-\epsilon)}{2\epsilon}
+\]</span></p>
+<p>on our rigid grid. This can be approximated in many ways. You get more accuracy if you use more points. But if your true function does change fast and your points are too widely spread you’ll hit numerical blow-ups. For solitons, I usually use a fourth-accuracy method. If we use <code>i</code> to denote the lattice point, the fourth order derivative approximates the derivative on the grid as follows:</p>
+<p><span class="math display">\[
+(\partial \phi)_i = \frac{1}{12}\phi_{i-2} - \frac{2}{3}\phi_{i-1} + \frac{2}{3}\phi_{i+1} - \frac{1}{12}\phi_{i+2}
+\]</span></p>
+<p>You can find other accuracies on <a href="https://en.wikipedia.org/wiki/Finite_difference_coefficient">Wikipedia</a>.</p>
+<p>The big problem is the boundary. When we try to compute the derivative at the <code>0</code>th point, it tries to access the <code>-1</code>th point, which doesn’t exist. Here are a few solutions:</p>
+<ul>
+<li>Use Dirichlet boundary conditions. So keep the boundary fixed. Since you’re keeping it fixed, you don’t need to update it and hence you don’t need to compute the derivative there. Easy!</li>
+<li>Use forward/backwards finite difference to approximate the boundary points.</li>
+<li>Use Neumann boundary conditions. Keep the derivative equal to zero. If you do this, then at the boundary you can set <span class="math inline">\(phi_{-1} = \phi_{1}\)</span> and <span class="math inline">\(\phi_{-2} = \phi_2\)</span>, and you don’t need to worry.</li>
+<li>Use (possibly shifted) periodic boundary conditions, so that <span class="math inline">\(\phi_{-1} = \phi_{N}\)</span> and <span class="math inline">\(\phi_{-2} = \phi_{N-1}\)</span>.</li>
+</ul>
+<p>We’re going to do the simples: Dirichlet. A good exercise for you: implement something else.</p>
+<p>So, we’ll write functions to compute the first and (while we’re at it) second derivatives of a function. (This is going to be a FAST function, so we don’t want it to interact with the class):</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_derivative(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    phi: np.ndarray, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    num_grid_points: <span class="bu">int</span>, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    grid_spacing: <span class="bu">float</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">    For a given array, computes the first derivative of that array.</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">    phi: np.ndarray</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Array to get the first derivative of</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">    num_grid_points: int</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">        Length of the array</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">    grid_spacing: float</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Grid spacing of underlying grid</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">    d_phi: np.ndarray</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">        The first derivative of `phi`.</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    d_phi <span class="op">=</span> np.zeros(num_grid_points)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> np.arange(num_grid_points)[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>]:</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        d_phi[i] <span class="op">=</span> (phi[i <span class="op">-</span> <span class="dv">2</span>] <span class="op">-</span> <span class="dv">8</span> <span class="op">*</span> phi[i <span class="op">-</span> <span class="dv">1</span>] <span class="op">+</span> <span class="dv">8</span> <span class="op">*</span> phi[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> phi[i <span class="op">+</span> <span class="dv">2</span>]) <span class="op">/</span> (</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>            <span class="fl">12.0</span> <span class="op">*</span> grid_spacing</span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d_phi</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_second_derivative(</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>    phi: np.ndarray, </span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    num_grid_points: <span class="bu">int</span>, </span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    grid_spacing: <span class="bu">float</span>,</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co">    For a given array, computes the first derivative of that array.</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="co">    phi: np.ndarray</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="co">        Array to get the first derivative of</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="co">    num_grid_points: int</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="co">        Length of the array</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="co">    grid_spacing: float</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="co">        Grid spacing of underlying grid</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="co">    d_phi: np.ndarray</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="co">        The first derivative of `phi`.</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>    ddV <span class="op">=</span> np.zeros(num_grid_points)</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> np.arange(num_grid_points)[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>]:</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>        ddV[i] <span class="op">=</span> (</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span>phi[i <span class="op">-</span> <span class="dv">2</span>] <span class="op">+</span> <span class="dv">16</span> <span class="op">*</span> phi[i <span class="op">-</span> <span class="dv">1</span>] <span class="op">-</span> <span class="dv">30</span> <span class="op">*</span> phi[i] <span class="op">+</span> <span class="dv">16</span> <span class="op">*</span> phi[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">-</span> phi[i <span class="op">+</span> <span class="dv">2</span>]</span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>        ) <span class="op">/</span> (<span class="fl">12.0</span> <span class="op">*</span> np.<span class="bu">pow</span>(grid_spacing, <span class="dv">2</span>))</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ddV</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With these derivative functions, computing the energy is easy. We just estimate the integral as a sum,</p>
+<p><span class="math display">\[
+E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
+\]</span></p>
+<p>like so:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_energy_fast(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    V: Callable[[<span class="bu">float</span>], <span class="bu">float</span>],</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    profile: np.array, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    num_grid_points: <span class="bu">int</span>, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    grid_spacing: <span class="bu">float</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the energy of a Lagrangian of the form</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">        E = 1/2 (d_phi)^2 + V(phi)</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">    V: function</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">        The potential energy function</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">    profile: np.ndarray</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">        The profile function of the soliton</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">    num_grid_points: int</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">        Length of `profile`</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">    grid_spacing: float</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co">        Grid spacing of underlying grid</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    dx_profile <span class="op">=</span> get_first_derivative(profile, num_grid_points, grid_spacing)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>    kin_eng <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">pow</span>(dx_profile, <span class="dv">2</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    pot_eng <span class="op">=</span> V(profile)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    tot_eng <span class="op">=</span> np.<span class="bu">sum</span>(kin_eng <span class="op">+</span> pot_eng) <span class="op">*</span> grid_spacing</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tot_eng</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example code, following on from last time</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soltion.energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Improvements:</p>
+<ul>
+<li>Allow for any type of boundary conditions</li>
+<li>Allow for any kind of kinetic energy</li>
+</ul>
+<p>Questions: - You could get <code>num_grid_points</code> by computing <code>len(profile)</code>. How would this improve your code? How would this make your code worse?</p>
+</section>
+<section id="plot-a-soliton" class="level1">
+<h1>Plot a Soliton</h1>
+<p>We’re now making and computing solitons - let’s take a look at what we’re plotting. The most popular plotting package in Python is matplotlib. We need to install it by navigating to our Project folder in Terminal and running <code>uv add matplotlib</code>. In matplotlib, you’ve got a <code>Figure</code> which contains <code>Axes</code>. You can plot stuff on an <code>axis</code>, and adjust ticks and titles. Our code will look like:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x,y)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"hello!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And it makes sense and WE LOVE IT. When you Google matplotlib you’ll find lots of code that looks like <code>plt.plot(x,y); plt.show()</code>. WE HATE THIS!!!! (ask me about it later)</p>
+<p>So, the plan is to make a plotting method of the <code>Soliton</code> class that will return a matplotlib figure. It’s nice to play with plotting in a Jupyter notebook. Here’s my attempt at a reasonable plotting method. This is a method of the class, so should be indented in the class:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> plot_soliton(<span class="va">self</span>):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Makes a plot of the profile function of your soliton"""</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        ax.plot(<span class="va">self</span>.grid.grid_points, <span class="va">self</span>.profile)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f"Profile function. Energy = </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>energy<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Code example, following on from earlier:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this should display in a Jupyter notebook, if you run it by itself</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> my_soliton.plot_soliton()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"my_lovely_soliton.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="more-coming-soon" class="level1">
 <h1>More coming soon!</h1>

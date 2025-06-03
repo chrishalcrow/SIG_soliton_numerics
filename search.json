@@ -53,7 +53,7 @@
     "href": "index.html#functions",
     "title": "Good Scientific Software Practices, through Solitons",
     "section": "Functions",
-    "text": "Functions\nLet’s make a function. Functions take some input and return some output. Let’s make a create_profile function which will generate a profile for a 1D soliton. For now, we’ll just return an array of 0s:\nimport numpy as np\n\ndef create_profile(num_lattice_points):\n    profile = np.zeros(num_lattice_points)\n    return profile\nI’ll write this out in English:\n\n“Import the package called numpy and call it np, which is how we’ll be able to access it.”\n“Define a function called create_profile, which will accept the argument num_lattice_points.”\n“Use the funcion zeros from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable profile.”\n“Return the variable profile. This return signals the end of the function\n\nThere are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameter; add a docstring describing the function.\nimport numpy as np\n\ndef create_profile(num_lattice_points: int) -&gt; np.array:\n    \"\"\"\n    Creates a profile function for a lattice with \n    `num_lattice_points` points.\n\n    Parameters\n    ----------\n    num_lattice_points: int\n        Number of lattice points\n\n    Returns\n    -------\n    profile: np.array\n        Generated profile function \n    \"\"\"\n\n    profile = np.zeros(num_lattice_points)\n    return profile\nOk. Let’s use this function. We’re going to use investigate_soliton.ipynb. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Ok, now open investigate_soliton.ipynb in VSCode.\nA Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell\nfrom solitons1d.soliton import create_profile\nprofile = create_profile(100)\nprofile\nand execute this (either by pressing the “play” button next to the cell or pressing shift+enter). The final line of the cell gets displayed underneate it. So we should see a large array of 0s."
+    "text": "Functions\nLet’s make a function. Functions take some input and return some output. Let’s make a create_profile function which will generate a profile for a 1D soliton. For now, we’ll just return an array of 0s:\nimport numpy as np\n\ndef create_profile(num_lattice_points):\n    profile = np.zeros(num_lattice_points)\n    return profile\nI’ll write this out in English:\n\n“Import the package called numpy and call it np, which is how we’ll be able to access it.”\n“Define a function called create_profile, which will accept the argument num_lattice_points.”\n“Use the funcion zeros from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable profile.”\n“Return the variable profile. This return signals the end of the function\n\nThere are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameter; add a docstring describing the function.\nimport numpy as np\n\ndef create_profile(num_lattice_points: int) -&gt; np.array:\n    \"\"\"\n    Creates a profile function for a lattice with \n    `num_lattice_points` points.\n\n    Parameters\n    ----------\n    num_lattice_points: int\n        Number of lattice points\n\n    Returns\n    -------\n    profile: np.array\n        Generated profile function \n    \"\"\"\n\n    profile = np.zeros(num_lattice_points)\n    return profile\nOk. Let’s use this function. We’re going to use play.ipynb. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Now open play.ipynb in VSCode.\nA Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell\nfrom solitons1d.soliton import create_profile\nprofile = create_profile(100)\nprofile\nand execute this (either by pressing the “play” button next to the cell or pressing shift+enter). The final line of the cell gets displayed underneate it. So we should see a large array of 0s."
   },
   {
     "objectID": "index.html#classes-and-methods",
@@ -89,5 +89,47 @@
     "title": "Good Scientific Software Practices, through Solitons",
     "section": "Update the Soliton class",
     "text": "Update the Soliton class\nTime to update the Soliton class to use the Grid and Lagrangian classes. When initialising the soliton, we’ll allow the user to specify an initial profile function: either by specifying a function or passing an array representing the initial profile. We’ll add a compute_energy method, and do something a bit odd: create another function called compute_energy_fast. Roughly: the method in the class strips out what we need from the object and passes this to compute_energy_fast: this second function doesn’t interact with the class at all and we can optimize the heck out of it later. This is THE KEY concept to get the benefits of: 1) Lovely user-friendly classes 2) FAST STUFF. For now, we won’t implement the energy function, but we will set up the machinery to do it later.\n\nclass Soliton:\n    \"\"\"\n    A class describing a Soliton.\n\n    Parameters\n    ----------\n    grid : Grid\n        The grid underpinning the soliton.\n    lagrangian : Lagrangian\n        The Lagrangian of the theory supporting the soliton.\n    initial_profile_function : None | function\n        The initial profile function, must be from R -&gt; R. Optional.\n    initial_profile : None | array-like\n        The initial profile function as an array. Optional.\n    \"\"\"\n\n    def __init__(\n        self,\n        grid: Grid,\n        lagrangian: Lagrangian,\n        initial_profile_function: Callable[[float], float] | None = None,\n        initial_profile: np.ndarray | None = None,\n    ):\n        self.grid = grid\n        self.lagrangian = lagrangian\n\n        self.profile = np.zeros(grid.num_grid_points)\n\n        assert (initial_profile_function is None) or (initial_profile is None), (\n            \"Please only specify `initial_profile_function` or `profile_function`\"\n        )\n\n        if initial_profile_function is not None:\n            self.profile = create_profile(self.grid.grid_points, initial_profile_function)\n        else:\n            self.profile = initial_profile\n\n        self.energy = self.compute_energy()\n\n    def compute_energy(self):\n        \"\"\"Computes the energy of a soliton, and stores this in `Soliton.energy`.\"\"\"\n\n        energy = compute_energy_fast(\n            self.lagrangian.V,\n            self.profile,\n            self.grid.num_grid_points,\n            self.grid.grid_spacing,\n        )\n        self.energy = energy\n\ndef compute_energy_fast(V, profile, num_grid_points, grid_spacing):\n\n    total_energy = 0\n    return total_energy\n\n\ndef create_profile(\n    grid_points: np.array,\n    initial_profile_function: Callable[[np.array], np.array] | None = None,\n) -&gt; np.array:\n    \"\"\"\n    Creates a profile function on a grid, from profile function `initial_profile_function`.\n\n    Parameters\n    ----------\n    grid_points: Grid\n        The x-values of a grid.\n    initial_profile_function: function\n        A function which accepts and returns a 1D numpy array\n\n    Returns\n    -------\n    profile: np.array\n        Generated profile function\n    \"\"\"\n\n    profile = initial_profile_function(grid_points)\n    return profile\nExample code:\nfrom solitons1d.soliton import Lagrangian, Grid, Soliton\nimport numpy as np\n\ndef phi4_V(x):\n    return 0.5*np.pow(1-np.pow(x,2),2)\n\ndef phi4_dV(x):\n    return 2*np.pow(x,3) - 2*x\n\nphi4_lagrangian = Lagrangian(V=phi4_V, dV=phi4_dV, vacua=[-1,1])\nmy_grid = Grid(20,0.1)\n\nmy_soliton = Soliton(my_grid, phi4_lagrangian, initial_profile_function=np.tanh)\n\nprint(my_soliton.profile)\nImprovements:\n\nIf a user passes an initial_profile, check it’s the right length.\n\nQuestions:\n\nWhat are all these selfs about??\nCan you trigger the assert by playing with the example code?\nBefore going on to the next section: try to write the compute_energy_fast function, or part of it.\nWe’ve edited the create_profile function to fit in with our class. How has it changed? Why?"
+  },
+  {
+    "objectID": "index.html#timing-and-optimization",
+    "href": "index.html#timing-and-optimization",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Timing and Optimization",
+    "text": "Timing and Optimization"
+  },
+  {
+    "objectID": "index.html#tests",
+    "href": "index.html#tests",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Tests",
+    "text": "Tests"
+  },
+  {
+    "objectID": "index.html#documentation",
+    "href": "index.html#documentation",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Documentation",
+    "text": "Documentation"
+  },
+  {
+    "objectID": "index.html#linters-formatters-and-lsps",
+    "href": "index.html#linters-formatters-and-lsps",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Linters, formatters and LSPs",
+    "text": "Linters, formatters and LSPs"
+  },
+  {
+    "objectID": "index.html#continuous-integration",
+    "href": "index.html#continuous-integration",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Continuous Integration",
+    "text": "Continuous Integration"
+  },
+  {
+    "objectID": "index.html#recommended-reading",
+    "href": "index.html#recommended-reading",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Recommended Reading",
+    "text": "Recommended Reading"
   }
 ]

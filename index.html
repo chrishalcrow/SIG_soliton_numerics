@@ -177,7 +177,17 @@ window.Quarto = {
   </ul></li>
   <li><a href="#derivatives-and-energy" id="toc-derivatives-and-energy" class="nav-link" data-scroll-target="#derivatives-and-energy">Derivatives and Energy</a></li>
   <li><a href="#plot-a-soliton" id="toc-plot-a-soliton" class="nav-link" data-scroll-target="#plot-a-soliton">Plot a Soliton</a></li>
-  <li><a href="#more-coming-soon" id="toc-more-coming-soon" class="nav-link" data-scroll-target="#more-coming-soon">More coming soon!</a></li>
+  <li><a href="#saveload-a-soliton" id="toc-saveload-a-soliton" class="nav-link" data-scroll-target="#saveload-a-soliton">Save/load a Soliton</a></li>
+  <li><a href="#gradient-flow" id="toc-gradient-flow" class="nav-link" data-scroll-target="#gradient-flow">Gradient flow</a></li>
+  <li><a href="#bonus---coming-soon" id="toc-bonus---coming-soon" class="nav-link" data-scroll-target="#bonus---coming-soon">Bonus - coming soon</a>
+  <ul class="collapse">
+  <li><a href="#timing-and-optimization" id="toc-timing-and-optimization" class="nav-link" data-scroll-target="#timing-and-optimization">Timing and Optimization</a></li>
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests">Tests</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#linters-formatters-and-lsps" id="toc-linters-formatters-and-lsps" class="nav-link" data-scroll-target="#linters-formatters-and-lsps">Linters, formatters and LSPs</a></li>
+  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration">Continuous Integration</a></li>
+  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended Reading</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -326,12 +336,12 @@ git push -u origin main</code></pre>
 <section id="sources-and-scripts" class="level1">
 <h1>Sources and scripts</h1>
 <p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em> and that you want to share with other people. Functions like <code>compute_energy</code>, <code>make_soliton</code> and more. But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
-<p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” (short for source - this shortening is convention) and one called “scripts”. In the “src” folder make a another folder with the name of your package. We’ll also delete the <code>main.py</code> file that uv created. Let’s also create two files in the <code>source/{project_name}</code> folder. One called <code>soliton.py</code> which will contain the code about the soliton and one called <code>__init__.py</code> which tells Python that this folder contained a “module”. Don’t worry about that right now. Also add a script file called <code>investigate_soliton.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
+<p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” (short for source - this shortening is convention) and one called “scripts”. In the “src” folder make a another folder with the name of your package. We’ll also delete the <code>main.py</code> file that uv created. Let’s also create two files in the <code>source/{project_name}</code> folder. One called <code>soliton.py</code> which will contain the code about the soliton and one called <code>__init__.py</code> which tells Python that this folder contained a “module”. Don’t worry about that right now. Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>solitons1D<span class="op">/</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    pyproject.toml</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    README.md</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    scripts<span class="op">/</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        investigate_soliton.ipynb</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        play.ipynb</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    src<span class="op">/</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        solitons1D<span class="op">/</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">__init__</span>.py</span>
@@ -377,7 +387,7 @@ git push -u origin main</code></pre>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_lattice_points)</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ok. Let’s use this function. We’re going to use <code>investigate_soliton.ipynb</code>. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Ok, now open <code>investigate_soliton.ipynb</code> in VSCode.</p>
+<p>Ok. Let’s use this function. We’re going to use <code>play.ipynb</code>. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Now open <code>play.ipynb</code> in VSCode.</p>
 <p>A Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> create_profile</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> create_profile(<span class="dv">100</span>)</span>
@@ -806,10 +816,43 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> my_soliton.plot_soliton()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"my_lovely_soliton.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="more-coming-soon" class="level1">
-<h1>More coming soon!</h1>
+<section id="saveload-a-soliton" class="level1">
+<h1>Save/load a Soliton</h1>
+<p>Coming soon…</p>
+</section>
+<section id="gradient-flow" class="level1">
+<h1>Gradient flow</h1>
+<p>Exercise: Write a gradient flow function, which the user can use as follows:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy before flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>my_soliton.gradient_flow(steps<span class="op">=</span><span class="dv">1000</span>, dt<span class="op">=</span><span class="fl">0.0001</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy after flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll actually write two functions: a <code>gradient_flow</code> method in the <code>Soltion</code> class and a <code>gradient_flow_fast</code> function in the body of the code.</p>
+<p><strong>End of “core” course</strong></p>
+</section>
+<section id="bonus---coming-soon" class="level1">
+<h1>Bonus - coming soon</h1>
+<p>Including…</p>
+<section id="timing-and-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="timing-and-optimization">Timing and Optimization</h2>
+</section>
+<section id="tests" class="level2">
+<h2 class="anchored" data-anchor-id="tests">Tests</h2>
+</section>
+<section id="documentation" class="level2">
+<h2 class="anchored" data-anchor-id="documentation">Documentation</h2>
+</section>
+<section id="linters-formatters-and-lsps" class="level2">
+<h2 class="anchored" data-anchor-id="linters-formatters-and-lsps">Linters, formatters and LSPs</h2>
+</section>
+<section id="continuous-integration" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-integration">Continuous Integration</h2>
+</section>
+<section id="recommended-reading" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-reading">Recommended Reading</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

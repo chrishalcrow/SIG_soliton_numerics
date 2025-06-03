@@ -1,11 +1,12 @@
 ---
 title: Good Scientific Software Practices, through Solitons
 output: html_document
-theme: zephyr
+theme: cosmo
 format:
   html:
     toc: true
     toc-location: left
+    number-sections: true
 ---
 
 # Introduction

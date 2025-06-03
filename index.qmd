@@ -9,7 +9,7 @@ format:
     number-sections: true
 ---
 
-# Introduction
+# Introduction {.unnumbered .unlisted}
 
 Software engineering is now an integral part of science. As mathematicians and physicists, 
 we're pretty good at understanding algorithms, and even implementing them. But to ensure 
@@ -42,7 +42,7 @@ and it's the most popular (and employable) language in the world. Python is trad
 thought to be slow, and it can be. But if you know how it works it can be just as fast as 
 any other language. I also recommend writing the code in VSCode or PyCharm.
 
-# Detailed Plan
+## Detailed Plan
 
 1. Before the course:
   - Installation

@@ -168,6 +168,7 @@ window.Quarto = {
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   <li><a href="#classes-and-methods" id="toc-classes-and-methods" class="nav-link" data-scroll-target="#classes-and-methods">Classes and methods</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#upload-to-github" id="toc-upload-to-github" class="nav-link" data-scroll-target="#upload-to-github">Upload to GitHub</a></li>
   </ul></li>
   <li><a href="#lots-of-code" id="toc-lots-of-code" class="nav-link" data-scroll-target="#lots-of-code">Lots of code!</a>
   <ul class="collapse">
@@ -344,8 +345,8 @@ git push -u origin main</code></pre>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        play.ipynb</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    src<span class="op">/</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        solitons1D<span class="op">/</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">__init__</span>.py</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        soliton.py</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">__init__</span>.py</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            soliton.py</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    uv.lock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="functions-classes-and-methods" class="level1">
@@ -441,6 +442,16 @@ git push -u origin main</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’ve now got the basic building block that we’ll use for the rest of the course.</p>
+</section>
+<section id="upload-to-github" class="level2">
+<h2 class="anchored" data-anchor-id="upload-to-github">Upload to GitHub</h2>
+<p>Now that we have a few functions, methods, and classes: let’s sync our local folder with our GitHub repository. You can do this using the Terminal (), but VSCode has some great Git integration. So let’s use that. Find the “Source Control” button in VSCode. When you press it, it should show a list of files that you have made changes to. The logic is:</p>
+<ol type="1">
+<li>“Stage” the files you want to upload to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing “Stage Files”.</li>
+<li>Commit and Push the staged files to GitHub. Do this by first writing a message in the Message box. Maybe “Added Soliton class”. Then press the down arrow at the right hand side of the commit button, and click “Commit and Push”.</li>
+</ol>
+<p>The first time you do this, you might need to Publish your branch. Every other time, it’s just the 2-step process above.</p>
+<p>Now go to your github page (mine is github.com/chrishalcrow/solitons1d/) and see if your changes have appeared there.</p>
 </section>
 </section>
 <section id="lots-of-code" class="level1">

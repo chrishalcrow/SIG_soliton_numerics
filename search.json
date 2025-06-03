@@ -70,6 +70,13 @@
     "text": "Methods\nEven more helpful: write class-specific functions that can change what’s in the object. These are called “methods”. They’re similar to functions but are designed to only apply to the class. These are defined in the class definition itself. Let’s create a method which will (eventually) compute the energy of the soliton. The Soliton class method get updated to the following:\nclass Soliton():\n\n    def __init__(self, num_lattice_points, lattice_spacing):\n         self.lp = num_lattice_points\n         self.ls = lattice_spacing\n         self.profile = create_profile(num_lattice_points)\n\n    def compute_energy(self)\n\n         total_energy = np.sum(self.profile)\n         total_energy *= self.ls\n         self.energy = total_energy\nNow we have a method that takes in the profile function, sums it up, multiplies this value by the lattice spacing, stores the value in self.energy then returns this value. We can use it in a script as follows:\nmy_soliton.compute_energy()\nprint(my_soliton.energy)\nWe’ve now got the basic building block that we’ll use for the rest of the course."
   },
   {
+    "objectID": "index.html#upload-to-github",
+    "href": "index.html#upload-to-github",
+    "title": "Good Scientific Software Practices, through Solitons",
+    "section": "Upload to GitHub",
+    "text": "Upload to GitHub\nNow that we have a few functions, methods, and classes: let’s sync our local folder with our GitHub repository. You can do this using the Terminal (), but VSCode has some great Git integration. So let’s use that. Find the “Source Control” button in VSCode. When you press it, it should show a list of files that you have made changes to. The logic is:\n\n“Stage” the files you want to upload to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing “Stage Files”.\nCommit and Push the staged files to GitHub. Do this by first writing a message in the Message box. Maybe “Added Soliton class”. Then press the down arrow at the right hand side of the commit button, and click “Commit and Push”.\n\nThe first time you do this, you might need to Publish your branch. Every other time, it’s just the 2-step process above.\nNow go to your github page (mine is github.com/chrishalcrow/solitons1d/) and see if your changes have appeared there."
+  },
+  {
     "objectID": "index.html#the-grid-class",
     "href": "index.html#the-grid-class",
     "title": "Good Scientific Software Practices, through Solitons",

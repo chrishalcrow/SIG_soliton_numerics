@@ -203,14 +203,14 @@ We'll also delete the `main.py` file that uv created. Let's also create two file
 the `source/{project_name}` folder. One called `soliton.py` which will contain the code 
 about the soliton and one called `__init__.py` which tells Python that this folder 
 contained a "module". Don't worry about that right now. Also add a script file called 
-`investigate_soliton.ipynb` in the scripts folder. Overall, my project folder looks like this:
+`play.ipynb` in the scripts folder. Overall, my project folder looks like this:
 
 ``` python
 solitons1D/
     pyproject.toml
     README.md
     scripts/
-        investigate_soliton.ipynb
+        play.ipynb
     src/
         solitons1D/
 	    __init__.py
@@ -269,13 +269,9 @@ def create_profile(num_lattice_points: int) -> np.array:
     return profile
 ```
 
-Ok. Let's use this function. We're going to use `investigate_soliton.ipynb`. This is a 
-Jupyter notebook. To use it, we need to add another package to our enviroment. In the 
-terminal, navigate to the project folder, type "uv add ipykernel" then press enter. 
-Ok, now open `investigate_soliton.ipynb` in VSCode.
+Ok. Let's use this function. We're going to use `play.ipynb`. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type "uv add ipykernel" then press enter. Now open `play.ipynb` in VSCode.
 
-A Jupyter notebook allows you to run little snippets of code in a "cell". We need to 
-import our function from our package, then run it. Put this code in your first cell
+A Jupyter notebook allows you to run little snippets of code in a "cell". We need to  import our function from our package, then run it. Put this code in your first cell
 
 ``` python
 from solitons1d.soliton import create_profile
@@ -792,18 +788,33 @@ fig = my_soliton.plot_soliton()
 fig.savefig("my_lovely_soliton.pdf")
 ```
 
-# More coming soon!
+# Save/load a Soliton
 
+Coming soon...
 
+# Gradient flow
 
+Exercise: Write a gradient flow function, which the user can use as follows:
 
+``` python
+print(f"Energy before flow: {my_soliton.energy}")
+my_soliton.gradient_flow(steps=1000, dt=0.0001)
+my_soliton.compute_energy()
+print(f"Energy after flow: {my_soliton.energy}")
+```
 
+You'll actually write two functions: a `gradient_flow` method in the `Soltion` class and a `gradient_flow_fast` function in the body of the code.
 
+**End of "core" course**
 
+# Bonus - coming soon
 
+Including...
 
-
-
-
-
+## Timing and Optimization
+## Tests
+## Documentation
+## Linters, formatters and LSPs
+## Continuous Integration
+## Recommended Reading
 

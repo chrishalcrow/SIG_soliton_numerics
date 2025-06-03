@@ -213,8 +213,8 @@ solitons1D/
         play.ipynb
     src/
         solitons1D/
-	    __init__.py
-	    soliton.py
+	        __init__.py
+	        soliton.py
     uv.lock
 ```
 
@@ -354,6 +354,17 @@ print(my_soliton.energy)
 ```
 
 We've now got the basic building block that we'll use for the rest of the course.
+
+## Upload to GitHub
+
+Now that we have a few functions, methods, and classes: let's sync our local folder with our GitHub repository. You can do this using the Terminal (), but VSCode has some great Git integration. So let's use that. Find the "Source Control" button in VSCode. When you press it, it should show a list of files that you have made changes to. The logic is:
+
+1. "Stage" the files you want to upload to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing "Stage Files".
+2. Commit and Push the staged files to GitHub. Do this by first writing a message in the Message box. Maybe "Added Soliton class". Then press the down arrow at the right hand side of the commit button, and click "Commit and Push".
+
+The first time you do this, you might need to Publish your branch. Every other time, it's just the 2-step process above.
+
+Now go to your github page (mine is github.com/chrishalcrow/solitons1d/) and see if your changes have appeared there.
 
 # Lots of code!
 

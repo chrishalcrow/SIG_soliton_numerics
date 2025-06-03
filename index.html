@@ -283,22 +283,22 @@ window.Quarto = {
 <h1>Installation</h1>
 <section id="the-terminal" class="level2">
 <h2 class="anchored" data-anchor-id="the-terminal">The terminal</h2>
-<p>The terminal is a nice way to interact with your computer. If you’re using Mac or Linux you have a terminal installed already. It’s called Terminal. If you have Windows, you have Powershell. So that everyone has a similar experience, I encourage you to install Windows Terminal (there are installation instructions on the GitHub page: https://docs.astral.sh/uv/#installation)</p>
+<p>The terminal is a nice way to interact with your computer. If you’re using Mac or Linux you have a terminal installed already. It’s called Terminal. If you have Windows, you have Powershell. So that everyone has a similar experience, I encourage you to install Windows Terminal (there are installation instructions on <a href="https://github.com/microsoft/terminal">its GitHub page</a></p>
 <p>Open your terminal and type “ls” (short for “list”) then press enter. This will display all the files in your currently directory. If you want to change directories type “cd” followed by the name of the directroy you want to go to.</p>
 </section>
 <section id="uv-to-install-python-packages" class="level2">
 <h2 class="anchored" data-anchor-id="uv-to-install-python-packages">uv (to install python + packages)</h2>
-<p>Python’s biggest asset (and liability) is that people write packages for it. There are over 600,000 packages available on PyPi (https://pypi.org). These packages usually depend on each other, and it can get overwhelming keeping track. As such, we’ll use a installation/package manager called <code>uv</code>. This will install python and the packages for us, and help initialise our project. To install uv follow the instructions on its website: https://docs.astral.sh/uv/#installation. Check it works by opening a Terminal (on Mac or Linux) and typing <code>uv</code>.</p>
+<p>Python’s biggest asset (and liability) is that people write packages for it. There are over 600,000 packages available on <a href="https://pypi.org">PyPi</a>. These packages usually depend on each other, and it can get overwhelming keeping track. As such, we’ll use a installation/package manager called <code>uv</code>. This will install python and the packages for us, and help initialise our project. To install uv follow the instructions on <a href="https://docs.astral.sh/uv/#installation">uv’s website</a>. Check it works by opening a Terminal (on Mac or Linux) and typing <code>uv</code>.</p>
 <p>Once you have uv, you can run python in the terminal by typing <code>uv run python</code>. The first time you do this uv might install Python. So it might take a little minute.</p>
 </section>
 <section id="an-editor" class="level2">
 <h2 class="anchored" data-anchor-id="an-editor">An editor</h2>
-<p>A good text editor <em>really</em> helps coding. A good one allows you to search through codebases, auto-complete code, and more. I recommend VSCode (https://code.visualstudio.com/) because it’s free and has really good Python support. Some people love PyCharm (https://www.jetbrains.com/pycharm/). Please install one.</p>
+<p>A good text editor <em>really</em> helps coding. A good one allows you to search through codebases, auto-complete code, and more. I recommend <a href="https://code.visualstudio.com/">VSCode</a> because it’s free and has really good Python support. Some people love <a href="https://www.jetbrains.com/pycharm/">PyCharm</a>. Please install one.</p>
 <p>Both VScode and PyCharm have lots of extensions. For VSCode, please install the Python extension.</p>
 </section>
 <section id="git" class="level2">
 <h2 class="anchored" data-anchor-id="git">Git</h2>
-<p>Check that you have git installed by typing ‘git’ then pressing enter in your Terminal. It’s hopefully already installed. If not, please install it https://git-scm.com/book/en/v2/Getting-Started-Installing-Git This is a good moment to make a GitHub account too.</p>
+<p>Check that you have git installed by typing ‘git’ then pressing enter in your Terminal. It’s hopefully already installed. If not, <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">please install it</a> This is a good moment to make a <a href="GitHub account too">https://github.com/</a>.</p>
 </section>
 </section>
 <section id="make-a-project" class="level1">
@@ -311,11 +311,11 @@ window.Quarto = {
 <li>src/solitons1d. A folder which will contain your package.</li>
 </ul>
 <p>Ok! Let’s open the project in VSCode. The easiest way to do this is in terminal. We’re going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing <code>uv run code .</code>. The dot at the end means “this folder here”. <code>code</code> is the shortcut for VSCode and <code>uv run</code> means “When you open VSCode, make it aware of which python <em>enviroment</em> is being used at the moment”. More on enviroments soon!</p>
-<p>VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn’t you can put it there using <code>View -&gt; Terminal</code>. From the terminal we can run the <code>main.py</code> python script by typing <code>uv run main.py</code> and pressing enter. It should print out “Hello World from {project name}”.</p>
-<p>If that’s worked - amazing!! You’ve just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I’ve shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole).</p>
+<p>VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn’t you can put it there using <code>View -&gt; Terminal</code>. From the terminal we can run python by entering <code>uv run python</code>, then import our package using <code>import solitons1d</code>. Quit python by running <code>exit()</code>. Note: we won’t use python in the terminal much.</p>
+<p>If that didn’t error - amazing!! You’ve just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I’ve shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole).</p>
 <section id="virtual-enviroments" class="level2">
 <h2 class="anchored" data-anchor-id="virtual-enviroments">Virtual Enviroments</h2>
-<p>Ok, I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual enviroments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different enviroment for different projects. So you might have one enviroment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual enviroment enviroment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the enviroment. And when we opened code uv told it that we’re using this enviroment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
+<p>Ok, I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual enviroments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different enviroment for different projects. So you might have one enviroment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual enviroment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the enviroment. Then it opened VSCode and told it that we’re using this enviroment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
 <p>Let’s add some package dependencies to our package. In the terminal, navigate to your project folder. We’ll add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
 <p>You might notice another new file in your project folder called <code>uv.lock</code>. This keeps all the intricate details about the packages. It’s gross.</p>
 </section>
@@ -332,12 +332,12 @@ window.Quarto = {
 git branch -M main
 git push -u origin main</code></pre>
 <p>Run these three commands from your local repo folder in Terminal. They say: - “Link the git in this folder to this github repository” - “Create the primary ‘branch’ of the repo, called main” - “Push (put, or add) everything from the folder to the repo on github.com”</p>
-<p>If that worked: great! You’re project is now <em>online</em>! If the last one error’d, that’s ok. We’ll get that sorted later.</p>
+<p>If that worked: great! You’re project is now <em>online</em>! If the last one error’d, that’s ok. We’ll get that sorted soon.</p>
 </section>
 <section id="sources-and-scripts" class="level1">
 <h1>Sources and scripts</h1>
 <p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em> and that you want to share with other people. Functions like <code>compute_energy</code>, <code>make_soliton</code> and more. But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
-<p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” (short for source - this shortening is convention) and one called “scripts”. In the “src” folder make a another folder with the name of your package. We’ll also delete the <code>main.py</code> file that uv created. Let’s also create two files in the <code>source/{project_name}</code> folder. One called <code>soliton.py</code> which will contain the code about the soliton and one called <code>__init__.py</code> which tells Python that this folder contained a “module”. Don’t worry about that right now. Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
+<p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” that <code>uv</code> already created for us (short for source - this shortening is conventional) and one called “scripts”. In the “src” there should already be another folder called the name of your package. Inside this there is a file called <code>__init__.py</code> which tells Python that this folder contains a “module”. Let’s create another files in the <code>source/{project_name}</code> folder called <code>soliton.py</code>, which will contain the code about the soliton, Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>solitons1D<span class="op">/</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    pyproject.toml</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    README.md</span>
@@ -357,28 +357,28 @@ git push -u origin main</code></pre>
 <p>Let’s make a function. Functions take some input and return some output. Let’s make a <code>create_profile</code> function which will generate a profile for a 1D soliton. For now, we’ll just return an array of 0s:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_profile(num_lattice_points):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_lattice_points)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_profile(num_grid_points):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_grid_points)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I’ll write this out in English:</p>
 <ul>
 <li>“Import the package called numpy and call it np, which is how we’ll be able to access it.”</li>
-<li>“Define a function called <code>create_profile</code>, which will accept the argument <code>num_lattice_points</code>.”</li>
-<li>“Use the funcion <code>zeros</code> from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable <code>profile</code>.”</li>
+<li>“Define a function called <code>create_profile</code>, which will accept the argument <code>num_grid_points</code>.”</li>
+<li>“Use the function <code>zeros</code> from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable <code>profile</code>.”</li>
 <li>“Return the variable <code>profile</code>. This return signals the end of the function</li>
 </ul>
 <p>There are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameter; add a docstring describing the function.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_profile(num_lattice_points: <span class="bu">int</span>) <span class="op">-&gt;</span> np.array:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_profile(num_grid_points: <span class="bu">int</span>) <span class="op">-&gt;</span> np.array:</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Creates a profile function for a lattice with </span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    `num_lattice_points` points.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Creates a profile function for a grid with </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    `num_grid_points` points.</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    num_lattice_points: int</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Number of lattice points</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    num_grid_points: int</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Number of grid points</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    -------</span></span>
@@ -386,9 +386,9 @@ git push -u origin main</code></pre>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">        Generated profile function </span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_lattice_points)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_grid_points)</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ok. Let’s use this function. We’re going to use <code>play.ipynb</code>. This is a Jupyter notebook. To use it, we need to add another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Now open <code>play.ipynb</code> in VSCode.</p>
+<p>Ok. Let’s use this function. We’re going to use <code>play.ipynb</code>. This is a Jupyter notebook. To use it, we need to install another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Now open <code>play.ipynb</code> in VSCode.</p>
 <p>A Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> create_profile</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> create_profile(<span class="dv">100</span>)</span>
@@ -397,48 +397,48 @@ git push -u origin main</code></pre>
 </section>
 <section id="classes-and-methods" class="level2">
 <h2 class="anchored" data-anchor-id="classes-and-methods">Classes and methods</h2>
-<p>Functions are fine. But classes are the heart of object-orientated programming. A class represents an object. In <code>src/soliton.py</code>, let’s make a class which will represent a soliton. When you make an instance of a class (called an object), it is “initialised”. Here, we can choose what information to store in the object.</p>
+<p>Functions are fine. But classes are the heart of object-orientated programming. Think of a class as an abstract definition like a Group (from Group Theory). Then we can create objects which conform to the class definition (like we can create <span class="math inline">\(D_4\)</span>, a specific example of a group). In <code>src/soliton.py</code>, let’s make a class which will represent a soliton. When you make a specific instance of a class (object), it is “initialised”. During initialisation, we can choose what information to store in the object.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Soliton():</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_lattice_points, lattice_spacing):</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.lp <span class="op">=</span> num_lattice_points</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.ls <span class="op">=</span> lattice_spacing</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_lattice_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_grid_points, grid_spacing):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.num_grid_points <span class="op">=</span> num_grid_points</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.grid_spacing <span class="op">=</span> grid_spacing</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_grid_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In English:</p>
 <ul>
 <li>“Define a class called Soliton”</li>
-<li>“Define the initialisation method, which will accept two integers, the number of lattice points and the lattice spacing.”</li>
-<li>“store the number of lattice points”</li>
-<li>“store the lattice_spacing”</li>
-<li>“Make a profile using the <code>create_profile</code> function and store it in <code>profile</code>.</li>
+<li>“Define the initialisation method, which will accept two numbers, the number of grid points and the grid spacing.”</li>
+<li>“store the number of grid points”</li>
+<li>“store the grid spacing”</li>
+<li>“Make a profile function using the <code>create_profile</code> function and store it in <code>profile</code>.</li>
 </ul>
 <p>Now, back in your script, make a Soliton object:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d <span class="im">import</span> Soliton</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_soliton <span class="op">=</span> Soliton(<span class="dv">100</span>,<span class="fl">0.1</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.lp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.num_grid_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>“from the solitons1d package, import the class Soliton”</li>
-<li>“use the Soliton class to initialise a soliton with 100 lattice points and 0.1 lattice spacing called <code>my_soliton</code>”</li>
-<li>“take the soliton I just made, and get the number of lattice points. Print this.”</li>
+<li>“use the Soliton class to initialise a soliton with 100 grid points and 0.1 grid spacing called <code>my_soliton</code>”</li>
+<li>“take the soliton I just made, and get the number of grid points. Print this.”</li>
 </ul>
 <p>Great! Hopefully you can see that it’s helpful to have an object that contains some information.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>Even more helpful: write class-specific functions that can change what’s in the object. These are called “methods”. They’re similar to functions but are designed to only apply to the class. These are defined in the class definition itself. Let’s create a method which will (eventually) compute the energy of the soliton. The Soliton class method get updated to the following:</p>
+<p>Even more helpful: write class-specific functions that can change what’s in the object. These are called “methods”. They’re similar to functions but are designed to only be applied to the class. These are defined in the class definition itself. Let’s create a method which will (eventually) compute the energy of the soliton. The Soliton class method get updated to the following:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Soliton():</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_lattice_points, lattice_spacing):</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.lp <span class="op">=</span> num_lattice_points</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.ls <span class="op">=</span> lattice_spacing</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_lattice_points)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_grid_points, grid_spacing):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.lp <span class="op">=</span> num_grid_points</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.ls <span class="op">=</span> grid_spacing</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.profile <span class="op">=</span> create_profile(num_grid_points)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_energy(<span class="va">self</span>)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         total_energy <span class="op">=</span> np.<span class="bu">sum</span>(<span class="va">self</span>.profile)</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         total_energy <span class="op">*=</span> <span class="va">self</span>.ls</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="va">self</span>.energy <span class="op">=</span> total_energy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now we have a method that takes in the profile function, sums it up, multiplies this value by the lattice spacing, stores the value in <code>self.energy</code> then returns this value. We can use it in a script as follows:</p>
+<p>Now we have a method that takes in the profile function, sums it up, multiplies this value by the grid spacing, stores the value in <code>self.energy</code> then returns this value. We can use it in a script as follows:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We’ve now got the basic building block that we’ll use for the rest of the course.</p>
@@ -474,7 +474,7 @@ git push -u origin main</code></pre>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    num_grid_points : int</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Number of grid points used in grid.</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    grid_spacing : float</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Spacing between lattice points.</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Spacing between grid points.</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Attributes</span></span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    ----------</span></span>

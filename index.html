@@ -188,14 +188,14 @@ window.Quarto = {
   <li><a href="#make-a-library-of-lagrangians" id="toc-make-a-library-of-lagrangians" class="nav-link" data-scroll-target="#make-a-library-of-lagrangians"><span class="header-section-number">11.4</span> Make a library of Lagrangians</a></li>
   <li><a href="#ideas-to-build-on-the-codebase" id="toc-ideas-to-build-on-the-codebase" class="nav-link" data-scroll-target="#ideas-to-build-on-the-codebase"><span class="header-section-number">11.5</span> Ideas to build on the codebase</a></li>
   <li><a href="#advice-on-making-code-and-figures-for-papers" id="toc-advice-on-making-code-and-figures-for-papers" class="nav-link" data-scroll-target="#advice-on-making-code-and-figures-for-papers"><span class="header-section-number">11.6</span> Advice on making code and figures for papers</a></li>
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests"><span class="header-section-number">11.7</span> Tests</a></li>
   </ul></li>
   <li><a href="#coming-soon" id="toc-coming-soon" class="nav-link" data-scroll-target="#coming-soon"><span class="header-section-number">12</span> Coming soon…</a>
   <ul class="collapse">
-  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests"><span class="header-section-number">12.1</span> Tests</a></li>
+  <li><a href="#linters-and-formatters" id="toc-linters-and-formatters" class="nav-link" data-scroll-target="#linters-and-formatters"><span class="header-section-number">12.1</span> Linters and formatters</a></li>
   <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">12.2</span> Documentation</a></li>
-  <li><a href="#linters-and-formatters" id="toc-linters-and-formatters" class="nav-link" data-scroll-target="#linters-and-formatters"><span class="header-section-number">12.3</span> Linters and formatters</a></li>
-  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">12.4</span> Continuous Integration</a></li>
-  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading"><span class="header-section-number">12.5</span> Recommended Reading</a></li>
+  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">12.3</span> Continuous Integration</a></li>
+  <li><a href="#recommended-readinglisteningwatching" id="toc-recommended-readinglisteningwatching" class="nav-link" data-scroll-target="#recommended-readinglisteningwatching"><span class="header-section-number">12.4</span> Recommended Reading/Listening/Watching</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -229,13 +229,13 @@ window.Quarto = {
 <section id="introduction" class="level1 unnumbered unlisted">
 <h1 class="unnumbered unlisted">Introduction</h1>
 <p>Software engineering is now an integral part of science. As mathematicians and physicists, we’re pretty good at understanding algorithms, and even implementing them. But to ensure our code is easy to use, sharable, reproducible, tested and reliable we need to do a lot more than implement an algorithm. Modern software development involves continuous integration, linters, typers, LSPs, code coverage, automatically-generated docs, and more!</p>
-<p>This course will focus on these “soft skills” of software. As such, we’ll be spending a lot of time setting up our project and development environment and thinking about our workflow. Then once we get to coding itself, we’ll go through that quite quickly.</p>
+<p>This course will focus on these “soft skills” of software. As such, we’ll be spending a lot of time setting up our project and development environment and thinking about our workflow. Then once we get to coding itself, I’m not really going to give you much advice or help you to understand the code itself. Hopefully it’s fairly self-explanatory and you can use your favorite search engine or LLM to understand the code. Try sharing a piece of code from the course with an LLM and ask some questions about it. Or ask it to improve the code.</p>
 <p>These notes are designed to be self contained. You can start the course RIGHT NOW. You can suggest edits and raise issues on the <a href="https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages">GitHub page</a>.</p>
 <section id="plan-for-the-course-in-krakow" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="plan-for-the-course-in-krakow"><span class="header-section-number">0.1</span> Plan for the course in Krakow</h2>
 <p>We have four sessions. In each one, I’ll give a brief introduction to the topic, then you will follow the notes and try and get some code working. If you’d like to spend this time simply working on your existing code: go for it!</p>
 <p>By the end of the course, we’ll have made a small package to create a one-dimensional soliton and apply a flow to it. This is not scientifically revolutionary, but the code we make will have many good practices built into it. It will have tests and documentation. It’ll be readable, reproducible and published openly on GitHub. With this structure, I hope you can use this project as a base for future work.</p>
-<p>So that everyone has the same experience, we’ll be using Python. If you’d prefer to use a different language, go for it! You’ll have to translate the Python code/concepts here into your favorite language, but that shouldn’t be too hard. C++, Julia and Matlab are all reasonable choices. We will use Python because it’s quite easy to get started with and it’s the most popular (and employable) language in the world. Python is traditionally thought to be slow, and it can be. But if you know how it works it can be just as fast as any other language. I also recommend writing the code in VSCode or PyCharm.</p>
+<p>So that everyone has the same experience, we’ll be using Python. If you’d prefer to use a different language, go for it! You’ll have to translate the Python code/concepts here into your favorite language, but that shouldn’t be too hard. Julia, C++ and Matlab are all reasonable choices. We will use Python because it’s quite easy to get started with and it’s the most popular (and employable) language in the world. Python is traditionally thought to be slow, and it can be. But if you know how it works it can be just as fast as any other language. I also recommend writing the code in VSCode or PyCharm.</p>
 </section>
 <section id="detailed-plan" class="level2" data-number="0.2">
 <h2 data-number="0.2" class="anchored" data-anchor-id="detailed-plan"><span class="header-section-number">0.2</span> Detailed Plan</h2>
@@ -291,7 +291,7 @@ window.Quarto = {
 <h1 data-number="1"><span class="header-section-number">1</span> Installation</h1>
 <section id="the-terminal" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="the-terminal"><span class="header-section-number">1.1</span> The terminal</h2>
-<p>The terminal is a nice way to interact with your computer. If you’re using Mac or Linux you have a terminal installed already. It’s called Terminal. If you have Windows, you have Powershell. So that everyone has a similar experience, I encourage you to install Windows Terminal (there are installation instructions on <a href="https://github.com/microsoft/terminal">its GitHub page</a></p>
+<p>The terminal is a way to interact with your computer using text commands. If you’re using Mac or Linux you have a terminal installed already. It’s called Terminal. If you have Windows, you have Powershell. So that everyone has a similar experience, I encourage you to install Windows Terminal (there are installation instructions on <a href="https://github.com/microsoft/terminal">its GitHub page</a>)</p>
 <p>Open your terminal and type “ls” (short for “list”) then press enter. This will display all the files in your currently directory. If you want to change directories type “cd” followed by the name of the directroy you want to go to.</p>
 </section>
 <section id="uv-to-install-python-packages" class="level2" data-number="1.2">
@@ -318,13 +318,13 @@ window.Quarto = {
 <li>uv.lock Keeps the <em>detailed</em> information about package dependencies.</li>
 <li>src/solitons1d. A folder which will contain your package.</li>
 </ul>
-<p>Ok! Let’s open the project in VSCode. The easiest way to do this is in terminal. We’re going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing <code>uv run code .</code>. The dot at the end means “this folder here”. <code>code</code> is the shortcut for VSCode and <code>uv run</code> means “When you open VSCode, make it aware of which python <em>enviroment</em> is being used at the moment”. More on enviroments soon!</p>
+<p>Ok! Let’s open the project in VSCode. The easiest way to do this is in terminal. We’re going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing <code>uv run code .</code>. The dot at the end means “this folder here”. <code>code</code> is the shortcut for VSCode and <code>uv run</code> means “When you open VSCode, make it aware of which python <em>environment</em> is being used at the moment”. More on environments soon!</p>
 <p>VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn’t you can put it there using <code>View -&gt; Terminal</code>. From the terminal we can run python by entering <code>uv run python</code>, then import our package using <code>import solitons1d</code>. Quit python by running <code>exit()</code>. Note: we won’t use python in the terminal much.</p>
 <p>If that didn’t error - amazing!! You’ve just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I’ve shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole).</p>
 <section id="virtual-enviroments" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="virtual-enviroments"><span class="header-section-number">2.1</span> Virtual Enviroments</h2>
-<p>Ok, I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual enviroments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different enviroment for different projects. So you might have one enviroment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual enviroment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the enviroment. Then it opened VSCode and told it that we’re using this enviroment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
-<p>Now we’ll add some packages to our project - this tells <code>uv</code> that when we create the virtual enviroment it should install these packages. In the terminal, navigate to your project folder. Add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
+<p>I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual environments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different environment for different projects. So you might have one environment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual environment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the environment. Then it opened VSCode and told it that we’re using this environment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
+<p>Now we’ll add some packages to our project - this tells <code>uv</code> that when we create the virtual environment it should install these packages. In the terminal, navigate to your project folder. Add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
 </section>
 </section>
 <section id="git-and-github" class="level1" data-number="3">
@@ -338,12 +338,18 @@ window.Quarto = {
 <pre><code>git remote add origin https://github.com/chrishalcrow/solitons1D.git
 git branch -M main
 git push -u origin main</code></pre>
-<p>Run these three commands from your local repo folder in Terminal. They say: - “Link the git in this folder to this github repository” - “Create the primary ‘branch’ of the repo, called main” - “Push (put, or add) everything from the folder to the repo on github.com”</p>
+<p>Run these three commands from your local repo folder in Terminal. They say:</p>
+<ul>
+<li>“Link the git in this folder to this github repository”</li>
+<li>“Create the primary ‘branch’ of the repo, called main”</li>
+<li>“Push (put, or add) everything from the folder to the repo on github.com”</li>
+</ul>
 <p>If that worked: great! You’re project is now <em>online</em>! If the last one error’d, that’s ok. We’ll get that sorted soon.</p>
+<p>Note that GitHub is useful for any project work you’re doing. This website is hosted on GitHub. Even better: GitHub <em>builds</em> this website using its compute power. And it’s free - very cool!</p>
 </section>
 <section id="sources-and-scripts" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Sources and scripts</h1>
-<p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em> and that you want to share with other people. Functions like <code>compute_energy</code>, <code>make_soliton</code> and more. But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
+<p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em> and that you want to share with other people. Functions like <code>compute_energy</code> or <code>make_soliton</code>. But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
 <p>To make this distinction obvious, we’ll keep two folders in the project folder. One called “src” that <code>uv</code> already created for us (short for source - this shortening is conventional) and one called “scripts”. In the “src” there should already be another folder called the name of your package. Inside this there is a file called <code>__init__.py</code> which tells Python that this folder contains a “module”. Let’s create another files in the <code>source/{project_name}</code> folder called <code>soliton.py</code>, which will contain the code about the soliton, Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>solitons1D<span class="op">/</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    pyproject.toml</span>
@@ -395,7 +401,8 @@ git push -u origin main</code></pre>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.zeros(num_grid_points)</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ok. Let’s use this function. We’re going to use <code>play.ipynb</code>. This is a Jupyter notebook. To use it, we need to install another package to our enviroment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Now open <code>play.ipynb</code> in VSCode.</p>
+<p>(notes on choosing variable/function names: https://inventwithpython.com/beyond/chapter4.html)</p>
+<p>Let’s use this function. We’re going to use <code>play.ipynb</code>. This is a Jupyter notebook. To use it, we need to install another package to our environment. In the terminal, navigate to the project folder, type “uv add ipykernel” then press enter. Now open <code>play.ipynb</code> in VSCode.</p>
 <p>A Jupyter notebook allows you to run little snippets of code in a “cell”. We need to import our function from our package, then run it. Put this code in your first cell</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> create_profile</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> create_profile(<span class="dv">100</span>)</span>
@@ -419,7 +426,7 @@ git push -u origin main</code></pre>
 <li>“store the grid spacing”</li>
 <li>“Make a profile function using the <code>create_profile</code> function and store it in <code>profile</code>.</li>
 </ul>
-<p>Now, back in your script, make a Soliton object:</p>
+<p>Now, back in the <code>play.ipynb</code> notebook, we can make a Soliton object:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d <span class="im">import</span> Soliton</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_soliton <span class="op">=</span> Soliton(<span class="dv">100</span>,<span class="fl">0.1</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_soliton.num_grid_points)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -465,7 +472,7 @@ git push -u origin main</code></pre>
 <h1 data-number="6"><span class="header-section-number">6</span> Lots of code!</h1>
 <p>Let’s get starting coding! I’ll explain the overall structure of the codebase, then we’ll go through the actual code very quickly. In each subsection, I’ll get an overview then present the code.</p>
 <p>Our centerpiece is the <code>Soliton</code> class. The <code>Soliton</code> will contain a <code>Grid</code> object and a <code>Lagrangian</code> object, keeping the numerical grid maintained and the mathematical details of the theory respectively. By doing this, each <code>Soliton</code> will know what theory is belongs to - handy. A <code>Soliton</code> object will contain methods allowing one to create an initial profile function, compute the energy and gradient flow.</p>
-<p>Note: Another programmer might make this differently. Maybe having a <code>Grid</code> object is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you’d like in your <code>Soliton</code> object. Play around, debate, and figure out your style.</p>
+<p>Note: Another programmer might make this differently. Maybe having a <code>Grid</code> class is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you’d like in your <code>Soliton</code> object. Play around, debate, and figure out your style.</p>
 <section id="the-grid-class" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="the-grid-class"><span class="header-section-number">6.1</span> The <code>Grid</code> class</h2>
 <p>A user can create a grid by specifying the number of grid points and the grid spacing. The <code>Grid</code> will then compute a grid (saved as <code>numpy</code> array) and save the length of the grid.</p>
@@ -568,6 +575,7 @@ git push -u origin main</code></pre>
 <li>Allow for multiple fields, different metric terms, time (harder - do you need to make a TimeGrid??).</li>
 <li>Delete this and make it part of the <code>Soliton</code> class?? Is this an improvement, or not? Why?</li>
 <li>Add library of common Lagrangians, so that the user doesn’t have to specify the potential every time.</li>
+<li>Add a plotting function which plots the potential and its derivative.</li>
 </ul>
 <p>Questions:</p>
 <ul>
@@ -684,6 +692,7 @@ git push -u origin main</code></pre>
 <li>Before going on to the next section: try to write the <code>compute_energy_fast</code> function, or part of it.</li>
 <li>We’ve edited the <code>create_profile</code> function to fit in with our class. How has it changed? Why?</li>
 </ul>
+<p>You’ve now seen quite a lot of Python code. This might be a good time to read PEP8, the Zen of Python, and some tips about writing “Pythonic” code (https://inventwithpython.com/beyond/chapter6.html).</p>
 </section>
 </section>
 <section id="derivatives-and-energy" class="level1" data-number="7">
@@ -1014,7 +1023,14 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 </section>
 <section id="gradient-flow" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Gradient flow</h1>
-<p>Exercise: Write a gradient flow function, which the user can use as follows:</p>
+<p>Exercise: Write a gradient flow function. This should implement the following mathematical evolution:</p>
+<p><span class="math display">\[
+\dot{\phi} = - \frac{\delta E}{\delta \phi}
+\]</span></p>
+<p><span class="math display">\[
+\dot{\phi} = \partial_x^2 \phi - \partial_\phi V[\phi]
+\]</span></p>
+<p>The user should be able to use the method follows:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy before flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>my_soliton.gradient_flow(steps<span class="op">=</span><span class="dv">1000</span>, dt<span class="op">=</span><span class="fl">0.0001</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
@@ -1026,7 +1042,7 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 <h1 data-number="11"><span class="header-section-number">11</span> Bonus</h1>
 <section id="timing-and-optimization" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="timing-and-optimization"><span class="header-section-number">11.1</span> Timing and Optimization</h2>
-<p>OK! Here’s the big one. Let’s make our functions FAST.</p>
+<p>Let’s make our functions FAST.</p>
 <p>We’ll do this using <code>numba</code>. Numba is a big-fry package: Nvidia use it for their python implemtation of CUDA (their GPU library). Roughly, when we “numbafy” a function, when the complier first sees the function it compiles it into highly-optimized C code. But it can only do this to certain functions. Roughly: it likes for loops and <code>numpy</code> functions. It hates strings, dictionaries and dataframes. More read here:</p>
 <p>Before we make the code fast, let’s see how fast it is now. We’ll do the timing using the <code>perf_counter</code> from the <code>time</code> standard library. To really see a difference in 1D code we need to make a silly example. Let’s make a giant grid, then compute the derivative lots of times using <code>get_first_derivative</code>, and time it:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> perf_counter</span>
@@ -1126,6 +1142,7 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># this means, from the grid file, import Grid</span></span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .grid <span class="im">import</span> Grid</span>
 <span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .lagrangian <span class="im">import</span> Lagrangian</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(Some tips on code smells: https://inventwithpython.com/beyond/chapter5.html If you find a code smell, some refactoring is probably in order. We have duplication in our <code>load_*</code> functions - a classic code smell.)</p>
 </section>
 <section id="init__" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="init__"><span class="header-section-number">11.3</span> <code>__init__</code></h2>
@@ -1142,15 +1159,64 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 </section>
 <section id="make-a-library-of-lagrangians" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="make-a-library-of-lagrangians"><span class="header-section-number">11.4</span> Make a library of Lagrangians</h2>
+<p>There are a few common Lagrangians, and we could add them to our package so that users don’t have to define the potential and derivative of the potential themselves.</p>
+<p>To do this we’ll build a dictionary for each theory, and store these in a dictionary of dictionaries. The dictionary will contain everything you need to build the Lagrangian. For example, the <code>phi4</code> dictionary will look like:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">"V"</span>: phi4_V, <span class="st">"dV"</span>: phi4_dV, <span class="st">"vacua"</span>: [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where we’ve seen the functions <code>phi4_V</code> and <code>phi4_dV</code> earlier in the course. I’ll make a new file called <code>lagrangian_library.py</code> and add the library to it. And a function which can make a Lagrangian from a string:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numba <span class="im">import</span> njit</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .lagrangian <span class="im">import</span> Lagrangian</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="at">@njit</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi4_V(x):</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span><span class="op">*</span>np.<span class="bu">pow</span>(<span class="dv">1</span><span class="op">-</span>np.<span class="bu">pow</span>(x,<span class="dv">2</span>),<span class="dv">2</span>)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="at">@njit</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> phi4_dV(x):</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">pow</span>(x,<span class="dv">3</span>) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>x</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>lagrangians <span class="op">=</span> {</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"phi_4"</span>: {<span class="st">"V"</span>: phi4_V, <span class="st">"dV"</span>: phi4_dV, <span class="st">"vacua"</span>: [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>]},</span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>list_of_lagrangians <span class="op">=</span> <span class="bu">list</span>(lagrangians.keys())</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_lagrangian_from_library(lagrangian_string):</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>    lagrangian_dict <span class="op">=</span> lagrangians.get(lagrangian_string)</span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> lagrangian_dict <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>, <span class="ss">f"</span><span class="sc">{</span>lagrangian_string<span class="sc">}</span><span class="ss"> is not in the Lagrangian"</span><span class="op">\</span></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Library. You can view the supported Lagrangians in `solitons1d.list_of_lagrangians`"</span></span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>    lagrangian <span class="op">=</span> Lagrangian(<span class="op">**</span>lagrangian_dict)</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lagrangian</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we want to the user to be able to use this when they make a <code>Soliton</code>. There are a few ways to do this - I’m going to let the user enter a string to the <code>lagrangian</code> argument of <code>Soliton</code>, so that the user can run something like:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>my_phi4_soliton <span class="op">=</span> Soliton(lagrangian<span class="op">=</span><span class="st">"phi_4"</span>, grid<span class="op">=</span>my_grid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can alter the bit of the <code>soliton.py</code> code where the Lagrangin is added to something like.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">isinstance</span>(lagrangian, <span class="bu">str</span>):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.lagrangian <span class="op">=</span> make_lagrangian_from_library(lagrangian)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> <span class="bu">isinstance</span>(lagrangian, Lagrangian):</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.lagrangian <span class="op">=</span> lagrangian</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="st">"`lagrangian` must be a string or a Lagrangian object"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ll need to import the <code>make_lagrangian_from_library</code> function. And if you’d like to expose the <code>list_of_lagrangians</code> list, you need to add it the <code>__init__.py</code> file.</p>
+<p>Try adding sine-Gordon theory and phi6 Lagrangians to the library.</p>
+<p>We can help the user out by exposing the list of possible Lagrangian’s in the type information of the <code>lagrangian</code> argument. We do this using the <code>Literal</code> type. We need to import Literal from the typing library by adding <code>from typing import Literal</code> to the top of the <code>soltion.py</code> file. Then we update the typing information as follows:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>        lagrangian: Lagrangian <span class="op">|</span> Literal[<span class="st">"phi_4"</span>, <span class="st">"sine_Gordon"</span>],</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now when you start typing in Jupyter, the list of possible Lagrangian’s should pop up when entering the <code>lagrangian</code> argument.</p>
 </section>
 <section id="ideas-to-build-on-the-codebase" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="ideas-to-build-on-the-codebase"><span class="header-section-number">11.5</span> Ideas to build on the codebase</h2>
 <p>These are all exercises:</p>
 <ul>
-<li>Add time evolution. This will look <em>a lot</em> like gradient flow, but a bit harder.</li>
+<li>Add time evolution. This will look <em>a lot</em> like gradient flow, but a bit more complicated.</li>
+<li>Add Arrested Newton Flow.</li>
+<li>Allow for gradient flow to keep going until a certain tolerance is reached (that is: keep flowing until the functional derivative of the energy is smaller than some <code>tolerance</code>).</li>
 <li>Allow for any boundary conditions.</li>
 <li>Allow for various orders of derivative.</li>
-<li></li>
+<li>Allow for multiple fields</li>
+<li>Write code that finds the normal modes of the soliton</li>
+<li>Write code that finds the one-loop correction of the soliton</li>
 </ul>
 </section>
 <section id="advice-on-making-code-and-figures-for-papers" class="level2" data-number="11.6">
@@ -1159,23 +1225,61 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 <p>This approach comes in especially handy when you’re making presentations, or figures. When I now make a plot, I first write a script (either a Jupyter notebook or a <code>.py</code> Python script) to generate the data. Then I save the data locally. When writing the script, if I write any code that seems like it would be helpful in the future, I put this into a package.</p>
 <p>Once I have the data I make a <em>different</em> script to make the Figure. I find this separation between data generation and Figure making <em>extremely</em> helpful.</p>
 </section>
+<section id="tests" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="tests"><span class="header-section-number">11.7</span> Tests</h2>
+<p>Why are tests important. You would think it’s to check that our code does what we say it does. But actually the most important reason to make tests is so that you can confidently change and updated your code. Try to get into the habit of re-running your tests every time you make a non-trivial change to your code.</p>
+<p>A “unit” test should check one, small, piece of your code and makes sure it does what you’re expecting. Ideally you are testing just one function or method.<br>
+Tests can also check that your code fails in the correct way. Ideally, every single line of code in run during your tests. Codebases get a “code coverage” score, which is the percentage of lines that are tested during a test run. Aim for 100%.</p>
+<p>The most common testing tool in python is called <code>pytest</code>. For this, we can make a tests directory and create a test script in it. People structure this in different ways: we’ll make a directory in <code>src/soltion1d</code> called <code>tests</code> then make a python script called <code>all_tests.py</code> in this.</p>
+<p>In <code>all_tests.py</code>, I’ll write a function which tests the first derivative function. (General rule: you don’t need to be as carefuly with typing and docstrings for tests. But it’s a good idea to write what you’re trying to test in the docstring, and how you’ll do it).</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> get_first_derivative</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_first_derivative():</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the first derivative of the function f(x) = 2x and checks</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">    that it is 2.</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    lattice_spacing <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>    linear_function <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.arange(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,lattice_spacing)</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>    first_derivative <span class="op">=</span> get_first_derivative(linear_function, <span class="bu">len</span>(linear_function), lattice_spacing)</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Don't include the boundary points, which will be zero</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(first_derivative[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>], <span class="fl">2.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To run the test suit we need to add <code>pytest</code> to our package by running <code>uv add pytest</code> in Terminal, while <code>cd</code>d in the project. Then we can run <code>uv run pytest</code>. I get the following output:</p>
+<p>Now let’s make a test to check that constructing a <code>Grid</code> works as expected:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_grid_construction():</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Makes a grid object and checks that data is propagated to the object.</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Then checks that an error is raised the number of lattice points is given as</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">    a float.</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    num_grid_points <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    grid_spacing <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> Grid(num_grid_points<span class="op">=</span>num_grid_points, grid_spacing<span class="op">=</span>grid_spacing)</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check that arguments become attributes of the object</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.num_grid_points <span class="op">==</span> num_grid_points</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.grid_spacing <span class="op">==</span> grid_spacing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Exercise: write tests for <em>everything</em>! Ideally, you’d write tests as you go along.</p>
+</section>
 </section>
 <section id="coming-soon" class="level1" data-number="12">
 <h1 data-number="12"><span class="header-section-number">12</span> Coming soon…</h1>
-<section id="tests" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="tests"><span class="header-section-number">12.1</span> Tests</h2>
+<section id="linters-and-formatters" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="linters-and-formatters"><span class="header-section-number">12.1</span> Linters and formatters</h2>
 </section>
 <section id="documentation" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="documentation"><span class="header-section-number">12.2</span> Documentation</h2>
 </section>
-<section id="linters-and-formatters" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="linters-and-formatters"><span class="header-section-number">12.3</span> Linters and formatters</h2>
+<section id="continuous-integration" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">12.3</span> Continuous Integration</h2>
 </section>
-<section id="continuous-integration" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">12.4</span> Continuous Integration</h2>
-</section>
-<section id="recommended-reading" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="recommended-reading"><span class="header-section-number">12.5</span> Recommended Reading</h2>
+<section id="recommended-readinglisteningwatching" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="recommended-readinglisteningwatching"><span class="header-section-number">12.4</span> Recommended Reading/Listening/Watching</h2>
 
 
 </section>

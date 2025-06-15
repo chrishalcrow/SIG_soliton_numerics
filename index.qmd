@@ -17,7 +17,12 @@ our code is easy to use, sharable, reproducible, tested and reliable we need to 
 more than implement an algorithm. Modern software development involves continuous integration, 
 linters, typers, LSPs, code coverage, automatically-generated docs, and more! 
 
-This course will focus on these "soft skills" of software. As such, we'll be spending a lot of time setting up our project and development environment and thinking about our workflow. Then once we get to coding itself, we'll go through that quite quickly.
+This course will focus on these "soft skills" of software. As such, we'll be spending a lot 
+of time setting up our project and development environment and thinking about our workflow.
+Then once we get to coding itself, I'm not really going to give you much advice or help you to
+understand the code itself. Hopefully it's fairly self-explanatory and you can use
+your favorite search engine or LLM to understand the code. Try sharing a piece of code
+from the course with an LLM and ask some questions about it. Or ask it to improve the code. 
 
 These notes are designed to be self contained. You can start the course RIGHT NOW. You can 
 suggest edits and raise issues on the [GitHub page](https://github.com/chrishalcrow/SIG_soliton_numerics/tree/gh-pages).
@@ -36,7 +41,7 @@ I hope you can use this project as a base for future work.
 
 So that everyone has the same experience, we'll be using Python. If you'd prefer to use a 
 different language, go for it! You'll have to translate the Python code/concepts here into
-your favorite language, but that shouldn't be too hard. C++, Julia and Matlab 
+your favorite language, but that shouldn't be too hard. Julia, C++ and Matlab 
 are all reasonable choices. We will use Python because it's quite easy to get started with 
 and it's the most popular (and employable) language in the world. Python is traditionally 
 thought to be slow, and it can be. But if you know how it works it can be just as fast as 
@@ -71,11 +76,11 @@ any other language. I also recommend writing the code in VSCode or PyCharm.
 
 ## The terminal
 
-The terminal is a nice way to interact with your computer. If you're using Mac or Linux you 
+The terminal is a way to interact with your computer using text commands. If you're using Mac or Linux you 
 have a terminal installed already. It's called Terminal. If you have Windows, you have 
 Powershell. So that everyone has a similar experience, I encourage you to install Windows 
 Terminal (there are installation instructions on [its GitHub page]( 
-https://github.com/microsoft/terminal)
+https://github.com/microsoft/terminal))
 
 Open your terminal and type "ls" (short for "list") then press enter. This will display 
 all the files in your currently directory. If you want to change directories type "cd " 
@@ -124,8 +129,8 @@ Ok! Let's open the project in VSCode. The easiest way to do this is in terminal.
 to do something slightly fancy that will make sense later, and open it with uv. Do this by 
 navigating to the project folder in Terminal then typing `uv run code .`. The dot at the end
 means "this folder here". `code` is the shortcut for VSCode and `uv run` means "When you open
-VSCode, make it aware of which python _enviroment_ is being used at the moment". More on 
-enviroments soon!
+VSCode, make it aware of which python _environment_ is being used at the moment". More on 
+environments soon!
 
 VSCode should have opened, and you should see the project directory at the left hand side. 
 There should also be a Terminal at the bottom. If there isn't you can put it there using 
@@ -138,19 +143,19 @@ videos (just search neovim for python on YouTube to really start going down the 
 
 ## Virtual Enviroments
 
-Ok, I've been sweeping the following topic under the rug but it's very important to 
-understand: virtual enviroments. Because python has so many packages and their 
+I've been sweeping the following topic under the rug but it's very important to 
+understand: virtual environments. Because python has so many packages and their 
 dependencies are complex, it's considered good behaviour to make a different 
-enviroment for different projects. So you might have one enviroment for when you do 
+environment for different projects. So you might have one environment for when you do 
 statistics, one for when you do heavy numerical stuff and another for plotting. `uv` 
-takes this to the extreme: it makes a new virtual enviroment every time you run 
+takes this to the extreme: it makes a new virtual environment every time you run 
 python. When we ran `uv run code .` it make a folder called `.venv` containing the information 
-about the enviroment. Then it opened VSCode and told it that we're using this enviroment. 
+about the environment. Then it opened VSCode and told it that we're using this environment. 
 This means VSCode is aware of which packages we've installed. This is gonna be _super_ helpful 
 later.
 
 Now we'll add some packages to our project - this tells `uv` that when we create the 
-virtual enviroment it should install these packages. In the terminal, navigate to your 
+virtual environment it should install these packages. In the terminal, navigate to your 
 project folder. Add the package numpy by running `uv add numpy`. This will add 
 numpy to the project by adding it to the `pyproject.toml` file.
 
@@ -179,16 +184,24 @@ git push -u origin main
 ```
 
 Run these three commands from your local repo folder in Terminal. They say:
+
 - "Link the git in this folder to this github repository"
 - "Create the primary 'branch' of the repo, called main"
 - "Push (put, or add) everything from the folder to the repo on github.com"
 
 If that worked: great! You're project is now _online_! If the last one error'd, that's ok. We'll get that sorted soon.
 
+Note that GitHub is useful for any project work you're doing. This website is hosted on GitHub. Even better:
+GitHub _builds_ this website using its compute power. And it's free - very cool!
+
 # Sources and scripts
 
 As we build our package, we should keep a separation between the "source" and "scripts". 
-The source is our package itself. This will contain the logic which can _do things_ and that you want to share with other people. Functions like `compute_energy`, `make_soliton` and more. But when we use the package to do science, we'd write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.
+The source is our package itself. This will contain the logic which can _do things_ and that you 
+want to share with other people. Functions like `compute_energy` or `make_soliton`. But when we use 
+the package to do science, we'd write a script. The script will import functions from the source and 
+apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy,
+ then plot the result and save the figure as a pdf.
 
 To make this distinction obvious, we'll keep two folders in the project folder. One 
 called "src" that `uv` already created for us (short for source - this shortening is conventional) and one called 
@@ -260,7 +273,9 @@ def create_profile(num_grid_points: int) -> np.array:
     return profile
 ```
 
-Ok. Let's use this function. We're going to use `play.ipynb`. This is a Jupyter notebook. To use it, we need to install another package to our enviroment. In the terminal, navigate to the project folder, type "uv add ipykernel" then press enter. Now open `play.ipynb` in VSCode.
+(notes on choosing variable/function names: https://inventwithpython.com/beyond/chapter4.html)
+
+Let's use this function. We're going to use `play.ipynb`. This is a Jupyter notebook. To use it, we need to install another package to our environment. In the terminal, navigate to the project folder, type "uv add ipykernel" then press enter. Now open `play.ipynb` in VSCode.
 
 A Jupyter notebook allows you to run little snippets of code in a "cell". We need to  import our function from our package, then run it. Put this code in your first cell
 
@@ -295,7 +310,7 @@ In English:
 - "store the grid spacing"
 - "Make a profile function using the `create_profile` function and store it in `profile`.
 
-Now, back in your script, make a Soliton object:
+Now, back in the `play.ipynb` notebook, we can make a Soliton object:
 
 ``` python
 from solitons1d import Soliton
@@ -360,7 +375,7 @@ Let's get starting coding! I'll explain the overall structure of the codebase, t
 
 Our centerpiece is the `Soliton` class. The `Soliton` will contain a `Grid` object and a `Lagrangian` object, keeping the numerical grid maintained and the mathematical details of the theory respectively. By doing this, each `Soliton` will know what theory is belongs to - handy. A `Soliton` object will contain methods allowing one to create an initial profile function, compute the energy and gradient flow.
 
-Note: Another programmer might make this differently. Maybe having a `Grid` object is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you'd like in your `Soliton` object. Play around, debate, and figure out your style.
+Note: Another programmer might make this differently. Maybe having a `Grid` class is overkill. Maybe allowing the user to specify a generic Lagrangian is silly - you might just hardcode the Lagrangian you'd like in your `Soliton` object. Play around, debate, and figure out your style.
 
 ## The `Grid` class
 
@@ -481,6 +496,7 @@ Possible improvements:
 - Allow for multiple fields, different metric terms, time (harder - do you need to make a TimeGrid??).
 - Delete this and make it part of the `Soliton` class?? Is this an improvement, or not? Why?
 - Add library of common Lagrangians, so that the user doesn't have to specify the potential every time.
+- Add a plotting function which plots the potential and its derivative.
 
 Questions:
 
@@ -604,6 +620,8 @@ Questions:
 - Before going on to the next section: try to write the `compute_energy_fast` function, or part of it.
 - We've edited the `create_profile` function to fit in with our class. How has it changed? Why?
 
+You've now seen quite a lot of Python code. This might be a good time to read PEP8, the Zen of Python,
+and some tips about writing "Pythonic" code (https://inventwithpython.com/beyond/chapter6.html).
 
 # Derivatives and Energy
 
@@ -1004,7 +1022,17 @@ Note: We've written more code to save and load our objects than we will to gradi
 
 # Gradient flow
 
-Exercise: Write a gradient flow function, which the user can use as follows:
+Exercise: Write a gradient flow function. This should implement the following mathematical evolution:
+
+$$
+\dot{\phi} = - \frac{\delta E}{\delta \phi}
+$$
+
+$$
+\dot{\phi} = \partial_x^2 \phi - \partial_\phi V[\phi]
+$$
+
+The user should be able to use the method follows:
 
 ``` python
 print(f"Energy before flow: {my_soliton.energy}")
@@ -1021,7 +1049,7 @@ You'll actually write two functions: a `gradient_flow` method in the `Soltion` c
 
 ## Timing and Optimization
 
-OK! Here's the big one. Let's make our functions FAST.
+Let's make our functions FAST.
 
 We'll do this using `numba`. Numba is a big-fry package: Nvidia use it for their python implemtation of
 CUDA (their GPU library). Roughly, when we "numbafy" a function, when the complier first sees the function
@@ -1201,6 +1229,10 @@ from .grid import Grid
 from .lagrangian import Lagrangian
 ```
 
+(Some tips on code smells: https://inventwithpython.com/beyond/chapter5.html If you find a
+code smell, some refactoring is probably in order. We have duplication in our `load_*` 
+functions - a classic code smell.)
+
 ## `__init__`
 
 When we use other packages we do stuff like:
@@ -1231,14 +1263,101 @@ my_grid = sol.Grid(100, 0.1)
 
 ## Make a library of Lagrangians
 
+There are a few common Lagrangians, and we could add them to our package so that users don't 
+have to define the potential and derivative of the potential themselves.
+
+To do this we'll build a dictionary for each theory, and store these in a dictionary of
+dictionaries. The dictionary will contain everything you need to build the Lagrangian. For
+example, the `phi4` dictionary will look like:
+
+``` python
+{"V": phi4_V, "dV": phi4_dV, "vacua": [-1,1]}
+```
+
+Where we've seen the functions `phi4_V` and `phi4_dV` earlier in the course. I'll make a new file
+called `lagrangian_library.py` and add the library to it. And a function which can make a Lagrangian
+from a string:
+
+``` python
+from numba import njit
+import numpy as np
+
+from .lagrangian import Lagrangian
+
+@njit
+def phi4_V(x):
+    return 0.5*np.pow(1-np.pow(x,2),2)
+
+@njit
+def phi4_dV(x):
+    return 2*np.pow(x,3) - 2*x
+
+lagrangians = {
+    "phi_4": {"V": phi4_V, "dV": phi4_dV, "vacua": [-1,1]},
+}
+
+list_of_lagrangians = list(lagrangians.keys())
+
+def make_lagrangian_from_library(lagrangian_string):
+    
+    lagrangian_dict = lagrangians.get(lagrangian_string)
+    assert lagrangian_dict is not None, f"{lagrangian_string} is not in the Lagrangian"\
+    "Library. You can view the supported Lagrangians in `solitons1d.list_of_lagrangians`"
+
+    lagrangian = Lagrangian(**lagrangian_dict)
+    return lagrangian
+```
+
+Now we want to the user to be able to use this when they make a `Soliton`. There are a few ways to do
+this - I'm going to let the user enter a string to the `lagrangian` argument of `Soliton`, so that
+the user can run something like:
+
+``` python
+my_phi4_soliton = Soliton(lagrangian="phi_4", grid=my_grid)
+```
+
+We can alter the bit of the `soliton.py` code where the Lagrangin is added to something like.
+
+``` python
+        if isinstance(lagrangian, str):
+            self.lagrangian = make_lagrangian_from_library(lagrangian)
+        elif isinstance(lagrangian, Lagrangian):
+            self.lagrangian = lagrangian
+        else:
+            raise TypeError("`lagrangian` must be a string or a Lagrangian object")
+```
+
+You'll need to import the `make_lagrangian_from_library` function. And if you'd like to expose the
+`list_of_lagrangians` list, you need to add it the `__init__.py` file.
+
+Try adding sine-Gordon theory and phi6 Lagrangians to the library.
+
+We can help the user out by exposing the list of possible Lagrangian's in the type information
+of the `lagrangian` argument. We do this using the `Literal` type. We need to import Literal
+from the typing library by adding `from typing import Literal` to the top of the `soltion.py`
+file. Then we update the typing information as follows:
+
+``` python
+        lagrangian: Lagrangian | Literal["phi_4", "sine_Gordon"],
+```
+
+Now when you start typing in Jupyter, the list of possible Lagrangian's should pop up
+when entering the `lagrangian` argument.
+
+
 ## Ideas to build on the codebase
 
 These are all exercises:
 
-- Add time evolution. This will look _a lot_ like gradient flow, but a bit harder.
+- Add time evolution. This will look _a lot_ like gradient flow, but a bit more complicated.
+- Add Arrested Newton Flow.
+- Allow for gradient flow to keep going until a certain tolerance is reached (that is: keep flowing until
+the functional derivative of the energy is smaller than some `tolerance`).
 - Allow for any boundary conditions.
 - Allow for various orders of derivative.
-- 
+- Allow for multiple fields
+- Write code that finds the normal modes of the soliton
+- Write code that finds the one-loop correction of the soliton
 
 ## Advice on making code and figures for papers
 
@@ -1258,12 +1377,78 @@ I put this into a package.
 Once I have the data I make a _different_ script to make the Figure. I find this separation
 between data generation and Figure making _extremely_ helpful.
 
+## Tests
+
+Why are tests important. You would think it's to check that our code does what we
+say it does. But actually the most important reason to make tests is so that you
+can confidently change and updated your code. Try to get into the habit of re-running your
+tests every time you make a non-trivial change to your code.
+
+A "unit" test should check one, small, piece of your code and makes sure it does
+what you're expecting. Ideally you are testing just one function or method.  
+Tests can also check that your code fails in the correct way. Ideally, every single
+line of code in run during your tests. Codebases get a "code coverage" score,
+which is the percentage of lines that are tested during a test run. Aim for 100%.
+
+The most common testing tool in python is called `pytest`. For this, we can make
+a tests directory and create a test script in it. People structure this in different
+ways: we'll make a directory in `src/soltion1d` called `tests` then make a python
+script called `all_tests.py` in this.
+
+In `all_tests.py`, I'll write a function which tests the first derivative function.
+(General rule: you don't need to be as carefuly with typing and docstrings for tests.
+But it's a good idea to write what you're trying to test in the docstring, and how
+you'll do it).
+
+``` python
+import numpy as np
+from solitons1d.soliton import get_first_derivative
+
+def test_first_derivative():
+    """
+    Computes the first derivative of the function f(x) = 2x and checks
+    that it is 2.
+    """
+
+    lattice_spacing = 0.1
+    linear_function = 2*np.arange(-1,1,lattice_spacing)
+    first_derivative = get_first_derivative(linear_function, len(linear_function), lattice_spacing)
+
+    # Don't include the boundary points, which will be zero
+    assert np.allclose(first_derivative[2:-2], 2.0)
+```
+
+To run the test suit we need to add `pytest` to our package by running `uv add pytest` in Terminal, while 
+`cd`d in the project. Then we can run `uv run pytest`. I get the following output:
+
+Now let's make a test to check that constructing a `Grid` works as expected:
+
+``` python
+def test_grid_construction():
+    """
+    Makes a grid object and checks that data is propagated to the object.
+    Then checks that an error is raised the number of lattice points is given as
+    a float.
+    """
+
+    num_grid_points = 100
+    grid_spacing = 0.2
+
+    grid = Grid(num_grid_points=num_grid_points, grid_spacing=grid_spacing)
+
+    # Check that arguments become attributes of the object
+    assert grid.num_grid_points == num_grid_points
+    assert grid.grid_spacing == grid_spacing
+```
+
+Exercise: write tests for _everything_! Ideally, you'd write tests as you go along.
+
 # Coming soon...
 
-## Tests
-## Documentation
 ## Linters and formatters
+
+## Documentation
+
 ## Continuous Integration
-## Recommended Reading
 
-
+## Recommended Reading/Listening/Watching

@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dde8d7229bfee0f8bb5efd37f0f9ae1e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-905433ffa22618bb005779f2b23c5ce0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -173,16 +173,29 @@ window.Quarto = {
   </ul></li>
   <li><a href="#derivatives-and-energy" id="toc-derivatives-and-energy" class="nav-link" data-scroll-target="#derivatives-and-energy"><span class="header-section-number">7</span> Derivatives and Energy</a></li>
   <li><a href="#plot-a-soliton" id="toc-plot-a-soliton" class="nav-link" data-scroll-target="#plot-a-soliton"><span class="header-section-number">8</span> Plot a Soliton</a></li>
-  <li><a href="#saveload-a-soliton" id="toc-saveload-a-soliton" class="nav-link" data-scroll-target="#saveload-a-soliton"><span class="header-section-number">9</span> Save/load a Soliton</a></li>
+  <li><a href="#saveload-a-soliton" id="toc-saveload-a-soliton" class="nav-link" data-scroll-target="#saveload-a-soliton"><span class="header-section-number">9</span> Save/load a Soliton</a>
+  <ul class="collapse">
+  <li><a href="#saveload-a-grid" id="toc-saveload-a-grid" class="nav-link" data-scroll-target="#saveload-a-grid"><span class="header-section-number">9.1</span> Save/Load a Grid</a></li>
+  <li><a href="#saveload-a-lagrangian" id="toc-saveload-a-lagrangian" class="nav-link" data-scroll-target="#saveload-a-lagrangian"><span class="header-section-number">9.2</span> Save/Load a Lagrangian</a></li>
+  <li><a href="#saveload-a-soliton-1" id="toc-saveload-a-soliton-1" class="nav-link" data-scroll-target="#saveload-a-soliton-1"><span class="header-section-number">9.3</span> Save/Load a Soliton</a></li>
+  </ul></li>
   <li><a href="#gradient-flow" id="toc-gradient-flow" class="nav-link" data-scroll-target="#gradient-flow"><span class="header-section-number">10</span> Gradient flow</a></li>
-  <li><a href="#bonus---coming-soon" id="toc-bonus---coming-soon" class="nav-link" data-scroll-target="#bonus---coming-soon"><span class="header-section-number">11</span> Bonus - coming soon</a>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus"><span class="header-section-number">11</span> Bonus</a>
   <ul class="collapse">
   <li><a href="#timing-and-optimization" id="toc-timing-and-optimization" class="nav-link" data-scroll-target="#timing-and-optimization"><span class="header-section-number">11.1</span> Timing and Optimization</a></li>
-  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests"><span class="header-section-number">11.2</span> Tests</a></li>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">11.3</span> Documentation</a></li>
-  <li><a href="#linters-formatters-and-lsps" id="toc-linters-formatters-and-lsps" class="nav-link" data-scroll-target="#linters-formatters-and-lsps"><span class="header-section-number">11.4</span> Linters, formatters and LSPs</a></li>
-  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">11.5</span> Continuous Integration</a></li>
-  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading"><span class="header-section-number">11.6</span> Recommended Reading</a></li>
+  <li><a href="#refactoring" id="toc-refactoring" class="nav-link" data-scroll-target="#refactoring"><span class="header-section-number">11.2</span> Refactoring</a></li>
+  <li><a href="#init__" id="toc-init__" class="nav-link" data-scroll-target="#init__"><span class="header-section-number">11.3</span> <code>__init__</code></a></li>
+  <li><a href="#make-a-library-of-lagrangians" id="toc-make-a-library-of-lagrangians" class="nav-link" data-scroll-target="#make-a-library-of-lagrangians"><span class="header-section-number">11.4</span> Make a library of Lagrangians</a></li>
+  <li><a href="#ideas-to-build-on-the-codebase" id="toc-ideas-to-build-on-the-codebase" class="nav-link" data-scroll-target="#ideas-to-build-on-the-codebase"><span class="header-section-number">11.5</span> Ideas to build on the codebase</a></li>
+  <li><a href="#advice-on-making-code-and-figures-for-papers" id="toc-advice-on-making-code-and-figures-for-papers" class="nav-link" data-scroll-target="#advice-on-making-code-and-figures-for-papers"><span class="header-section-number">11.6</span> Advice on making code and figures for papers</a></li>
+  </ul></li>
+  <li><a href="#coming-soon" id="toc-coming-soon" class="nav-link" data-scroll-target="#coming-soon"><span class="header-section-number">12</span> Coming soon…</a>
+  <ul class="collapse">
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests"><span class="header-section-number">12.1</span> Tests</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">12.2</span> Documentation</a></li>
+  <li><a href="#linters-and-formatters" id="toc-linters-and-formatters" class="nav-link" data-scroll-target="#linters-and-formatters"><span class="header-section-number">12.3</span> Linters and formatters</a></li>
+  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">12.4</span> Continuous Integration</a></li>
+  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading"><span class="header-section-number">12.5</span> Recommended Reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -293,12 +306,12 @@ window.Quarto = {
 </section>
 <section id="git" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="git"><span class="header-section-number">1.4</span> Git</h2>
-<p>Check that you have git installed by typing ‘git’ then pressing enter in your Terminal. It’s hopefully already installed. If not, <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">please install it</a> This is a good moment to make a <a href="GitHub account too">https://github.com/</a>.</p>
+<p>Check that you have git installed by typing ‘git’ then pressing enter in your Terminal. It’s hopefully already installed. If not, <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">please install it</a> This is a good moment to make a <a href="https://github.com/">GitHub account too</a>.</p>
 </section>
 </section>
 <section id="make-a-project" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Make a project</h1>
-<p>We’re going to make a Python Package. First choose a name. I’ll be using <code>solitons1d</code>. Find a place you want to store your project. Initialise a new python package by typing e.g.&nbsp;<code>uv init --package solitons1d</code> in Terminal and pressing enter. Go have a look in the folder (either using your File Explorer or typing <code>ls</code> into Terminal). There should be four files inside the folder. uv has made these:</p>
+<p>We’re going to make a Python Package. First choose a name. I’ll be using <code>solitons1d</code>. Find a place you want to store your project and go to that directory in Terminal. Initialise a new python package by typing e.g.&nbsp;<code>uv init --package solitons1d</code> in Terminal and pressing enter. Go have a look in the folder (either using your File Explorer or typing <code>ls</code> into Terminal). There should be four files inside the folder. uv has made these:</p>
 <ul>
 <li>README.md This file is what a new user will first read when they encounter your project. It should contain a description of the project, installation instructions and anything else you’d like. It’s written in markdown, which isn’t too far from plain text (https://www.markdownguide.org/).</li>
 <li>pyproject.toml This file contains all the information about your project. Its name, version, description etc. Add some of your own details if you’d like. This file will also keep track of which other packages your package depends on once we add some.</li>
@@ -311,8 +324,7 @@ window.Quarto = {
 <section id="virtual-enviroments" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="virtual-enviroments"><span class="header-section-number">2.1</span> Virtual Enviroments</h2>
 <p>Ok, I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual enviroments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different enviroment for different projects. So you might have one enviroment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual enviroment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the enviroment. Then it opened VSCode and told it that we’re using this enviroment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
-<p>Let’s add some package dependencies to our package. In the terminal, navigate to your project folder. We’ll add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
-<p>You might notice another new file in your project folder called <code>uv.lock</code>. This keeps all the intricate details about the packages. It’s gross.</p>
+<p>Now we’ll add some packages to our project - this tells <code>uv</code> that when we create the virtual enviroment it should install these packages. In the terminal, navigate to your project folder. Add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
 </section>
 </section>
 <section id="git-and-github" class="level1" data-number="3">
@@ -323,7 +335,7 @@ window.Quarto = {
 <p>There are lots of ways to link your local and remote repos. For more info, try: https://github.com/git-guides/git-init .</p>
 <p>It can get a bit messy at the start here, <strong>so please follow these instructions carefully:</strong></p>
 <p>We’ll make a GitHub repository (repo) and link it to this folder. Go to github.com, make an account then create a new repository. DON’T DO ANYTHING except add the repository name, then press “Create repository”. Towards the bottom of the next page you should see the heading “…or push an existing repository from the command line”, with some commands to run. Something like:</p>
-<pre><code>git remote add origin https://github.com/chrishalcrow/Solitons1D.git
+<pre><code>git remote add origin https://github.com/chrishalcrow/solitons1D.git
 git branch -M main
 git push -u origin main</code></pre>
 <p>Run these three commands from your local repo folder in Terminal. They say: - “Link the git in this folder to this github repository” - “Create the primary ‘branch’ of the repo, called main” - “Push (put, or add) everything from the folder to the repo on github.com”</p>
@@ -332,7 +344,7 @@ git push -u origin main</code></pre>
 <section id="sources-and-scripts" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Sources and scripts</h1>
 <p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em> and that you want to share with other people. Functions like <code>compute_energy</code>, <code>make_soliton</code> and more. But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
-<p>To make this distiction obvious, we’ll make two folders in the project folder. One called “src” that <code>uv</code> already created for us (short for source - this shortening is conventional) and one called “scripts”. In the “src” there should already be another folder called the name of your package. Inside this there is a file called <code>__init__.py</code> which tells Python that this folder contains a “module”. Let’s create another files in the <code>source/{project_name}</code> folder called <code>soliton.py</code>, which will contain the code about the soliton, Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
+<p>To make this distinction obvious, we’ll keep two folders in the project folder. One called “src” that <code>uv</code> already created for us (short for source - this shortening is conventional) and one called “scripts”. In the “src” there should already be another folder called the name of your package. Inside this there is a file called <code>__init__.py</code> which tells Python that this folder contains a “module”. Let’s create another files in the <code>source/{project_name}</code> folder called <code>soliton.py</code>, which will contain the code about the soliton, Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>solitons1D<span class="op">/</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    pyproject.toml</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    README.md</span>
@@ -360,9 +372,9 @@ git push -u origin main</code></pre>
 <li>“Import the package called numpy and call it np, which is how we’ll be able to access it.”</li>
 <li>“Define a function called <code>create_profile</code>, which will accept the argument <code>num_grid_points</code>.”</li>
 <li>“Use the function <code>zeros</code> from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable <code>profile</code>.”</li>
-<li>“Return the variable <code>profile</code>. This return signals the end of the function</li>
+<li>“Return the variable <code>profile</code>. This return signals the end of the function.</li>
 </ul>
-<p>There are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameter; add a docstring describing the function.</p>
+<p>There are several improvements we can make to code immediately, we can: add type information about the arguments and returned parameters; add a docstring describing the function.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_profile(num_grid_points: <span class="bu">int</span>) <span class="op">-&gt;</span> np.array:</span>
@@ -420,7 +432,7 @@ git push -u origin main</code></pre>
 </section>
 <section id="methods" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="methods"><span class="header-section-number">5.3</span> Methods</h2>
-<p>Even more helpful: write class-specific functions that can change what’s in the object. These are called “methods”. They’re similar to functions but are designed to only be applied to the class. These are defined in the class definition itself. Let’s create a method which will (eventually) compute the energy of the soliton. The Soliton class method get updated to the following:</p>
+<p>Even more helpful: write class-specific functions that can change what’s in the object. These are called “methods”. They’re similar to functions but are designed to only be applied to the class. These are defined in the class definition itself. Let’s create a method which will (eventually) compute the energy of the soliton. The Soliton class gets updated to the following:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Soliton():</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, num_grid_points, grid_spacing):</span>
@@ -442,7 +454,7 @@ git push -u origin main</code></pre>
 <h2 data-number="5.4" class="anchored" data-anchor-id="upload-to-github"><span class="header-section-number">5.4</span> Upload to GitHub</h2>
 <p>Now that we have a few functions, methods, and classes: let’s sync our local folder with our GitHub repository. You can do this using the Terminal (), but VSCode has some great Git integration. So let’s use that. Find the “Source Control” button in VSCode. When you press it, it should show a list of files that you have made changes to. The logic is:</p>
 <ol type="1">
-<li>“Stage” the files you want to upload to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing “Stage Files”.</li>
+<li>“Stage” the files you want to sync to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing “Stage Files”.</li>
 <li>Commit and Push the staged files to GitHub. Do this by first writing a message in the Message box. Maybe “Added Soliton class”. Then press the down arrow at the right hand side of the commit button, and click “Commit and Push”.</li>
 </ol>
 <p>The first time you do this, you might need to Publish your branch. Every other time, it’s just the 2-step process above.</p>
@@ -689,10 +701,10 @@ git push -u origin main</code></pre>
 <ul>
 <li>Use Dirichlet boundary conditions. So keep the boundary fixed. Since you’re keeping it fixed, you don’t need to update it and hence you don’t need to compute the derivative there. Easy!</li>
 <li>Use forward/backwards finite difference to approximate the boundary points.</li>
-<li>Use Neumann boundary conditions. Keep the derivative equal to zero. If you do this, then at the boundary you can set <span class="math inline">\(phi_{-1} = \phi_{1}\)</span> and <span class="math inline">\(\phi_{-2} = \phi_2\)</span>, and you don’t need to worry.</li>
+<li>Use Neumann boundary conditions. Keep the derivative equal to zero. If you do this, then at the boundary you can set <span class="math inline">\(\phi_{-1} = \phi_{1}\)</span> and <span class="math inline">\(\phi_{-2} = \phi_2\)</span>, and you don’t need to worry.</li>
 <li>Use (possibly shifted) periodic boundary conditions, so that <span class="math inline">\(\phi_{-1} = \phi_{N}\)</span> and <span class="math inline">\(\phi_{-2} = \phi_{N-1}\)</span>.</li>
 </ul>
-<p>We’re going to do the simples: Dirichlet. A good exercise for you: implement something else.</p>
+<p>We’re going to do the simplest: Dirichlet. A good exercise: implement something else.</p>
 <p>So, we’ll write functions to compute the first and (while we’re at it) second derivatives of a function. (This is going to be a FAST function, so we don’t want it to interact with the class):</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_derivative(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    phi: np.ndarray, </span>
@@ -818,44 +830,352 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Code example, following on from earlier:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this should display in a Jupyter notebook, if you run it by itself</span></span>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you run just this first line in a Jupyter cell, it should display a figure</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> my_soliton.plot_soliton()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"my_lovely_soliton.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="saveload-a-soliton" class="level1" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Save/load a Soliton</h1>
-<p>Coming soon…</p>
+<p>When saving any numerical objects, you should save enough data so that it can be reconstructed. For our Soliton class this is actually quite complex because we need to save the <code>Lagrangian</code> and the <code>Grid</code> too; and the Lagrangian includes generic functions. When the object is this complex we should probably save it as a folder. The folder should contain enough information to reconstruct the object. Ideally, any data which can be should be in a “human readable” format like <code>json</code> or <code>yaml</code>.</p>
+<p>We’ll go a bit further and make a save/load function for the <code>Grid</code> and <code>Lagrangian</code> objects too. These will also be contained in a folder. Overall the <code>Soliton</code> export will look like</p>
+<pre><code>my_soliton/
+    profile.npz
+    metadata.json
+    grid/
+        metadata.json
+    lagrangian
+        metadata.json
+        potential.pkl</code></pre>
+<p>This might be a bit of an overkill for this project.</p>
+<section id="saveload-a-grid" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="saveload-a-grid"><span class="header-section-number">9.1</span> Save/Load a Grid</h2>
+<p>The <code>Grid</code> is an easy object to save and load because it can be reconstructed from just the number of lattice points and the lattice spacing. We first add a <code>save</code> method to the <code>Grid</code> class. This will involve some new “standard” packages: <code>json</code> and <code>pathlib</code>. The standard packages are packages with basic Python, so you don’t need to add them using <code>uv</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add near the top of the file</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># add to Grid class</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> save(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        folder_name: <span class="bu">str</span> <span class="op">|</span> Path,</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">        Saves a `Grid` object at `folder_name`.</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        metadata <span class="op">=</span> {</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"num_grid_points"</span>: <span class="va">self</span>.num_grid_points,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"grid_spacing"</span>: <span class="va">self</span>.grid_spacing</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># make the folder a Path if it is a string</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        folder <span class="op">=</span> Path(folder_name)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        folder.mkdir(exist_ok <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># this overwrites any existing metadata.json file</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(folder <span class="op">/</span> <span class="st">"metadata.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>            json.dump(metadata, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The loading function is a function, <em>not</em> a method (why?). It should read the json file, make a <code>Grid</code> object and return it</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_grid(folder_name: <span class="bu">str</span> <span class="op">|</span> Path):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Loads the `Grid` object at `folder_name`.</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    folder <span class="op">=</span> Path(folder_name)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    metadata_path <span class="op">=</span> folder <span class="op">/</span> <span class="st">"metadata.json"</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> metadata_path.is_file(), <span class="ss">f"Could not find Grid `metadata.json` file in </span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss">."</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(metadata_path, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>        grid_metadata <span class="op">=</span> json.load(f)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the ** "unpacks" the dictionary into a series of arguments</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> Grid(<span class="op">**</span>grid_metadata)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using it:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> load_grid</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>my_grid <span class="op">=</span> Grid(<span class="dv">100</span>,<span class="fl">0.1</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>my_grid.save(<span class="st">"my_lovely_grid"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>my_loaded_grid <span class="op">=</span> load_grid(<span class="st">"my_lovely_grid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="saveload-a-lagrangian" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="saveload-a-lagrangian"><span class="header-section-number">9.2</span> Save/Load a Lagrangian</h2>
+<p>The <code>Lagrangian</code> is more complicated: we need a save the potential and the derivative of the potential, which are generic functions. We’ll do this using the <code>pickle</code> format, which can save any Python object (note: you could use this to save the full <code>Soliton</code> object).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle <span class="im">as</span> pkl</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add to Lagrangian class</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> save(</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        folder_name: <span class="bu">str</span> <span class="op">|</span> Path,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">        Saves a `Lagrangian` object at `folder_name`.</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        metadata <span class="op">=</span> {</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">"V"</span>: <span class="va">self</span>.V,</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"dV"</span>: <span class="va">self</span>.dV,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"vacua"</span>: <span class="va">self</span>.vacua,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># make the folder a Path if it is a string</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>        folder <span class="op">=</span> Path(folder_name)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>        folder.mkdir(exist_ok <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(folder <span class="op">/</span> <span class="st">"metadata.pkl"</span>, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>            pkl.dump(metadata, f)</span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="co"># add to main body</span></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_lagrangian(folder_name: <span class="bu">str</span> <span class="op">|</span> Path):</span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a><span class="co">    Loads the `Lagrangian` object at `folder_name`.</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>    folder <span class="op">=</span> Path(folder_name)</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>    metadata_path <span class="op">=</span> folder <span class="op">/</span> <span class="st">"metadata.pkl"</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> metadata_path.is_file(), <span class="ss">f"Could not find Lagrangian `metadata.json` file in </span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss">."</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(metadata_path, <span class="st">"rb"</span>) <span class="im">as</span> f:</span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>        lagrangian_metadata <span class="op">=</span> pkl.load(f)</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the ** "unpacks" the dictionary into a series of arguments</span></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>    lagrangian <span class="op">=</span> Lagrangian(<span class="op">**</span>lagrangian_metadata)</span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lagrangian</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Questions:</p>
+<ul>
+<li>Save a <code>Lagrangian</code> and a <code>Grid</code>, and take a look in the folder. Why might you prefer <code>json</code> to <code>pickle</code>?</li>
+</ul>
+</section>
+<section id="saveload-a-soliton-1" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="saveload-a-soliton-1"><span class="header-section-number">9.3</span> Save/Load a Soliton</h2>
+<p>Now we want to save the Soliton, including any profile funciton we’ve made. Since we compute the energy on instantiation we’ll also save this as a property. Let’s go:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> save(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        folder_name: <span class="bu">str</span> <span class="op">|</span> Path,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Saves a `Soliton` object at `folder_name`.</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>        folder <span class="op">=</span> Path(folder_name)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        folder.mkdir(exist_ok <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>        grid_folder <span class="op">=</span>  <span class="st">"./grid"</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        lagrangian_folder <span class="op">=</span> <span class="st">"./lagrangian"</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>        metadata <span class="op">=</span> {</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">'grid_folder'</span>: <span class="bu">str</span>(grid_folder),</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">'lagrangian_folder'</span>: <span class="bu">str</span>(lagrangian_folder),</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        properties <span class="op">=</span> {</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">'energy'</span>: <span class="va">self</span>.energy</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.grid.save(grid_folder)</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lagrangian.save(lagrangian_folder)</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(folder <span class="op">/</span> <span class="st">"metadata.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>            json.dump(metadata, f)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> <span class="bu">open</span>(folder <span class="op">/</span> <span class="st">"properties.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>            json.dump(properties, f)</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># use `numpy`s save function to save the profile array</span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>        np.save(<span class="st">"profile"</span>, <span class="va">self</span>.profile)</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_soliton(folder_name):</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="co">    Loads the `Lagrangian` object at `folder_name`.</span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>    folder <span class="op">=</span> Path(folder_name)</span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>    metadata_path <span class="op">=</span> folder <span class="op">/</span> <span class="st">"metadata.json"</span></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> metadata_path.is_file(), <span class="ss">f"Could not find Grid `metadata.json` file in </span><span class="sc">{</span>folder<span class="sc">}</span><span class="ss">."</span></span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(metadata_path, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>        soliton_metadata <span class="op">=</span> json.load(f)</span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>    grid_folder <span class="op">=</span> soliton_metadata.get(<span class="st">"grid_folder"</span>)</span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> load_grid(grid_folder)</span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>    lagrangian_folder <span class="op">=</span> soliton_metadata.get(<span class="st">"lagrangian_folder"</span>)</span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>    lagrangian <span class="op">=</span> load_lagrangian(lagrangian_folder)</span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>    profile <span class="op">=</span> np.load(<span class="st">"profile.npy"</span>)</span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>    soliton <span class="op">=</span> Soliton(grid <span class="op">=</span> grid, lagrangian<span class="op">=</span>lagrangian, initial_profile<span class="op">=</span>profile)</span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> soliton</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Exercise: save a soliton, and load it.</p>
+<p>Note: We’ve written more code to save and load our objects than we will to gradient flow them. Ouch.</p>
+</section>
 </section>
 <section id="gradient-flow" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Gradient flow</h1>
 <p>Exercise: Write a gradient flow function, which the user can use as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy before flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>my_soliton.gradient_flow(steps<span class="op">=</span><span class="dv">1000</span>, dt<span class="op">=</span><span class="fl">0.0001</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy after flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy before flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>my_soliton.gradient_flow(steps<span class="op">=</span><span class="dv">1000</span>, dt<span class="op">=</span><span class="fl">0.0001</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>my_soliton.compute_energy()</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Energy after flow: </span><span class="sc">{</span>my_soliton<span class="sc">.</span>energy<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You’ll actually write two functions: a <code>gradient_flow</code> method in the <code>Soltion</code> class and a <code>gradient_flow_fast</code> function in the body of the code.</p>
 <p><strong>End of “core” course</strong></p>
 </section>
-<section id="bonus---coming-soon" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Bonus - coming soon</h1>
-<p>Including…</p>
+<section id="bonus" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Bonus</h1>
 <section id="timing-and-optimization" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="timing-and-optimization"><span class="header-section-number">11.1</span> Timing and Optimization</h2>
+<p>OK! Here’s the big one. Let’s make our functions FAST.</p>
+<p>We’ll do this using <code>numba</code>. Numba is a big-fry package: Nvidia use it for their python implemtation of CUDA (their GPU library). Roughly, when we “numbafy” a function, when the complier first sees the function it compiles it into highly-optimized C code. But it can only do this to certain functions. Roughly: it likes for loops and <code>numpy</code> functions. It hates strings, dictionaries and dataframes. More read here:</p>
+<p>Before we make the code fast, let’s see how fast it is now. We’ll do the timing using the <code>perf_counter</code> from the <code>time</code> standard library. To really see a difference in 1D code we need to make a silly example. Let’s make a giant grid, then compute the derivative lots of times using <code>get_first_derivative</code>, and time it:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> perf_counter</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> get_first_derivative</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>array_length <span class="op">=</span> <span class="dv">100_000</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>random_big_array <span class="op">=</span> np.random.random(array_length)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>times <span class="op">=</span> []</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    t1 <span class="op">=</span> perf_counter()</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    get_first_derivative(random_big_array, num_grid_points<span class="op">=</span>array_length, grid_spacing<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    t2 <span class="op">=</span> perf_counter()</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    times.append(t2<span class="op">-</span>t1)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.median(times))</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="fl">0.04206724999676226</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>So computing the derivative of a <code>100_000</code> long array took 0.04206724999676226 seconds.</p>
+<p>To use <code>numba</code> we need to add it to our package (<code>uv add numba</code>) then “decorate” our <code>get_first_derivative</code> function using <code>njit</code> by doing the following in <code>soliton.py</code>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numba <span class="im">import</span> njit</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">@njit</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_derivative(</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>njit</code> means “no-python just-in-time compliation”. More: “when the compiler first meets this function, compile it <em>just</em> as you use it. Try to make pure C++ code. In fact, if you can’t do this and still have some python in it: throw an error!”.</p>
+<p>Restart your jupyter kernel, and rerun the timing script. I now get a time of 0.00010070799908135086 seconds, a speed-up of <span class="math inline">\(\times 420\)</span>!!!!!</p>
+<p>Now, the reason this worked so easily is because we set up the code structure so that numba would be easy to implement. Doing this from scratch is kinda difficult. Luckily, all our code is numba-fy-able. We just need to decorate lots of funcitons with <code>@njit</code>. I’ve added it to</p>
+<ul>
+<li><code>compute_energy_fast</code></li>
+<li><code>grad_flow_fast</code></li>
+<li><code>get_first_derivative</code></li>
+<li><code>get_second_derivative</code></li>
+<li><code>compute_dE</code></li>
+</ul>
+<p>Note: you need to <code>@njit</code> the Lagrangian’s functions too when you make it.</p>
+<p>The other functions and methods don’t need to be fast.</p>
+<p><code>numba</code> also allows for parallelisation if we tell if which loops are parallelisable. ALL of ours are!! We can tell it that they are parallelisable by using a <code>prange</code> (parallel range) in the for loop and by telling the <code>@njit</code> decorator that parallelisation is allowed. This takes a little bit of modifying… The <code>get_first_derivative</code> function now looks like:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="at">@njit</span>(parallel<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_first_derivative(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    phi: np.ndarray, </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    num_grid_points: <span class="bu">int</span>, </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    grid_spacing: <span class="bu">float</span>,</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> np.ndarray:</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    d_phi <span class="op">=</span> np.zeros(num_grid_points)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> prange(num_grid_points<span class="op">-</span><span class="dv">4</span>):</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>        d_phi[i<span class="op">+</span><span class="dv">2</span>] <span class="op">=</span> (phi[i] <span class="op">-</span> <span class="dv">8</span> <span class="op">*</span> phi[i <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> <span class="dv">8</span> <span class="op">*</span> phi[i <span class="op">+</span> <span class="dv">3</span>] <span class="op">-</span> phi[i <span class="op">+</span> <span class="dv">4</span>]) <span class="op">/</span> (</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>            <span class="fl">12.0</span> <span class="op">*</span> grid_spacing</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d_phi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I get a <code>x2</code> speed-up on my laptop (but to see the benefit clearly, I need to incease the lattice points to <code>10_000_000</code>). Feel free to parallelise all your other fast functions too!</p>
+<p>Now that things are getting more complicated, it’s at least nice that the complicated stuff is contained in the <code>get_first_derivative</code> function. This mess isn’t leaking into the <code>Soliton</code> class code, or anything like that. It’s gross but we’ve localised it.</p>
+<p>Some more optimisation tips:</p>
+<ul>
+<li>Allocating memory is expensive. So <code>d_phi = np.zeros(num_grid_points)</code> costs time. We can save this time by <em>preallocating</em> this memory. Maybe we can keep a copy of <code>d_profile</code> and <code>dd_profile</code> in the <code>Soliton</code> class.</li>
+<li>Initialising the multi-threading happens when the <code>for</code> loop is called, and it expensive. Currently we do this once during <code>get_first_derivative</code> and again during <code>dV(profile[i])</code> (if we turn this into a loop). It would be faster to only do this once. To do this our gradient flow code should look like</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_dE(...):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    dE <span class="op">=</span> np.zeros(points)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> prange(points):</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        dd_at_point <span class="op">=</span> get_second_derivative_at_point(i)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        dV_array <span class="op">=</span> dV(profile[i])</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        dE[i] <span class="op">=</span> dd_at_point <span class="op">-</span> dV_array</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is harder than it sounds, because <code>get_second_derivative_at_point</code> depends on which point you’re looking at. At the boundary, you have to do something different. There are a few creative solutions to deal with this. Think about it, and feel free to talk to me about them.</p>
+<ul>
+<li>Don’t worry about little things. Modern compilers are <em>smart</em>. If you write something like</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>my_variable <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> my_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is a bit stupid, because you assign a variable, then return it. It would be quicker to just <code>return 3</code>. Luckily, the compiler will say “awww, the human has set a variable equal to something then returned it on the next line. That’s so inefficient, I’ll just ignore that”. This happens <em>all the time</em>. Focus your efforts on readability and learning numba. ignore little smart things: the compiler will deal with these.</p>
 </section>
-<section id="tests" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="tests"><span class="header-section-number">11.2</span> Tests</h2>
+<section id="refactoring" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="refactoring"><span class="header-section-number">11.2</span> Refactoring</h2>
+<p>Refactoring is the practice of taking your already-written code and making it “better”. Better is hard to define: usually you want to organise it into a more logical structure, or reduce code-duplication as much as possible. I’m getting overwhelmed by the <code>soliton.py</code> file so I’m going to refactor so that the <code>Grid</code> and <code>Lagrangian</code> objects get their own files. Basically, we just move the <code>Grid</code> class and the <code>load_grid</code> function into a new file called <code>grid.py</code> and similar for the Lagrangian.</p>
+<p>..</p>
+<p>..</p>
+<p>..</p>
+<p>Ok, I did that.</p>
+<p>If you run some code - it’ll break! This is because your imports currently assume that all your functions and classes are in <code>solitons.py</code>. And e.g.&nbsp;the <code>Grid</code> class relies on <code>numpy</code> which hasn’t been imported in that function.</p>
+<p>The top’s of each file need updating. For <code>grid.py</code>, we should have</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>for <code>lagrangian.py</code> we have:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle <span class="im">as</span> pkl</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Callable</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and <code>soliton.py</code> should contain:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Callable</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># this means, from the grid file, import Grid</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .grid <span class="im">import</span> Grid</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .lagrangian <span class="im">import</span> Lagrangian</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="documentation" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="documentation"><span class="header-section-number">11.3</span> Documentation</h2>
+<section id="init__" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="init__"><span class="header-section-number">11.3</span> <code>__init__</code></h2>
+<p>When we use other packages we do stuff like:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>np.tanh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But currently this syntax doesn’t work for our library. To make this work we need to <em>expose</em> our functions in the package initialisation script <code>__init__.py</code>. You do this by importing the functions and classes you’d like the user to be able to use in the file. We want the users to be able to make our three classes, and to load any of them, so we’ll expose these by modifying <code>__init__.py</code> as follows:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .grid <span class="im">import</span> Grid, load_grid</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .lagrangian <span class="im">import</span> Lagrangian, load_lagrangian</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .soliton <span class="im">import</span> Soliton, load_soliton</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now a user can do something like</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> solitons1d <span class="im">as</span> sol</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>my_grid <span class="op">=</span> sol.Grid(<span class="dv">100</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="linters-formatters-and-lsps" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="linters-formatters-and-lsps"><span class="header-section-number">11.4</span> Linters, formatters and LSPs</h2>
+<section id="make-a-library-of-lagrangians" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="make-a-library-of-lagrangians"><span class="header-section-number">11.4</span> Make a library of Lagrangians</h2>
 </section>
-<section id="continuous-integration" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">11.5</span> Continuous Integration</h2>
+<section id="ideas-to-build-on-the-codebase" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="ideas-to-build-on-the-codebase"><span class="header-section-number">11.5</span> Ideas to build on the codebase</h2>
+<p>These are all exercises:</p>
+<ul>
+<li>Add time evolution. This will look <em>a lot</em> like gradient flow, but a bit harder.</li>
+<li>Allow for any boundary conditions.</li>
+<li>Allow for various orders of derivative.</li>
+<li></li>
+</ul>
 </section>
-<section id="recommended-reading" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="recommended-reading"><span class="header-section-number">11.6</span> Recommended Reading</h2>
+<section id="advice-on-making-code-and-figures-for-papers" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="advice-on-making-code-and-figures-for-papers"><span class="header-section-number">11.6</span> Advice on making code and figures for papers</h2>
+<p>In this course, we’ve made a package to flow 1D solitons. And you might think that you’d only make a package for this kind of thing: something you do over and over again and that anyone can benefit from. I now believe the opposite: I make a package for every project I do. Each paper has at least one package. If the paper has distinct sections, I make a package for each. I use packages from an older paper in my newer paper packages. Packages packages packages.</p>
+<p>This approach comes in especially handy when you’re making presentations, or figures. When I now make a plot, I first write a script (either a Jupyter notebook or a <code>.py</code> Python script) to generate the data. Then I save the data locally. When writing the script, if I write any code that seems like it would be helpful in the future, I put this into a package.</p>
+<p>Once I have the data I make a <em>different</em> script to make the Figure. I find this separation between data generation and Figure making <em>extremely</em> helpful.</p>
+</section>
+</section>
+<section id="coming-soon" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Coming soon…</h1>
+<section id="tests" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="tests"><span class="header-section-number">12.1</span> Tests</h2>
+</section>
+<section id="documentation" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="documentation"><span class="header-section-number">12.2</span> Documentation</h2>
+</section>
+<section id="linters-and-formatters" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="linters-and-formatters"><span class="header-section-number">12.3</span> Linters and formatters</h2>
+</section>
+<section id="continuous-integration" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">12.4</span> Continuous Integration</h2>
+</section>
+<section id="recommended-reading" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="recommended-reading"><span class="header-section-number">12.5</span> Recommended Reading</h2>
 
 
 </section>

@@ -104,11 +104,11 @@ Both VScode and PyCharm have lots of extensions. For VSCode, please install the 
 ## Git
 
 Check that you have git installed by typing 'git' then pressing enter in your Terminal. 
-It's hopefully already installed. If not, [please install it](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) This is a good moment to make a [https://github.com/](GitHub account too).
+It's hopefully already installed. If not, [please install it](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) This is a good moment to make a [GitHub account too](https://github.com/).
 
 # Make a project
 
-We're going to make a Python Package. First choose a name. I'll be using `solitons1d`. Find a place you want to store your project. Initialise a new python package by typing e.g. `uv init --package solitons1d` in Terminal and pressing enter.  Go have a look in the folder (either using your File Explorer or typing `ls` into Terminal). There should be four files inside the folder. uv has made these:
+We're going to make a Python Package. First choose a name. I'll be using `solitons1d`. Find a place you want to store your project and go to that directory in Terminal. Initialise a new python package by typing e.g. `uv init --package solitons1d` in Terminal and pressing enter.  Go have a look in the folder (either using your File Explorer or typing `ls` into Terminal). There should be four files inside the folder. uv has made these:
 
 - README.md This file is what a new user will first read when they encounter your project. 
 It should contain a description of the project, installation instructions and anything else 
@@ -149,12 +149,10 @@ about the enviroment. Then it opened VSCode and told it that we're using this en
 This means VSCode is aware of which packages we've installed. This is gonna be _super_ helpful 
 later.
 
-Let's add some package dependencies to our package. In the terminal, navigate to your 
-project folder. We'll add the package numpy by running `uv add numpy`. This will add 
+Now we'll add some packages to our project - this tells `uv` that when we create the 
+virtual enviroment it should install these packages. In the terminal, navigate to your 
+project folder. Add the package numpy by running `uv add numpy`. This will add 
 numpy to the project by adding it to the `pyproject.toml` file.
-
-You might notice another new file in your project folder called `uv.lock`. This keeps 
-all the intricate details about the packages. It's gross.
 
 # Git and GitHub
 
@@ -175,7 +173,7 @@ It can get a bit messy at the start here, **so please follow these instructions 
 We'll make a GitHub repository (repo) and link it to this folder. Go to github.com, make an account then create a new repository. DON'T DO ANYTHING except add the repository name, then press "Create repository". Towards the bottom of the next page you should see the heading "...or push an existing repository from the command line", with some commands to run. Something like:
 
 ```
-git remote add origin https://github.com/chrishalcrow/Solitons1D.git
+git remote add origin https://github.com/chrishalcrow/solitons1D.git
 git branch -M main
 git push -u origin main
 ```
@@ -192,7 +190,7 @@ If that worked: great! You're project is now _online_! If the last one error'd, 
 As we build our package, we should keep a separation between the "source" and "scripts". 
 The source is our package itself. This will contain the logic which can _do things_ and that you want to share with other people. Functions like `compute_energy`, `make_soliton` and more. But when we use the package to do science, we'd write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.
 
-To make this distiction obvious, we'll make two folders in the project folder. One 
+To make this distinction obvious, we'll keep two folders in the project folder. One 
 called "src" that `uv` already created for us (short for source - this shortening is conventional) and one called 
 "scripts". In the "src" there should already be another folder called the name of your package. Inside this there is a file called `__init__.py` which tells Python that this folder contains a "module". Let's create another files in 
 the `source/{project_name}` folder called `soliton.py`, which will contain the code 
@@ -234,10 +232,10 @@ I'll write this out in English:
 - "Import the package called numpy and call it np, which is how we'll be able to access it."
 - "Define a function called `create_profile`, which will accept the argument `num_grid_points`."
 - "Use the function `zeros` from the numpy library. (This will create an array of zeros). Assign this array of zeros to the variable `profile`."
-- "Return the variable `profile`. This return signals the end of the function
+- "Return the variable `profile`. This return signals the end of the function.
 
 There are several improvements we can make to code immediately, we can: add type 
-information about the arguments and returned parameter; add a docstring describing the function.
+information about the arguments and returned parameters; add a docstring describing the function.
 
 ``` python
 import numpy as np
@@ -316,7 +314,7 @@ Great! Hopefully you can see that it's helpful to have an object that contains s
 Even more helpful: write class-specific functions that can change what's in the object. 
 These are called "methods". They're similar to functions but are designed to only be applied 
 to the class. These are defined in the class definition itself. Let's create a method which
-will (eventually) compute the energy of the soliton. The Soliton class method get updated 
+will (eventually) compute the energy of the soliton. The Soliton class gets updated 
 to the following:
 
 ``` python
@@ -349,7 +347,7 @@ We've now got the basic building block that we'll use for the rest of the course
 
 Now that we have a few functions, methods, and classes: let's sync our local folder with our GitHub repository. You can do this using the Terminal (), but VSCode has some great Git integration. So let's use that. Find the "Source Control" button in VSCode. When you press it, it should show a list of files that you have made changes to. The logic is:
 
-1. "Stage" the files you want to upload to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing "Stage Files".
+1. "Stage" the files you want to sync to GitHub. Do this by selecting the files you want to stage, right-clicking, then choosing "Stage Files".
 2. Commit and Push the staged files to GitHub. Do this by first writing a message in the Message box. Maybe "Added Soliton class". Then press the down arrow at the right hand side of the commit button, and click "Commit and Push".
 
 The first time you do this, you might need to Publish your branch. Every other time, it's just the 2-step process above.
@@ -627,10 +625,10 @@ The big problem is the boundary. When we try to compute the derivative at the `0
 
 - Use Dirichlet boundary conditions. So keep the boundary fixed. Since you're keeping it fixed, you don't need to update it and hence you don't need to compute the derivative there. Easy!
 - Use forward/backwards finite difference to approximate the boundary points.
-- Use Neumann boundary conditions. Keep the derivative equal to zero. If you do this, then at the boundary you can set $phi_{-1} = \phi_{1}$ and $\phi_{-2} = \phi_2$, and you don't need to worry.
+- Use Neumann boundary conditions. Keep the derivative equal to zero. If you do this, then at the boundary you can set $\phi_{-1} = \phi_{1}$ and $\phi_{-2} = \phi_2$, and you don't need to worry.
 - Use (possibly shifted) periodic boundary conditions, so that $\phi_{-1} = \phi_{N}$ and $\phi_{-2} = \phi_{N-1}$.
 
-We're going to do the simples: Dirichlet. A good exercise for you: implement something else.
+We're going to do the simplest: Dirichlet. A good exercise: implement something else.
 
 So, we'll write functions to compute the first and (while we're at it) second derivatives of a function. (This is going to be a FAST function, so we don't want it to interact with the class):
 
@@ -784,14 +782,225 @@ So, the plan is to make a plotting method of the `Soliton` class that will retur
 Code example, following on from earlier:
 
 ``` python
-# this should display in a Jupyter notebook, if you run it by itself
+# if you run just this first line in a Jupyter cell, it should display a figure
 fig = my_soliton.plot_soliton()
 fig.savefig("my_lovely_soliton.pdf")
 ```
 
 # Save/load a Soliton
 
-Coming soon...
+When saving any numerical objects, you should save enough data so that it can be reconstructed. For our Soliton
+class this is actually quite complex because we need to save the `Lagrangian` and the `Grid` too; and the
+Lagrangian includes generic functions. When the object is this complex we should probably save it as a folder.
+The folder should contain enough information to reconstruct the object. Ideally, any data which can be should
+be in a "human readable" format like `json` or `yaml`.
+
+We'll go a bit further and make a save/load function for the `Grid` and `Lagrangian` objects too.  These will also
+be contained in a folder. Overall the `Soliton` export will look like
+
+```
+my_soliton/
+    profile.npz
+    metadata.json
+    grid/
+        metadata.json
+    lagrangian
+        metadata.json
+        potential.pkl
+```
+
+This might be a bit of an overkill for this project.
+
+## Save/Load a Grid
+
+The `Grid` is an easy object to save and load because it can be reconstructed from just the number of lattice
+points and the lattice spacing. We first add a `save` method to the `Grid` class. This will involve some 
+new "standard" packages: `json` and `pathlib`. The standard packages are packages with basic Python, so you
+don't need to add them using `uv`.
+
+``` python
+# add near the top of the file
+import json
+from pathlib import Path
+
+# add to Grid class
+    def save(
+        self,
+        folder_name: str | Path,
+    ):
+        """
+        Saves a `Grid` object at `folder_name`.
+        """
+        metadata = {
+            "num_grid_points": self.num_grid_points,
+            "grid_spacing": self.grid_spacing
+        }
+
+        # make the folder a Path if it is a string
+        folder = Path(folder_name)
+        folder.mkdir(exist_ok = True)
+
+        # this overwrites any existing metadata.json file
+        with open(folder / "metadata.json", "w") as f:
+            json.dump(metadata, f)
+
+```
+
+The loading function is a function, _not_ a method (why?). It should read the json file, make a `Grid` object and
+return it
+
+``` python
+def load_grid(folder_name: str | Path):
+    """
+    Loads the `Grid` object at `folder_name`.
+    """
+    folder = Path(folder_name)
+    metadata_path = folder / "metadata.json"
+
+    assert metadata_path.is_file(), f"Could not find Grid `metadata.json` file in {folder}."
+    
+    with open(metadata_path, "r") as f:
+        grid_metadata = json.load(f)
+    
+    # the ** "unpacks" the dictionary into a series of arguments
+    grid = Grid(**grid_metadata)
+    return grid
+```
+
+Using it:
+
+``` python
+from solitons1d.soliton import load_grid
+
+my_grid = Grid(100,0.1)
+my_grid.save("my_lovely_grid")
+my_loaded_grid = load_grid("my_lovely_grid")
+```
+
+## Save/Load a Lagrangian
+
+The `Lagrangian` is more complicated: we need a save the potential and the derivative of the potential, which are
+generic functions. We'll do this using the `pickle` format, which can save any Python object (note: you could
+use this to save the full `Soliton` object).
+
+``` python
+import pickle as pkl
+
+# add to Lagrangian class
+
+    def save(
+        self,
+        folder_name: str | Path,
+    ):
+        """
+        Saves a `Lagrangian` object at `folder_name`.
+        """
+        metadata = {
+            "V": self.V,
+            "dV": self.dV,
+            "vacua": self.vacua,
+        }
+
+        # make the folder a Path if it is a string
+        folder = Path(folder_name)
+        folder.mkdir(exist_ok = True)
+
+        with open(folder / "metadata.pkl", "wb") as f:
+            pkl.dump(metadata, f)
+
+# add to main body
+
+def load_lagrangian(folder_name: str | Path):
+    """
+    Loads the `Lagrangian` object at `folder_name`.
+    """
+    folder = Path(folder_name)
+    metadata_path = folder / "metadata.pkl"
+
+    assert metadata_path.is_file(), f"Could not find Lagrangian `metadata.json` file in {folder}."
+    
+    with open(metadata_path, "rb") as f:
+        lagrangian_metadata = pkl.load(f)
+    
+    # the ** "unpacks" the dictionary into a series of arguments
+    lagrangian = Lagrangian(**lagrangian_metadata)
+    return lagrangian
+```
+
+Questions:
+
+- Save a `Lagrangian` and a `Grid`, and take a look in the folder. Why might you prefer `json` to `pickle`? 
+
+## Save/Load a Soliton
+
+Now we want to save the Soliton, including any profile funciton we've made. Since we compute the energy
+on instantiation we'll also save this as a property. Let's go:
+
+``` python
+    def save(
+        self,
+        folder_name: str | Path,
+    ):
+        """
+        Saves a `Soliton` object at `folder_name`.
+        """
+
+        folder = Path(folder_name)
+        folder.mkdir(exist_ok = True)
+
+        grid_folder =  "./grid"
+        lagrangian_folder = "./lagrangian"
+
+        metadata = {
+            'grid_folder': str(grid_folder),
+            'lagrangian_folder': str(lagrangian_folder),
+        }
+
+        properties = {
+            'energy': self.energy
+        }
+
+        self.grid.save(grid_folder)
+        self.lagrangian.save(lagrangian_folder)
+
+        with open(folder / "metadata.json", "w") as f:
+            json.dump(metadata, f)
+
+        with open(folder / "properties.json", "w") as f:
+            json.dump(properties, f)
+        
+        # use `numpy`s save function to save the profile array
+        np.save("profile", self.profile)
+
+
+def load_soliton(folder_name):
+    """
+    Loads the `Lagrangian` object at `folder_name`.
+    """
+    folder = Path(folder_name)
+    metadata_path = folder / "metadata.json"
+
+    assert metadata_path.is_file(), f"Could not find Grid `metadata.json` file in {folder}."
+    
+    with open(metadata_path, "r") as f:
+        soliton_metadata = json.load(f)
+
+    grid_folder = soliton_metadata.get("grid_folder")
+    grid = load_grid(grid_folder)
+
+    lagrangian_folder = soliton_metadata.get("lagrangian_folder")
+    lagrangian = load_lagrangian(lagrangian_folder)
+
+    profile = np.load("profile.npy")
+    
+    soliton = Soliton(grid = grid, lagrangian=lagrangian, initial_profile=profile)
+
+    return soliton
+```
+
+Exercise: save a soliton, and load it.
+
+Note: We've written more code to save and load our objects than we will to gradient flow them. Ouch.
 
 # Gradient flow
 
@@ -808,14 +1017,253 @@ You'll actually write two functions: a `gradient_flow` method in the `Soltion` c
 
 **End of "core" course**
 
-# Bonus - coming soon
-
-Including...
+# Bonus
 
 ## Timing and Optimization
+
+OK! Here's the big one. Let's make our functions FAST.
+
+We'll do this using `numba`. Numba is a big-fry package: Nvidia use it for their python implemtation of
+CUDA (their GPU library). Roughly, when we "numbafy" a function, when the complier first sees the function
+it compiles it into highly-optimized C code. But it can only do this to certain functions. Roughly: it
+likes for loops and `numpy` functions. It hates strings, dictionaries and dataframes. More read here:
+
+Before we make the code fast, let's see how fast it is now. We'll do the timing using the `perf_counter`
+from the `time` standard library. To really see a difference in 1D code we need to make a silly example. 
+Let's make a giant grid, then compute the derivative lots of times using `get_first_derivative`, and time it:
+
+``` python
+from time import perf_counter
+from solitons1d.soliton import get_first_derivative
+import numpy as np
+
+array_length = 100_000
+random_big_array = np.random.random(array_length)
+
+times = []
+for _ in range(100):
+    t1 = perf_counter()
+    get_first_derivative(random_big_array, num_grid_points=array_length, grid_spacing=0.1)
+    t2 = perf_counter()
+    times.append(t2-t1)
+
+print(np.median(times))
+>>> 0.04206724999676226
+```
+
+So computing the derivative of a `100_000` long array took 0.04206724999676226 seconds.
+
+To use `numba` we need to add it to our package (`uv add numba`) then "decorate" our `get_first_derivative`
+function using `njit` by doing the following in `soliton.py`:
+
+``` python
+from numba import njit
+
+@njit
+def get_first_derivative(
+    ...
+```
+
+`njit` means "no-python just-in-time compliation". More: "when the compiler first meets this function,
+compile it _just_ as you use it. Try to make pure C++ code. In fact, if you can't do this and still have
+some python in it: throw an error!".
+
+Restart your jupyter kernel, and rerun the timing script. I now get a time of 0.00010070799908135086 seconds,
+a speed-up of $\times 420$!!!!!
+
+Now, the reason this worked so easily is because we set up the code structure so that numba
+would be easy to implement. Doing this from scratch is kinda difficult. Luckily, all our code
+is numba-fy-able. We just need to decorate lots of funcitons with `@njit`. I've added it to
+
+- `compute_energy_fast`
+- `grad_flow_fast`
+- `get_first_derivative`
+- `get_second_derivative`
+- `compute_dE`
+
+Note: you need to `@njit` the Lagrangian's functions too when you make it.
+
+The other functions and methods don't need to be fast.
+
+`numba` also allows for parallelisation if we tell if which loops are parallelisable.
+ALL of ours are!! We can tell it that they are parallelisable by using a `prange`
+(parallel range) in the for loop and by telling the `@njit` decorator that
+parallelisation is allowed. This takes a little bit of modifying... The 
+`get_first_derivative` function now looks like:
+
+``` python
+@njit(parallel=True)
+def get_first_derivative(
+    phi: np.ndarray, 
+    num_grid_points: int, 
+    grid_spacing: float,
+) -> np.ndarray:
+    d_phi = np.zeros(num_grid_points)
+    for i in prange(num_grid_points-4):
+        d_phi[i+2] = (phi[i] - 8 * phi[i + 1] + 8 * phi[i + 3] - phi[i + 4]) / (
+            12.0 * grid_spacing
+        )
+    return d_phi
+```
+
+I get a `x2` speed-up on my laptop (but to see the benefit clearly, I need to 
+incease the lattice points to `10_000_000`). Feel free to parallelise all your 
+other fast functions too!
+
+Now that things are getting more complicated, it's at least nice that the complicated
+stuff is contained in the `get_first_derivative` function. This mess isn't leaking
+into the `Soliton` class code, or anything like that. It's gross but we've localised it.
+
+Some more optimisation tips:
+
+- Allocating memory is expensive. So `d_phi = np.zeros(num_grid_points)` costs time. We can 
+save this time by _preallocating_ this memory. Maybe we can keep a copy of `d_profile` and
+`dd_profile` in the `Soliton` class.
+- Initialising the multi-threading happens when the `for` loop is called, and it expensive.
+Currently we do this once during `get_first_derivative` and again during `dV(profile[i])`
+(if we turn this into a loop). It would be faster to only do this once. To do this our
+gradient flow code should look like
+
+``` python
+def compute_dE(...):
+    dE = np.zeros(points)
+    for i in prange(points):
+        dd_at_point = get_second_derivative_at_point(i)
+        dV_array = dV(profile[i])
+        dE[i] = dd_at_point - dV_array
+```
+
+This is harder than it sounds, because `get_second_derivative_at_point` depends on which
+point you're looking at. At the boundary, you have to do something different. There are
+a few creative solutions to deal with this. Think about it, and feel free to talk to me
+about them. 
+
+- Don't worry about little things. Modern compilers are _smart_. If you write something like
+``` python
+my_variable = 3
+return my_variable
+```
+This is a bit stupid, because you assign a variable, then return it. It would be quicker to
+just `return 3`. Luckily, the compiler will say "awww, the human has set a variable equal 
+to something then returned it on the next line. That's so inefficient, I'll just ignore that".
+This happens _all the time_. Focus your efforts on readability and learning numba. ignore
+little smart things: the compiler will deal with these.
+
+
+## Refactoring
+
+Refactoring is the practice of taking your already-written code and making it "better". Better is hard to define:
+usually you want to organise it into a more logical structure, or reduce code-duplication as much as possible.
+I'm getting overwhelmed by the `soliton.py` file so I'm going to refactor so that the `Grid` and `Lagrangian`
+objects get their own files. Basically, we just move the `Grid` class and the `load_grid` function into a new
+file called `grid.py` and similar for the Lagrangian.
+
+..
+
+..
+
+..
+
+Ok, I did that.
+
+If you run some code - it'll break! This is because your imports currently assume that all your functions and
+classes are in `solitons.py`. And e.g. the `Grid` class relies on `numpy` which hasn't been imported in that function.
+
+The top's of each file need updating. For `grid.py`, we should have
+
+``` python
+import json
+from pathlib import Path
+import numpy as np
+```
+
+for `lagrangian.py` we have:
+
+``` python
+import pickle as pkl
+from pathlib import Path
+from typing import Callable
+import numpy as np
+```
+
+and `soliton.py` should contain:
+
+``` python
+import json
+from typing import Callable
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# this means, from the grid file, import Grid
+from .grid import Grid
+from .lagrangian import Lagrangian
+```
+
+## `__init__`
+
+When we use other packages we do stuff like:
+
+``` python
+import numpy as np
+np.tanh
+```
+
+But currently this syntax doesn't work for our library. To make this work we need to _expose_ our
+functions in the package initialisation script `__init__.py`. You do this by importing the
+functions and classes you'd like the user to be able to use in the file. We want the users
+to be able to make our three classes, and to load any of them, so we'll expose these by
+modifying `__init__.py` as follows:
+
+``` python
+from .grid import Grid, load_grid
+from .lagrangian import Lagrangian, load_lagrangian
+from .soliton import Soliton, load_soliton
+```
+
+Now a user can do something like
+
+``` python
+import solitons1d as sol
+my_grid = sol.Grid(100, 0.1)
+```
+
+## Make a library of Lagrangians
+
+## Ideas to build on the codebase
+
+These are all exercises:
+
+- Add time evolution. This will look _a lot_ like gradient flow, but a bit harder.
+- Allow for any boundary conditions.
+- Allow for various orders of derivative.
+- 
+
+## Advice on making code and figures for papers
+
+In this course, we've made a package to flow 1D solitons. And you might think that you'd only
+make a package for this kind of thing: something you do over and over again and that anyone
+can benefit from. I now believe the opposite: I make a package for every project I do.
+Each paper has at least one package. If the paper has distinct sections, I make a package
+for each. I use packages from an older paper in my newer paper packages. Packages packages
+packages. 
+
+This approach comes in especially handy when you're making presentations, or figures.
+When I now make a plot, I first write a script (either a Jupyter notebook or a `.py`
+Python script) to generate the data. Then I save the data locally. When writing
+the script, if I write any code that seems like it would be helpful in the future, 
+I put this into a package. 
+
+Once I have the data I make a _different_ script to make the Figure. I find this separation
+between data generation and Figure making _extremely_ helpful.
+
+# Coming soon...
+
 ## Tests
 ## Documentation
-## Linters, formatters and LSPs
+## Linters and formatters
 ## Continuous Integration
 ## Recommended Reading
+
 

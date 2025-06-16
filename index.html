@@ -1261,23 +1261,32 @@ Tests can also check that your code fails in the correct way. Ideally, every sin
 <span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Don't include the boundary points, which will be zero</span></span>
 <span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(first_derivative[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>], <span class="fl">2.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To run the test suit we need to add <code>pytest</code> to our package by running <code>uv add pytest</code> in Terminal, while <code>cd</code>d in the project. Then we can run <code>uv run pytest</code>. I get the following output:</p>
+<p>To run the test suit we need to add <code>pytest</code> to our package by running <code>uv add tool pytest</code> in Terminal, while <code>cd</code>d in the project. Then we can run <code>uv run pytest src/solitons1d/tests/</code>. I get the following output:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">========================</span> test session starts <span class="op">=========================</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>platform darwin <span class="op">--</span> Python <span class="fl">3.13.2</span>, pytest<span class="op">-</span><span class="fl">8.4.0</span>, pluggy<span class="op">-</span><span class="fl">1.6.0</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>rootdir: <span class="op">/</span>Users<span class="op">/</span>christopherhalcrow<span class="op">/</span>Work<span class="op">/</span>fromgit<span class="op">/</span>solitons1d</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>configfile: pyproject.toml</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>collected <span class="dv">1</span> items                                                                                                      </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>src<span class="op">/</span>solitons1d<span class="op">/</span>tests<span class="op">/</span>all_test.py .     [<span class="dv">100</span><span class="op">%</span>]</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="op">=========================</span> <span class="dv">1</span> passed <span class="kw">in</span> <span class="fl">0.41</span><span class="er">s</span> <span class="op">==========================</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now let’s make a test to check that constructing a <code>Grid</code> works as expected:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_grid_construction():</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Makes a grid object and checks that data is propagated to the object.</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Then checks that an error is raised the number of lattice points is given as</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">    a float.</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    num_grid_points <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    grid_spacing <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> Grid(num_grid_points<span class="op">=</span>num_grid_points, grid_spacing<span class="op">=</span>grid_spacing)</span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check that arguments become attributes of the object</span></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.num_grid_points <span class="op">==</span> num_grid_points</span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.grid_spacing <span class="op">==</span> grid_spacing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_grid_construction():</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Makes a grid object and checks that data is propagated to the object.</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Then checks that an error is raised the number of lattice points is given as</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co">    a float.</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    num_grid_points <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    grid_spacing <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> Grid(num_grid_points<span class="op">=</span>num_grid_points, grid_spacing<span class="op">=</span>grid_spacing)</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check that arguments become attributes of the object</span></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.num_grid_points <span class="op">==</span> num_grid_points</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.grid_spacing <span class="op">==</span> grid_spacing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exercise: write tests for <em>everything</em>! Ideally, you’d write tests as you go along.</p>
 </section>
 </section>

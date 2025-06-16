@@ -1454,8 +1454,20 @@ def test_first_derivative():
     assert np.allclose(first_derivative[2:-2], 2.0)
 ```
 
-To run the test suit we need to add `pytest` to our package by running `uv add pytest` in Terminal, while 
-`cd`d in the project. Then we can run `uv run pytest`. I get the following output:
+To run the test suit we need to add `pytest` to our package by running `uv add tool pytest` in Terminal, while 
+`cd`d in the project. Then we can run `uv run pytest src/solitons1d/tests/`. I get the following output:
+
+``` python
+======================== test session starts =========================
+platform darwin -- Python 3.13.2, pytest-8.4.0, pluggy-1.6.0
+rootdir: /Users/christopherhalcrow/Work/fromgit/solitons1d
+configfile: pyproject.toml
+collected 1 items                                                                                                      
+
+src/solitons1d/tests/all_test.py .     [100%]
+
+========================= 1 passed in 0.41s ==========================
+```
 
 Now let's make a test to check that constructing a `Grid` works as expected:
 

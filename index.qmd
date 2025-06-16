@@ -98,6 +98,40 @@ Linux) and typing `uv`.
 Once you have uv, you can run python in the terminal by typing `uv run python`. The first 
 time you do this uv might install Python. So it might take a little minute.
 
+<details>
+  <summary>If `uv` doesn't work</summary>
+
+If `uv` doesn't work, you'll need to manage your virtual environments packages yourself. We'll
+do this using Python's `venv` (for (v)itrual (env)ironment). The venv is a little safe bubble
+where we'll just install our current project and its dependencies 
+([more](https://www.w3schools.com/python/python_virtualenv.asp)). We first need to create a new venv.
+This will create a folder wherever you are in the Terminal, which will be where your venv is
+stored. I usually keep them in `~/.venvs` (`~` means "home")
+
+``` python
+python -m venv path/to/where/you/keep/your/venvs/sig_numerics
+```
+
+To use it, we must activate it
+
+``` python
+source path/to/where/you/keep/your/venvs/sig_numerics/bin/activate
+```
+
+Hopefully the left hand side of your Terminal prompt now says your `venv`'s name. It is now activate.
+You can add python packages to your venv by installing them using `pip` (short for "(p)ip (i)nstall (p)ackages").
+E.g. to add numpy to your venv: first, make sure your venv is activated, then run
+
+``` python
+pip install numpy
+```
+
+You can check which packages are installed using `pip list`.
+
+In the course, whenever you read `uv add {package_name}` please use `pip install {package_name}` instead.
+
+</details>
+
 ## An editor
 
 A good text editor _really_ helps coding. A good one allows you to search through 
@@ -124,6 +158,8 @@ description etc. Add some of your own details if you'd like. This file will also
 of which other packages your package depends on once we add some.
 - uv.lock Keeps the _detailed_ information about package dependencies.
 - src/solitons1d. A folder which will contain your package.
+
+(if you are not using `uv`, please make these files.)
 
 Ok! Let's open the project in VSCode. The easiest way to do this is in terminal. We're going
 to do something slightly fancy that will make sense later, and open it with uv. Do this by 

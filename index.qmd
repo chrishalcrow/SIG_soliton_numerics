@@ -377,7 +377,7 @@ In English:
 Now, back in the `play.ipynb` notebook, we can make a Soliton object:
 
 ``` python
-from solitons1d import Soliton
+from solitons1d.soliton import Soliton
 my_soliton = Soliton(100,0.1)
 print(my_soliton.num_grid_points)
 ```
@@ -400,14 +400,13 @@ to the following:
 class Soliton():
 
     def __init__(self, num_grid_points, grid_spacing):
-         self.lp = num_grid_points
-	     self.ls = grid_spacing
+         self.num_grid_points = num_grid_points
+	     self.grid_spacing = grid_spacing
 	     self.profile = create_profile(num_grid_points)
 
-    def compute_energy(self)
-
+    def compute_energy(self):
          total_energy = np.sum(self.profile)
-	     total_energy *= self.ls
+	     total_energy *= self.grid_spacing
 	     self.energy = total_energy
 ```
 

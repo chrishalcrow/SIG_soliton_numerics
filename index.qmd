@@ -179,6 +179,18 @@ means "this folder here". `code` is the shortcut for VSCode and `uv run` means "
 VSCode, make it aware of which python _environment_ is being used at the moment". More on 
 environments soon!
 
+<details>
+  <summary>`uv run code .` didn't work</summary>
+
+We need to tell your terminal that "code" means "open VSCode". We only need to do this **once**.
+Follow the instructions [here](https://code.visualstudio.com/docs/setup/mac#_configure-the-path-with-vs-code).
+They are: open VSCode like a normal application. Open the Command Pallet by pressing
+`Cmd+Shift+P` (mac) or `ctrl+shift+P` (windows). Type 'shell command', and select the "Shell Command:
+Install 'code' command in PATH command." Then restart your terminal. Now try running
+`uv run code .` again.
+
+</details>
+
 VSCode should have opened, and you should see the project directory at the left hand side. 
 There should also be a Terminal at the bottom. If there isn't you can put it there using 
 `View -> Terminal`. From the terminal we can run python by entering `uv run python`, then import our package using `import solitons1d`. Quit python by running `exit()`. Note: we won't use python in the terminal much.

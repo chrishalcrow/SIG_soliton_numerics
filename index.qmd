@@ -161,6 +161,17 @@ of which other packages your package depends on once we add some.
 
 (if you are not using `uv`, please make these files.)
 
+<details>
+  <summary>Using PyCharm?</summary>
+
+We need to tell PyCharm which python interpreter we want to use, so that it's aware of our
+`solitons1d` package. Open PyCharm and choose 'Open' and open the `soliton1d` folder.
+PyCharm should figure out what's going on. However, you might need to tell it which
+interpreter you want to use. To do this, you should use the one that `uv` has created.
+This is located at `solitons1d/.venv`. If you're unsure - ask me!
+
+</details>
+
 Ok! Let's open the project in VSCode. The easiest way to do this is in terminal. We're going
 to do something slightly fancy that will make sense later, and open it with uv. Do this by 
 navigating to the project folder in Terminal then typing `uv run code .`. The dot at the end
@@ -193,7 +204,8 @@ later.
 Now we'll add some packages to our project - this tells `uv` that when we create the 
 virtual environment it should install these packages. In the terminal, navigate to your 
 project folder. Add the package numpy by running `uv add numpy`. This will add 
-numpy to the project by adding it to the `pyproject.toml` file.
+numpy to the project by adding it to the `pyproject.toml` file. While we're at it,
+please also install `ipykernel` by running `uv add ipykernel`.
 
 # Git and GitHub
 
@@ -257,6 +269,10 @@ solitons1D/
 	        soliton.py
     uv.lock
 ```
+
+To test that everything has worked. Open `play.ipynb` and enter `import solitons1d`. You might need to 
+tell the notebook which python interpreter (vritual enviroment) to use. It should suggest using the one 
+that `uv` has created, which is located at `solitons1d/.venv`. 
 
 # Functions, classes and methods
 
@@ -1413,9 +1429,58 @@ I put this into a package.
 Once I have the data I make a _different_ script to make the Figure. I find this separation
 between data generation and Figure making _extremely_ helpful.
 
+So, if I was going to make a Figure demonstrating that the accuracy of the energy
+improves as you decrease the grid spacing, I would first write a script that
+computes the energy for various grid spacings (as a `.py` script)
+
+``` python
+import numpy as np
+import pandas as pd
+import solitons1d as sol
+
+grid_spacings = [0.4, 0.2, 0.1, 0.05]
+energies = []
+
+for grid_spacing in grid_spacings:
+
+    grid_length = 10
+    grid_points = round(10/grid_spacing)
+    grid = sol.Grid(grid_points, grid_spacing)
+
+    soliton = sol.Soliton(grid=grid, lagrangian='phi_4', initial_profile_function=np.tanh)
+
+    # here I choose a million steps, but really I should use a tolerance (once implemented)
+    soliton.grad_flow(dt=0.00001, num_steps=1_000_000)
+    soliton.compute_energy()
+
+    # add the computed energy to the list of energies
+    energies.append(soliton.energy)
+
+
+# Turn the data into a pandas DataFrame, then export to csv
+data = pd.DataFrame(np.transpose(np.array([grid_spacings, energies])), columns=["grid_spacing", "energy"])
+data.to_csv("spacings_vs_energies.csv")
+```
+
+...and once I have the data, I would then write a plotting script (probably as a Jupyer notebook):
+
+``` python
+import matplotlib.pyplot as plt
+import pandas as pd
+
+data = pd.read_csv("spacings_vs_energies.csv")
+
+fig, ax = plt.subplots()
+ax.plot(data['grid_spacing'], data['energy'])
+ax.axline((0.05,4/3), (0.4,4/3),  color="black", linestyle=(0, (5, 5)))
+ax.set_xlabel("Grid spacing")
+ax.set_ylabel("Energy")
+fig.savefig("energy_vs_grid_spacing.pdf")
+```
+
 ## Tests
 
-Why are tests important. You would think it's to check that our code does what we
+Why are tests important? You would think it's to check that our code does what we
 say it does. But actually the most important reason to make tests is so that you
 can confidently change and updated your code. Try to get into the habit of re-running your
 tests every time you make a non-trivial change to your code.

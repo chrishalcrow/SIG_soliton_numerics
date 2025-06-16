@@ -675,6 +675,41 @@ Questions:
 You've now seen quite a lot of Python code. This might be a good time to read PEP8, the Zen of Python,
 and some tips about writing "Pythonic" code (https://inventwithpython.com/beyond/chapter6.html).
 
+
+# Formatters and linters (Optional)
+
+Programmers are opinionated. Especially when it comes to formatting. Here's a question: which looks
+better:
+
+``` python
+a = 1 + 1
+```
+
+or
+
+``` python
+a=1+1
+```
+
+Different people will have different answers. And if you have a project with many contributors
+you ideally want to consistent answers. Usually, a codebase defers these decisions to A
+formatter. We'll use [ruff](https://docs.astral.sh/ruff/). This can be installed using uv by running 
+`uv add tool ruff`.
+
+Ruff basically is a giant list of rules. (You can edit the rules you use by editing the ruff section of
+your `pyproject.toml` file: (more info)[https://docs.astral.sh/ruff/configuration/]). You can check 
+if your code passes all these rules by running `ruff check` in `solitons1d`. Then it can 
+automatically fix certain rule breaks if you run `ruff format`. Try it!
+
+This works ok, but most people use `ruff` more interactively by installing the ruff extension in
+VSCode. Then `ruff`s rule checks will appear automatically as you type your code. Try installing
+it and see what happens.
+
+`ruff` is also a linter. These are static code checkers which try to find simple bugs before
+you run anything. Once you've installed the `ruff` extension, try adding `b = a + 1` somewhere.
+A red line appears under my variables, telling me that `a` is Undefined and that `b` is never
+used. Nice.
+
 # Derivatives and Energy
 
 To compute the energy, and the gradient flow, we'll need to compute derivatives. There are many ways to do this. The most common in the soliton field is using a finite difference method. Here, we implement the approximation
@@ -1558,7 +1593,6 @@ Exercise: write tests for _everything_! Ideally, you'd write tests as you go alo
 
 # Coming soon...
 
-## Linters and formatters
 
 ## Documentation
 

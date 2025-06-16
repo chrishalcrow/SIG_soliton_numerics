@@ -339,6 +339,12 @@ Using PyCharm?
 <p>We need to tell PyCharm which python interpreter we want to use, so that it’s aware of our <code>solitons1d</code> package. Open PyCharm and choose ‘Open’ and open the <code>soliton1d</code> folder. PyCharm should figure out what’s going on. However, you might need to tell it which interpreter you want to use. To do this, you should use the one that <code>uv</code> has created. This is located at <code>solitons1d/.venv</code>. If you’re unsure - ask me!</p>
 </details>
 <p>Ok! Let’s open the project in VSCode. The easiest way to do this is in terminal. We’re going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing <code>uv run code .</code>. The dot at the end means “this folder here”. <code>code</code> is the shortcut for VSCode and <code>uv run</code> means “When you open VSCode, make it aware of which python <em>environment</em> is being used at the moment”. More on environments soon!</p>
+<details>
+<summary>
+<code>uv run code .</code> didn’t work
+</summary>
+<p>We need to tell your terminal that “code” means “open VSCode”. We only need to do this <strong>once</strong>. Follow the instructions <a href="https://code.visualstudio.com/docs/setup/mac#_configure-the-path-with-vs-code">here</a>. They are: open VSCode like a normal application. Open the Command Pallet by pressing <code>Cmd+Shift+P</code> (mac) or <code>ctrl+shift+P</code> (windows). Type ‘shell command’, and select the “Shell Command: Install ‘code’ command in PATH command.” Then restart your terminal. Now try running <code>uv run code .</code> again.</p>
+</details>
 <p>VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn’t you can put it there using <code>View -&gt; Terminal</code>. From the terminal we can run python by entering <code>uv run python</code>, then import our package using <code>import solitons1d</code>. Quit python by running <code>exit()</code>. Note: we won’t use python in the terminal much.</p>
 <p>If that didn’t error - amazing!! You’ve just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I’ve shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole).</p>
 <section id="virtual-enviroments" class="level2" data-number="2.1">

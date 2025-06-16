@@ -332,13 +332,19 @@ If <code>uv</code> doesn’t work
 <li>src/solitons1d. A folder which will contain your package.</li>
 </ul>
 <p>(if you are not using <code>uv</code>, please make these files.)</p>
+<details>
+<summary>
+Using PyCharm?
+</summary>
+<p>We need to tell PyCharm which python interpreter we want to use, so that it’s aware of our <code>solitons1d</code> package. Open PyCharm and choose ‘Open’ and open the <code>soliton1d</code> folder. PyCharm should figure out what’s going on. However, you might need to tell it which interpreter you want to use. To do this, you should use the one that <code>uv</code> has created. This is located at <code>solitons1d/.venv</code>. If you’re unsure - ask me!</p>
+</details>
 <p>Ok! Let’s open the project in VSCode. The easiest way to do this is in terminal. We’re going to do something slightly fancy that will make sense later, and open it with uv. Do this by navigating to the project folder in Terminal then typing <code>uv run code .</code>. The dot at the end means “this folder here”. <code>code</code> is the shortcut for VSCode and <code>uv run</code> means “When you open VSCode, make it aware of which python <em>environment</em> is being used at the moment”. More on environments soon!</p>
 <p>VSCode should have opened, and you should see the project directory at the left hand side. There should also be a Terminal at the bottom. If there isn’t you can put it there using <code>View -&gt; Terminal</code>. From the terminal we can run python by entering <code>uv run python</code>, then import our package using <code>import solitons1d</code>. Quit python by running <code>exit()</code>. Note: we won’t use python in the terminal much.</p>
 <p>If that didn’t error - amazing!! You’ve just set up your developer workflow. I think doing this is actually one of the hardest parts of coding. I’ve shown you my workflow which is fairly standard; but everyone has their own. You can read thousands of articles and YouTube videos (just search neovim for python on YouTube to really start going down the rabbit hole).</p>
 <section id="virtual-enviroments" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="virtual-enviroments"><span class="header-section-number">2.1</span> Virtual Enviroments</h2>
 <p>I’ve been sweeping the following topic under the rug but it’s very important to understand: virtual environments. Because python has so many packages and their dependencies are complex, it’s considered good behaviour to make a different environment for different projects. So you might have one environment for when you do statistics, one for when you do heavy numerical stuff and another for plotting. <code>uv</code> takes this to the extreme: it makes a new virtual environment every time you run python. When we ran <code>uv run code .</code> it make a folder called <code>.venv</code> containing the information about the environment. Then it opened VSCode and told it that we’re using this environment. This means VSCode is aware of which packages we’ve installed. This is gonna be <em>super</em> helpful later.</p>
-<p>Now we’ll add some packages to our project - this tells <code>uv</code> that when we create the virtual environment it should install these packages. In the terminal, navigate to your project folder. Add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file.</p>
+<p>Now we’ll add some packages to our project - this tells <code>uv</code> that when we create the virtual environment it should install these packages. In the terminal, navigate to your project folder. Add the package numpy by running <code>uv add numpy</code>. This will add numpy to the project by adding it to the <code>pyproject.toml</code> file. While we’re at it, please also install <code>ipykernel</code> by running <code>uv add ipykernel</code>.</p>
 </section>
 </section>
 <section id="git-and-github" class="level1" data-number="3">
@@ -375,6 +381,7 @@ git push -u origin main</code></pre>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">__init__</span>.py</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            soliton.py</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    uv.lock</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To test that everything has worked. Open <code>play.ipynb</code> and enter <code>import solitons1d</code>. You might need to tell the notebook which python interpreter (vritual enviroment) to use. It should suggest using the one that <code>uv</code> has created, which is located at <code>solitons1d/.venv</code>.</p>
 </section>
 <section id="functions-classes-and-methods" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Functions, classes and methods</h1>
@@ -1238,55 +1245,94 @@ E = \int \mathcal{E}(x) dx \approx (\Delta x)\sum_i \mathcal{E}_i \, ,
 <p>In this course, we’ve made a package to flow 1D solitons. And you might think that you’d only make a package for this kind of thing: something you do over and over again and that anyone can benefit from. I now believe the opposite: I make a package for every project I do. Each paper has at least one package. If the paper has distinct sections, I make a package for each. I use packages from an older paper in my newer paper packages. Packages packages packages.</p>
 <p>This approach comes in especially handy when you’re making presentations, or figures. When I now make a plot, I first write a script (either a Jupyter notebook or a <code>.py</code> Python script) to generate the data. Then I save the data locally. When writing the script, if I write any code that seems like it would be helpful in the future, I put this into a package.</p>
 <p>Once I have the data I make a <em>different</em> script to make the Figure. I find this separation between data generation and Figure making <em>extremely</em> helpful.</p>
+<p>So, if I was going to make a Figure demonstrating that the accuracy of the energy improves as you decrease the grid spacing, I would first write a script that computes the energy for various grid spacings (as a <code>.py</code> script)</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> solitons1d <span class="im">as</span> sol</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>grid_spacings <span class="op">=</span> [<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>]</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>energies <span class="op">=</span> []</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> grid_spacing <span class="kw">in</span> grid_spacings:</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    grid_length <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    grid_points <span class="op">=</span> <span class="bu">round</span>(<span class="dv">10</span><span class="op">/</span>grid_spacing)</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> sol.Grid(grid_points, grid_spacing)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    soliton <span class="op">=</span> sol.Soliton(grid<span class="op">=</span>grid, lagrangian<span class="op">=</span><span class="st">'phi_4'</span>, initial_profile_function<span class="op">=</span>np.tanh)</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># here I choose a million steps, but really I should use a tolerance (once implemented)</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    soliton.grad_flow(dt<span class="op">=</span><span class="fl">0.00001</span>, num_steps<span class="op">=</span><span class="dv">1_000_000</span>)</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    soliton.compute_energy()</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># add the computed energy to the list of energies</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    energies.append(soliton.energy)</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn the data into a pandas DataFrame, then export to csv</span></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.transpose(np.array([grid_spacings, energies])), columns<span class="op">=</span>[<span class="st">"grid_spacing"</span>, <span class="st">"energy"</span>])</span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">"spacings_vs_energies.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…and once I have the data, I would then write a plotting script (probably as a Jupyer notebook):</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"spacings_vs_energies.csv"</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>ax.plot(data[<span class="st">'grid_spacing'</span>], data[<span class="st">'energy'</span>])</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>ax.axline((<span class="fl">0.05</span>,<span class="dv">4</span><span class="op">/</span><span class="dv">3</span>), (<span class="fl">0.4</span>,<span class="dv">4</span><span class="op">/</span><span class="dv">3</span>),  color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span>(<span class="dv">0</span>, (<span class="dv">5</span>, <span class="dv">5</span>)))</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Grid spacing"</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Energy"</span>)</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"energy_vs_grid_spacing.pdf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="tests" class="level2" data-number="11.7">
 <h2 data-number="11.7" class="anchored" data-anchor-id="tests"><span class="header-section-number">11.7</span> Tests</h2>
-<p>Why are tests important. You would think it’s to check that our code does what we say it does. But actually the most important reason to make tests is so that you can confidently change and updated your code. Try to get into the habit of re-running your tests every time you make a non-trivial change to your code.</p>
+<p>Why are tests important? You would think it’s to check that our code does what we say it does. But actually the most important reason to make tests is so that you can confidently change and updated your code. Try to get into the habit of re-running your tests every time you make a non-trivial change to your code.</p>
 <p>A “unit” test should check one, small, piece of your code and makes sure it does what you’re expecting. Ideally you are testing just one function or method.<br>
 Tests can also check that your code fails in the correct way. Ideally, every single line of code in run during your tests. Codebases get a “code coverage” score, which is the percentage of lines that are tested during a test run. Aim for 100%.</p>
 <p>The most common testing tool in python is called <code>pytest</code>. For this, we can make a tests directory and create a test script in it. People structure this in different ways: we’ll make a directory in <code>src/soltion1d</code> called <code>tests</code> then make a python script called <code>all_tests.py</code> in this.</p>
 <p>In <code>all_tests.py</code>, I’ll write a function which tests the first derivative function. (General rule: you don’t need to be as carefuly with typing and docstrings for tests. But it’s a good idea to write what you’re trying to test in the docstring, and how you’ll do it).</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> get_first_derivative</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_first_derivative():</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the first derivative of the function f(x) = 2x and checks</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">    that it is 2.</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    lattice_spacing <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    linear_function <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.arange(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,lattice_spacing)</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    first_derivative <span class="op">=</span> get_first_derivative(linear_function, <span class="bu">len</span>(linear_function), lattice_spacing)</span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Don't include the boundary points, which will be zero</span></span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(first_derivative[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>], <span class="fl">2.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> solitons1d.soliton <span class="im">import</span> get_first_derivative</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_first_derivative():</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Computes the first derivative of the function f(x) = 2x and checks</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co">    that it is 2.</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    lattice_spacing <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    linear_function <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.arange(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,lattice_spacing)</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>    first_derivative <span class="op">=</span> get_first_derivative(linear_function, <span class="bu">len</span>(linear_function), lattice_spacing)</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Don't include the boundary points, which will be zero</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> np.allclose(first_derivative[<span class="dv">2</span>:<span class="op">-</span><span class="dv">2</span>], <span class="fl">2.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To run the test suit we need to add <code>pytest</code> to our package by running <code>uv add tool pytest</code> in Terminal, while <code>cd</code>d in the project. Then we can run <code>uv run pytest src/solitons1d/tests/</code>. I get the following output:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">========================</span> test session starts <span class="op">=========================</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>platform darwin <span class="op">--</span> Python <span class="fl">3.13.2</span>, pytest<span class="op">-</span><span class="fl">8.4.0</span>, pluggy<span class="op">-</span><span class="fl">1.6.0</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>rootdir: <span class="op">/</span>Users<span class="op">/</span>christopherhalcrow<span class="op">/</span>Work<span class="op">/</span>fromgit<span class="op">/</span>solitons1d</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>configfile: pyproject.toml</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>collected <span class="dv">1</span> items                                                                                                      </span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>src<span class="op">/</span>solitons1d<span class="op">/</span>tests<span class="op">/</span>all_test.py .     [<span class="dv">100</span><span class="op">%</span>]</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="op">=========================</span> <span class="dv">1</span> passed <span class="kw">in</span> <span class="fl">0.41</span><span class="er">s</span> <span class="op">==========================</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">========================</span> test session starts <span class="op">=========================</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>platform darwin <span class="op">--</span> Python <span class="fl">3.13.2</span>, pytest<span class="op">-</span><span class="fl">8.4.0</span>, pluggy<span class="op">-</span><span class="fl">1.6.0</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>rootdir: <span class="op">/</span>Users<span class="op">/</span>christopherhalcrow<span class="op">/</span>Work<span class="op">/</span>fromgit<span class="op">/</span>solitons1d</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>configfile: pyproject.toml</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>collected <span class="dv">1</span> items                                                                                                      </span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>src<span class="op">/</span>solitons1d<span class="op">/</span>tests<span class="op">/</span>all_test.py .     [<span class="dv">100</span><span class="op">%</span>]</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="op">=========================</span> <span class="dv">1</span> passed <span class="kw">in</span> <span class="fl">0.41</span><span class="er">s</span> <span class="op">==========================</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now let’s make a test to check that constructing a <code>Grid</code> works as expected:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_grid_construction():</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Makes a grid object and checks that data is propagated to the object.</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Then checks that an error is raised the number of lattice points is given as</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co">    a float.</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    num_grid_points <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    grid_spacing <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> Grid(num_grid_points<span class="op">=</span>num_grid_points, grid_spacing<span class="op">=</span>grid_spacing)</span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check that arguments become attributes of the object</span></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.num_grid_points <span class="op">==</span> num_grid_points</span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.grid_spacing <span class="op">==</span> grid_spacing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_grid_construction():</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Makes a grid object and checks that data is propagated to the object.</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Then checks that an error is raised the number of lattice points is given as</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">    a float.</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    num_grid_points <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>    grid_spacing <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> Grid(num_grid_points<span class="op">=</span>num_grid_points, grid_spacing<span class="op">=</span>grid_spacing)</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check that arguments become attributes of the object</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.num_grid_points <span class="op">==</span> num_grid_points</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.grid_spacing <span class="op">==</span> grid_spacing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exercise: write tests for <em>everything</em>! Ideally, you’d write tests as you go along.</p>
 </section>
 </section>

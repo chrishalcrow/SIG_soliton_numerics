@@ -178,21 +178,21 @@
     "objectID": "index.html#documentation",
     "href": "index.html#documentation",
     "title": "Good Scientific Software Practices, through Solitons",
-    "section": "13.1 Documentation",
-    "text": "13.1 Documentation"
+    "section": "12.8 Documentation",
+    "text": "12.8 Documentation\nWe’ll make a set of Documentation using a package called (sphinx)[https://www.sphinx-doc.org/en/master/index.html]. Later, we’ll get GitHub to automatically generate the docs every time that we make a commit. We’re really just going to follow (this tutorial)[https://www.sphinx-doc.org/en/master/tutorial/index.html]. Feel free to read that instead of this.\nFirst of all, we need to add sphinx, which is a python package, to our package by running uv add sphinx. There are lots of ways to organise your docs, but we’ll let sphinx guide us through the process by running sphinx-quickstart docs in the Terminal (make sure you’re in the solitons1d folder). It will ask you some questions. My answers were: y, solitons1d, Chris Halcrow, 0.1, en.\nSphinx has now generated a docs folder in your project folder. We can “build” these docs by running sphinx-build -M html docs/source/ docs/build/ in Terminal. Doing this has built a website, located at docs/build/html/index.html. Go open it using your web browser!\nTo edit your Documentation, you need to edit your source files (in docs/source). The index.rst file generates the index.html file. RST stands for restructured text: it’s a simple text format. There’s a nice cheatsheet for it (https://sphinx-tutorial.readthedocs.io/cheatsheet/)[here]. Here’s an example of what you could put in index.rst.\nSolitons1d documentation\n========================\n\nHere is the documentation for Solitons1d, made while doing the \n`Good Scientific Software Practices, through Solitons &lt;https://chrishalcrow.github.io/SIG_soliton_numerics/&gt;`_.\n\nYou can make and plot a soliton like so:\n\n.. code-block:: python\n\n   import solitons1d as sol\n   import numpy as num_grid_points\n\n   my_grid = sol.Grid(num_grid_points=100, grid_spacing=0.1)\n   my_soliton = sol.Soliton(\n      grid=grid,\n      lagrangian=\"phi_4\",\n      initial_profile_function=np.tanh\n   )\n\nHow to install\n==============\n\nHere are some installation instructions.\nYou can add more pages, or generate an API from your docstrings. Have fun!"
   },
   {
     "objectID": "index.html#continuous-integration",
     "href": "index.html#continuous-integration",
     "title": "Good Scientific Software Practices, through Solitons",
-    "section": "13.2 Continuous Integration",
-    "text": "13.2 Continuous Integration"
+    "section": "12.9 Continuous Integration",
+    "text": "12.9 Continuous Integration"
   },
   {
     "objectID": "index.html#recommended-readinglisteningwatching",
     "href": "index.html#recommended-readinglisteningwatching",
     "title": "Good Scientific Software Practices, through Solitons",
-    "section": "13.3 Recommended Reading/Listening/Watching",
-    "text": "13.3 Recommended Reading/Listening/Watching"
+    "section": "12.10 Recommended Reading/Listening/Watching",
+    "text": "12.10 Recommended Reading/Listening/Watching"
   }
 ]

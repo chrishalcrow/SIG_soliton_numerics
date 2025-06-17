@@ -190,12 +190,9 @@ window.Quarto = {
   <li><a href="#ideas-to-build-on-the-codebase" id="toc-ideas-to-build-on-the-codebase" class="nav-link" data-scroll-target="#ideas-to-build-on-the-codebase"><span class="header-section-number">12.5</span> Ideas to build on the codebase</a></li>
   <li><a href="#advice-on-making-code-and-figures-for-papers" id="toc-advice-on-making-code-and-figures-for-papers" class="nav-link" data-scroll-target="#advice-on-making-code-and-figures-for-papers"><span class="header-section-number">12.6</span> Advice on making code and figures for papers</a></li>
   <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests"><span class="header-section-number">12.7</span> Tests</a></li>
-  </ul></li>
-  <li><a href="#coming-soon" id="toc-coming-soon" class="nav-link" data-scroll-target="#coming-soon"><span class="header-section-number">13</span> Coming soon…</a>
-  <ul class="collapse">
-  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">13.1</span> Documentation</a></li>
-  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">13.2</span> Continuous Integration</a></li>
-  <li><a href="#recommended-readinglisteningwatching" id="toc-recommended-readinglisteningwatching" class="nav-link" data-scroll-target="#recommended-readinglisteningwatching"><span class="header-section-number">13.3</span> Recommended Reading/Listening/Watching</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">12.8</span> Documentation</a></li>
+  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">12.9</span> Continuous Integration</a></li>
+  <li><a href="#recommended-readinglisteningwatching" id="toc-recommended-readinglisteningwatching" class="nav-link" data-scroll-target="#recommended-readinglisteningwatching"><span class="header-section-number">12.10</span> Recommended Reading/Listening/Watching</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1354,17 +1351,43 @@ Tests can also check that your code fails in the correct way. Ideally, every sin
 <span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> grid.grid_spacing <span class="op">==</span> grid_spacing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exercise: write tests for <em>everything</em>! Ideally, you’d write tests as you go along.</p>
 </section>
+<section id="documentation" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="documentation"><span class="header-section-number">12.8</span> Documentation</h2>
+<p>We’ll make a set of Documentation using a package called (sphinx)[https://www.sphinx-doc.org/en/master/index.html]. Later, we’ll get GitHub to automatically generate the docs every time that we make a commit. We’re really just going to follow (this tutorial)[https://www.sphinx-doc.org/en/master/tutorial/index.html]. Feel free to read that instead of this.</p>
+<p>First of all, we need to add <code>sphinx</code>, which is a python package, to our package by running <code>uv add sphinx</code>. There are lots of ways to organise your docs, but we’ll let sphinx guide us through the process by running <code>sphinx-quickstart docs</code> in the Terminal (make sure you’re in the <code>solitons1d</code> folder). It will ask you some questions. My answers were: y, solitons1d, Chris Halcrow, 0.1, en.</p>
+<p>Sphinx has now generated a <code>docs</code> folder in your project folder. We can “build” these docs by running <code>sphinx-build -M html docs/source/ docs/build/</code> in Terminal. Doing this has built a website, located at <code>docs/build/html/index.html</code>. Go open it using your web browser!</p>
+<p>To edit your Documentation, you need to edit your source files (in <code>docs/source</code>). The <code>index.rst</code> file generates the <code>index.html</code> file. RST stands for restructured text: it’s a simple text format. There’s a nice cheatsheet for it (https://sphinx-tutorial.readthedocs.io/cheatsheet/)[here]. Here’s an example of what you could put in <code>index.rst</code>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode rst code-with-copy"><code class="sourceCode rest"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Solitons1d documentation</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>========================</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>Here is the documentation for Solitons1d, made while doing the </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="ot">`Good Scientific Software Practices, through Solitons &lt;https://chrishalcrow.github.io/SIG_soliton_numerics/&gt;`_</span>.</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>You can make and plot a soliton like so:</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="dt">.. code-block:: python</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="dt">   import solitons1d as sol</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="dt">   import numpy as num_grid_points</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="dt">   my_grid = sol.Grid(num_grid_points=100, grid_spacing=0.1)</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="dt">   my_soliton = sol.Soliton(</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="dt">      grid=grid,</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a><span class="dt">      lagrangian="phi_4",</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a><span class="dt">      initial_profile_function=np.tanh</span></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="dt">   )</span></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>How to install</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>==============</span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>Here are some installation instructions.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can add more pages, or generate an API from your docstrings. Have fun!</p>
 </section>
-<section id="coming-soon" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Coming soon…</h1>
-<section id="documentation" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="documentation"><span class="header-section-number">13.1</span> Documentation</h2>
+<section id="continuous-integration" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">12.9</span> Continuous Integration</h2>
 </section>
-<section id="continuous-integration" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">13.2</span> Continuous Integration</h2>
-</section>
-<section id="recommended-readinglisteningwatching" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="recommended-readinglisteningwatching"><span class="header-section-number">13.3</span> Recommended Reading/Listening/Watching</h2>
+<section id="recommended-readinglisteningwatching" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="recommended-readinglisteningwatching"><span class="header-section-number">12.10</span> Recommended Reading/Listening/Watching</h2>
 
 
 </section>

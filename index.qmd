@@ -266,7 +266,7 @@ apply them to a specific case. A script might make a soliton, apply a gradient f
 To make this distinction obvious, we'll keep two folders in the project folder. One 
 called "src" that `uv` already created for us (short for source - this shortening is conventional) and one called 
 "scripts". In the "src" there should already be another folder called the name of your package. Inside this there is a file called `__init__.py` which tells Python that this folder contains a "module". Let's create another files in 
-the `source/{project_name}` folder called `soliton.py`, which will contain the code 
+the `src/{project_name}` folder called `soliton.py`, which will contain the code 
 about the soliton, Also add a script file called  `play.ipynb` in the scripts folder. Overall, my project folder looks like this:
 
 ``` python
@@ -1665,5 +1665,7 @@ Here are some installation instructions.
 You can add more pages, or generate an API from your docstrings. Have fun!
 
 ## Continuous Integration
+
+The aim of this section is to get GitHub to run our tests, and build and host our documentation.
 
 ## Recommended Reading/Listening/Watching

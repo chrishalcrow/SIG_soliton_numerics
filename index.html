@@ -373,7 +373,7 @@ git push -u origin main</code></pre>
 <section id="sources-and-scripts" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Sources and scripts</h1>
 <p>As we build our package, we should keep a separation between the “source” and “scripts”. The source is our package itself. This will contain the logic which can <em>do things</em> and that you want to share with other people. Functions like <code>compute_energy</code> or <code>make_soliton</code>. But when we use the package to do science, we’d write a script. The script will import functions from the source and apply them to a specific case. A script might make a soliton, apply a gradient flow, compute the energy, then plot the result and save the figure as a pdf.</p>
-<p>To make this distinction obvious, we’ll keep two folders in the project folder. One called “src” that <code>uv</code> already created for us (short for source - this shortening is conventional) and one called “scripts”. In the “src” there should already be another folder called the name of your package. Inside this there is a file called <code>__init__.py</code> which tells Python that this folder contains a “module”. Let’s create another files in the <code>source/{project_name}</code> folder called <code>soliton.py</code>, which will contain the code about the soliton, Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
+<p>To make this distinction obvious, we’ll keep two folders in the project folder. One called “src” that <code>uv</code> already created for us (short for source - this shortening is conventional) and one called “scripts”. In the “src” there should already be another folder called the name of your package. Inside this there is a file called <code>__init__.py</code> which tells Python that this folder contains a “module”. Let’s create another files in the <code>src/{project_name}</code> folder called <code>soliton.py</code>, which will contain the code about the soliton, Also add a script file called <code>play.ipynb</code> in the scripts folder. Overall, my project folder looks like this:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>solitons1D<span class="op">/</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    pyproject.toml</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    README.md</span>
@@ -1385,6 +1385,7 @@ Tests can also check that your code fails in the correct way. Ideally, every sin
 </section>
 <section id="continuous-integration" class="level2" data-number="12.9">
 <h2 data-number="12.9" class="anchored" data-anchor-id="continuous-integration"><span class="header-section-number">12.9</span> Continuous Integration</h2>
+<p>The aim of this section is to get GitHub to run our tests, and build and host our documentation.</p>
 </section>
 <section id="recommended-readinglisteningwatching" class="level2" data-number="12.10">
 <h2 data-number="12.10" class="anchored" data-anchor-id="recommended-readinglisteningwatching"><span class="header-section-number">12.10</span> Recommended Reading/Listening/Watching</h2>

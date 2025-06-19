@@ -186,7 +186,7 @@
     "href": "index.html#continuous-integration",
     "title": "Good Scientific Software Practices, through Solitons",
     "section": "12.9 Continuous Integration",
-    "text": "12.9 Continuous Integration"
+    "text": "12.9 Continuous Integration\nThe aim of this section is to get GitHub to run our tests, and build and host our documentation."
   },
   {
     "objectID": "index.html#recommended-readinglisteningwatching",
